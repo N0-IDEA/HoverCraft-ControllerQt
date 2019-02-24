@@ -24,12 +24,11 @@ int main(int argc, char *argv[])
     instance->setVirtualJoystickEnabled(true);
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl("qrc:/configControls/configUI"));
+    engine.load(QUrl("qrc:/configController/configUI.qml"));
     initConfig(&engine);
 
     QQmlApplicationEngine engine1;
     engine1.load(QUrl("qrc:/Test2.qml"));
-    initConfig(&engine);
 
     initTest(&engine1);
 
@@ -56,10 +55,9 @@ void initTest(QQmlApplicationEngine *engine) {
     ConfigController *controller = ConfigController::getInstance();
 
     QList<QObject*> objects;
-    objects.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
+        objects.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
 
-
-    rootObject->setProperty("motorsModel", QVariant::fromValue(objects));
+    rootObject->setProperty("motorsModel", QVariant::fromValue(objects[0]));
 }
 
 void refresh() {

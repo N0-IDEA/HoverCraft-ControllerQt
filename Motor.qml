@@ -5,6 +5,7 @@ import QtQuick.Extras 1.4
 
 CircularGauge {
     property int ppm: 0
+    //property var model;
     id: speedometer
     antialiasing: true
     value: ppm

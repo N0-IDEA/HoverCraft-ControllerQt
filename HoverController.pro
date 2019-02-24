@@ -64,7 +64,6 @@ DISTFILES += \
     Motor.qml \
     IconGaugeStyle.qml \
     MotorGaugeStyle.qml \
-    qtquickcontrols2.conf \
     configController/configUI.qml
 
 RESOURCES += \

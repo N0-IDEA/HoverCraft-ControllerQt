@@ -13,7 +13,7 @@ ApplicationWindow {
     property int sizenormal: 300
     property int spacing: 5
 
-    property variant motorsModel;
+    property variant motorsModel : ({value: 0});
 
     /*maximumHeight: height
     maximumWidth: width
@@ -30,7 +30,7 @@ ApplicationWindow {
     visible: true
     title: "Hover TEST"
 
-    color: "#b3000000"
+    //color: "#b3000000"
 
     Material.accent: Material.color(Material.DeepOrange);
     Material.theme: Material.Dark;
@@ -64,6 +64,21 @@ ApplicationWindow {
                 Layout.rowSpan: 1
             }
         }
+/*
+        Motor {
+            model: motorsModel
+            //ppm: modelData.value
+            Layout.preferredHeight: sizenormal
+            Layout.preferredWidth: sizenormal
+            Layout.maximumHeight: sizemax
+            Layout.maximumWidth: sizemax
+            Layout.minimumHeight: sizemin
+            Layout.minimumWidth: sizemin
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.columnSpan: 1
+            Layout.rowSpan: 1
+        }*/
 
     }
 

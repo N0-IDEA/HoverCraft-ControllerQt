@@ -4,12 +4,8 @@
         <file>IconGaugeStyle.qml</file>
         <file>MotorGaugeStyle.qml</file>
         <file>Test2.qml</file>
-        <file>qtquickcontrols2.conf</file>
-        <file>configController/configUI.qml</file>
         <file>mainUI.qml</file>
-    </qresource>
-    <qresource prefix="/configControls">
-        <file alias="configUI">configController/configUI.qml</file>
-        <file>Test2.qml</file>
+        <file>configController/configUI.qml</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>
