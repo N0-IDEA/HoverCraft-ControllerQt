@@ -6,6 +6,7 @@
 class ConfigOption : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString configMsg READ configMsg)
     Q_PROPERTY(QString option READ option)
     Q_PROPERTY(int idButton READ idButton NOTIFY idButtonChanged)
     Q_PROPERTY(int idGamepad READ idGamepad NOTIFY idGamepadChanged)
@@ -19,9 +20,14 @@ public:
     }
     explicit ConfigOption(QObject *parent = nullptr);
 
+    virtual QString configMsg() const {
+        return "Pulse ####";
+    }
+
     QString option() const {
         return this->m_option;
     }
+
     int idButton() const {
         return this->m_idButton;
     }

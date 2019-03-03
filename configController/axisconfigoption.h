@@ -15,6 +15,10 @@ public:
     void config();
 
     qreal value;
+
+    virtual QString configMsg() const {
+        return "Mueva un Joystick";
+    }
 };
 
 #endif // AXISCONFIGOPTION_H

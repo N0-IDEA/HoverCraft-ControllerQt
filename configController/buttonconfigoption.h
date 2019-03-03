@@ -13,6 +13,10 @@ public:
     bool isActive();
     void buttonEvent(const QJoystickButtonEvent &event);
     void config();
+
+    virtual QString configMsg() const {
+        return "Pulse cualquier boton";
+    }
 };
 
 #endif // BUTTONCONFIGOPTION_H

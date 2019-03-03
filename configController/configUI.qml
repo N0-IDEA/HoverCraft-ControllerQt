@@ -20,9 +20,9 @@ ApplicationWindow {
 
     Dialog {
         id: dialogConfig
+        property string text: "#####"
         width: 250
         height: 250
-        //title: qsTr("Configurando Boton")
         z: 1
         modal: true
         visible: false
@@ -35,7 +35,7 @@ ApplicationWindow {
             //implicitHeight: 200
             */
         Text {
-            text: qsTr("Pulse cualquier boton")
+            text: dialogConfig.text;
             font.pixelSize: 20
             anchors.centerIn: parent
         }
@@ -83,7 +83,7 @@ ApplicationWindow {
                         Layout.maximumWidth: 100;
                         //Layout.preferredWidth: 200
                         text: "Cambiar";
-                        onClicked: configButton(index);
+                        onClicked: configButton(index, modelData.configMsg);
                     }
                 }
             }
@@ -109,8 +109,9 @@ ApplicationWindow {
         bindDone();
     }
 
-    function configButton(idButton) {
+    function configButton(idButton, msg) {
         dialogConfig.visible = true;
+        dialogConfig.text = msg;
         window.configButtonSignal(idButton);
     }
 
