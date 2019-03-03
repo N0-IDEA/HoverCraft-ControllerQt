@@ -24,10 +24,10 @@ private:
     Motor *motor;
     ConfigOption *option;
     ConfigOption *downOption;
-    void buttonEvent(const QJoystickButtonEvent &event);
 signals:
     void valueChanged();
 public slots:
+    void change();
 };
 
 #endif // QMOTOR_H

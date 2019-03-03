@@ -37,7 +37,9 @@ SOURCES += \
     formserial.cpp \
     configController/configcontroller.cpp \
     configController/configoption.cpp \
-    qcontrollers/qmotor.cpp
+    qcontrollers/qmotor.cpp \
+    configController/buttonconfigoption.cpp \
+    configController/axisconfigoption.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,7 +50,9 @@ HEADERS += \
     main.h \
     configController/configcontroller.h \
     configController/configoption.h \
-    qcontrollers/qmotor.h
+    qcontrollers/qmotor.h \
+    configController/buttonconfigoption.h \
+    configController/axisconfigoption.h
 
 FORMS += \
         mainwindow.ui \

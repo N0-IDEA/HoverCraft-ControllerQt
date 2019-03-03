@@ -1,5 +1,7 @@
 #ifndef CONFIGCONTROLLER_H
 #define CONFIGCONTROLLER_H
+#include "axisconfigoption.h"
+#include "buttonconfigoption.h"
 #include "configoption.h"
 
 #include <QJoysticks.h>
@@ -13,21 +15,19 @@ public:
     QList<ConfigOption*> options;
     static ConfigController *getInstance();
 
-    ConfigOption *downOption  = new ConfigOption("Abajo");
-    ConfigOption *upOption  = new ConfigOption("Arriba");
+    ConfigOption *downOption  = new ButtonConfigOption("Abajo");
+    ConfigOption *upOption  = new AxisConfigOption("Arriba");
 
     bool updating;
-private:
-    QMetaObject::Connection temp;
+    void finishConfig();
 
-    int tempId;
+    QMetaObject::Connection temp;
+private:
 
 signals:
     void configDone();
 public slots:
     void configButton(int);
-protected slots:
-    void buttonEvent(const QJoystickButtonEvent &event);
 };
 
 #endif // CONFIGCONTROLLER_H

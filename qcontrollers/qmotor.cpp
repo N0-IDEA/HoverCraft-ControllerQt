@@ -1,6 +1,7 @@
 #include "qmotor.h"
 
 #include <QJoysticks.h>
+#include <QTimer>
 
 #include <configController/configcontroller.h>
 
@@ -10,16 +11,19 @@ QMotor::QMotor(Motor *motor, ConfigOption *option, ConfigOption *downOption) : Q
     this->option = option;
     this->downOption = downOption;
 
-    connect(QJoysticks::getInstance(), &QJoysticks::buttonEvent, this, &QMotor::buttonEvent);
+    //connect(QJoysticks::getInstance(), &QJoysticks::buttonEvent, this, &QMotor::buttonEvent);
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(change()));
+    timer->start(10);
 }
 
-void QMotor::buttonEvent(const QJoystickButtonEvent& event) {
+void QMotor::change() {
     if(!ConfigController::getInstance()->updating) {
-        if(option->idButton() == event.button && option->idGamepad() == event.joystick->id && event.pressed) {
+        if(option->isActive()) {
             if(value() < 1800)
                 setValue(this->motor->potencia + 1);
         }
-        else if (downOption->idButton() == event.button && downOption->idGamepad() == event.joystick->id && event.pressed) {
+        if (downOption->isActive()) {
             if(value() > 1000)
                 setValue(this->motor->potencia - 1);
         }

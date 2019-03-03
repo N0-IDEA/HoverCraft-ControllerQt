@@ -36,6 +36,12 @@ public:
     int m_idButton;
     int m_idGamepad;
 
+    virtual bool isActive() {
+        return false;
+    }
+    virtual void config() {
+        return;
+    }
 signals:
     void idButtonChanged();
     void idGamepadChanged();
