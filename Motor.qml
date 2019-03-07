@@ -14,20 +14,20 @@ Rectangle {
     readonly property string gridMain: idGrid
     readonly property string ppm: ppmValue
     readonly property string name: nameMotor
-    id: alguno
+    id: recMayor
     property int initialWidth: initWidth
     property int initialHeight: initHeight
     Layout.preferredHeight: initialHeight
     Layout.preferredWidth:initialWidth
-   // border.color: parent.width > parent.height? "green" : "orange"
-   // border.width: 1
+    // border.color: parent.width > parent.height? "green" : "orange"
+    // border.width: 1
     color: "transparent"
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-       // onClicked: function () { console.log(alguno.width)} //parent.state = "PRESSED"; parent.visible = false;}
+        // onClicked: function () { console.log(alguno.width)} //parent.state = "PRESSED"; parent.visible = false;}
     }
-    states: [ State { name: "moved"; when: mouseArea.pressed; PropertyChanges { target: alguno; x: 50; y: 50 } } ]
+    states: [ State { name: "moved"; when: mouseArea.pressed; PropertyChanges { target: recMayor; x: 50; y: 50 } } ]
     /* transitions: [
         Transition {
             NumberAnimation { properties: "x,y"; duration: 1000 }
@@ -40,7 +40,7 @@ Rectangle {
         Rectangle {
             Layout.minimumWidth:  Math.floor(parent.width / 10)*3
             Layout.minimumHeight:  parent.height
-           // border.color: "red"
+            // border.color: "red"
             color: "transparent"
             Column {
                 width:  parent.width
@@ -48,14 +48,14 @@ Rectangle {
                 Rectangle{
                     height: parent.parent.height/2
                     width: parent.parent.width
-                   // border.color: "red"
+                    // border.color: "red"
                     color: "transparent"
                     GlowingLabel { anchors.centerIn: parent; text: name; color: "white"; font.pixelSize:  24 }
                 }
                 Rectangle{
                     height: parent.parent.height/2
                     width: parent.parent.width
-                   // border.color: "red"
+                    // border.color: "red"
                     color: "transparent"
                     GlowingLabel { anchors.centerIn: parent; text: qsTr(String(ppm)); color: "white"; font.pixelSize: 24; }
                 }
@@ -65,7 +65,7 @@ Rectangle {
             Layout.minimumWidth:  Math.floor(parent.width / 10)*5
             Layout.minimumHeight:  parent.height
             color: "transparent"
-           // border.color: "red"
+            // border.color: "red"
             EngineCanvas {
                 Layout.minimumWidth:  Math.floor(parent.parent.width / 10)*5
                 Layout.minimumHeight:  parent.parent.height
@@ -76,7 +76,7 @@ Rectangle {
         Rectangle {
             Layout.minimumWidth:  Math.floor(parent.width / 10)*2
             Layout.minimumHeight: parent.height
-           // border.color: "red"
+            // border.color: "red"
             color: "transparent"
             Column {
                 anchors.centerIn: parent
@@ -87,16 +87,19 @@ Rectangle {
                 Rectangle{
                     height: parent.height/2
                     width: parent.width
-                   // border.color: "red"
+                    // border.color: "red"
                     color: "transparent"
                     VelCircle {
-                        RotationAnimation on rotation { from: 0; to: 360; duration: getDurationVel(4000,900);
+                        property int vel: ppm
+                        RotationAnimation { from: 0; to: 360; duration: getDurationVel(4000,900);
                             function getDurationVel(initialDuration, maxPPM) {
-                            var onePorcentPPM = maxPPM/100
-                            var currentPorcent = !((ppm - 1000) / onePorcentPPM)? 1 : ((ppm - 1000) / onePorcentPPM)
-                            return initialDuration/100 * (100 - currentPorcent)
+                                var onePorcentPPM = maxPPM/100
+                                var currentPorcent = !((ppm - 1000) / onePorcentPPM)? 1 : ((ppm - 1000) / onePorcentPPM)
+                                return initialDuration/100 * (currentPorcent)
+                            }
+                            running: true; onStopped: start()
+
                         }
-                            running: true; loops: Animation.Infinite }
                         anchors.centerIn: parent; property string idVel: "vel11"
                     }
                 }

@@ -33,7 +33,8 @@ ApplicationWindow {
             property int cols: 6
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols}
+            Layout.columnSpan: cols
+            }
         }
         Servo {
             property string name: "Servo 1"
