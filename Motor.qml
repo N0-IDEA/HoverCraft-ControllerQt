@@ -14,7 +14,6 @@ Rectangle {
     readonly property string gridMain: idGrid
     readonly property string ppm: ppmValue
     readonly property string name: nameMotor
-    property int rowsGlobal: globalRows
     id: alguno
     property int initialWidth: initWidth
     property int initialHeight: initHeight
@@ -26,7 +25,7 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onClicked: function () { console.log(alguno.width)} //parent.state = "PRESSED"; parent.visible = false;}
+       // onClicked: function () { console.log(alguno.width)} //parent.state = "PRESSED"; parent.visible = false;}
     }
     states: [ State { name: "moved"; when: mouseArea.pressed; PropertyChanges { target: alguno; x: 50; y: 50 } } ]
     /* transitions: [
@@ -58,7 +57,7 @@ Rectangle {
                     width: parent.parent.width
                    // border.color: "red"
                     color: "transparent"
-                    GlowingLabel { anchors.centerIn: parent; text: qsTr(String(ppm)); color: "white"; font.pixelSize: 24; Keys.onPressed: { if (event.key === Qt.UpArrow) {} }                    }
+                    GlowingLabel { anchors.centerIn: parent; text: qsTr(String(ppm)); color: "white"; font.pixelSize: 24; }
                 }
             }
         }
@@ -91,7 +90,13 @@ Rectangle {
                    // border.color: "red"
                     color: "transparent"
                     VelCircle {
-                        RotationAnimation on rotation { from: 0; to: 360; duration: 4000; running: true; loops: Animation.Infinite }
+                        RotationAnimation on rotation { from: 0; to: 360; duration: getDurationVel(4000,900);
+                            function getDurationVel(initialDuration, maxPPM) {
+                            var onePorcentPPM = maxPPM/100
+                            var currentPorcent = !((ppm - 1000) / onePorcentPPM)? 1 : ((ppm - 1000) / onePorcentPPM)
+                            return initialDuration/100 * (100 - currentPorcent)
+                        }
+                            running: true; loops: Animation.Infinite }
                         anchors.centerIn: parent; property string idVel: "vel11"
                     }
                 }
@@ -101,6 +106,12 @@ Rectangle {
                     //border.color: "red"
                     color: "transparent"
                     VelCircle { anchors.centerIn: parent; property string idVel: "vel12" }
+                }
+                function getDurationVel () {
+                    var onePorcent = 900/100
+                    var currentPorcent = (ppm - 1000) / onePorcent
+                    var durationInver = 4000/100 * currentPorcent
+                    return durationInver;
                 }
             }
 
