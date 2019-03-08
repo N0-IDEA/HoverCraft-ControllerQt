@@ -13,6 +13,7 @@ Rectangle {
     readonly property color colorGlow: Material.color(Material.DeepOrange)//"#7CC1CC"
     readonly property string gridMain: idGrid
     readonly property string ppm: ppmValue
+    readonly property int ppmVel: ppmDelayed
     readonly property string name: nameMotor
     id: recMayor
     property int initialWidth: initWidth
@@ -33,6 +34,20 @@ Rectangle {
             NumberAnimation { properties: "x,y"; duration: 1000 }
         }
     ]*/
+
+    function getDurationVel(initialDuration, maxPPM) {
+        var onePorcentPPM = maxPPM/100
+        var currentPorcent = !((ppm - 1000) / onePorcentPPM)? 1 : ((ppm - 1000) / onePorcentPPM)
+        var milis = Math.floor(initialDuration/100 * (100 - currentPorcent))
+        return (milis) === 1900 ? 1 : milis
+    }
+
+    onPpmChanged:{
+        //animationVel1.stop();
+        //animationVel1.duration = getDurationVel(4000,900);
+       // animationVel1.start();
+        console.log("sdsadasd")
+    }
     GridBase{
         id: grid
         columnSpacing: 0
@@ -90,15 +105,12 @@ Rectangle {
                     // border.color: "red"
                     color: "transparent"
                     VelCircle {
-                        property int vel: ppm
-                        RotationAnimation { from: 0; to: 360; duration: getDurationVel(4000,900);
-                            function getDurationVel(initialDuration, maxPPM) {
-                                var onePorcentPPM = maxPPM/100
-                                var currentPorcent = !((ppm - 1000) / onePorcentPPM)? 1 : ((ppm - 1000) / onePorcentPPM)
-                                return initialDuration/100 * (currentPorcent)
-                            }
+                        RotationAnimation on rotation {
+                            id: animationVel1;
+                            from: 0
+                            to: 360
+                            duration: getDurationVel(4000,900)
                             running: true; onStopped: start()
-
                         }
                         anchors.centerIn: parent; property string idVel: "vel11"
                     }
@@ -108,7 +120,9 @@ Rectangle {
                     width: parent.width
                     //border.color: "red"
                     color: "transparent"
-                    VelCircle { anchors.centerIn: parent; property string idVel: "vel12" }
+                    VelCircle { anchors.centerIn: parent; property string idVel: "vel12"
+
+                    }
                 }
                 function getDurationVel () {
                     var onePorcent = 900/100
