@@ -35,15 +35,17 @@ Rectangle {
         }
     ]*/
 
-    function getDurationVel(initialDuration, maxPPM) {
+    function getDurationVel(initialDuration, maxPPM,ppmVel) {
+           var milis =  Math.floor(initialDuration/100 * getPorcent(initialDuration, maxPPM,ppmVel))
+           return  (milis < 71) ? 71 : milis
+       }
+    function getPorcent(initialDuration, maxPPM,ppmVel) {
         var onePorcentPPM = maxPPM/100
         var currentPorcent = !((ppmVel - 1000) / onePorcentPPM)? 1 : ((ppmVel - 1000) / onePorcentPPM)
-        var milis = Math.floor(initialDuration/100 * (100 - currentPorcent))
-        return (milis) === 1900 ? 1 : milis
+        return 100 - currentPorcent
     }
-
     onPpmVelChanged:{
-        animationVel1.duration = getDurationVel(4000,900);
+        animationVel1.duration = getDurationVel(4000,900, ppmVel);
     }
     GridBase{
         id: grid
@@ -95,7 +97,6 @@ Rectangle {
                 anchors.top: parent.top
                 width: Math.floor(parent.parent.width / 10)*2
                 height: parent.parent.height
-
                 Rectangle{
                     height: parent.height/2
                     width: parent.width
@@ -117,15 +118,7 @@ Rectangle {
                     width: parent.width
                     //border.color: "red"
                     color: "transparent"
-                    VelCircle { anchors.centerIn: parent; property string idVel: "vel12"
-
-                    }
-                }
-                function getDurationVel () {
-                    var onePorcent = 900/100
-                    var currentPorcent = (ppm - 1000) / onePorcent
-                    var durationInver = 4000/100 * currentPorcent
-                    return durationInver;
+                    VelCircle { anchors.centerIn: parent; property string idVel: "vel12" }
                 }
             }
 

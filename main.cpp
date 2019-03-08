@@ -19,7 +19,7 @@ void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
     instance->setVirtualJoystickEnabled(true);
 

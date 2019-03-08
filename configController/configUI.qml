@@ -156,8 +156,8 @@ ApplicationWindow {
 
                 var ctx = getContext("2d");
                 ctx.reset();
-                var fontSize= 20;
-                ctx.font = fontSize +"pt Ani";
+                var fontSize= 15;
+                ctx.font = fontSize +"pt audiowide";
                 //Canvas of 800 * 800
                 var canvasSize = 600;
 

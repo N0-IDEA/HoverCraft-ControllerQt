@@ -8,7 +8,8 @@ Canvas {
     width: getWidth(parent)
     height: getWidth(parent)
     rotation: 270
-    smooth: true    
+    smooth: true
+    property int porState: 1
     onPaint: {
         var ctx = getContext("2d");
         var centerX=getWidth(mycanvas)/2;
@@ -29,7 +30,7 @@ Canvas {
         var nObjects = 16
         var degFinal = 360 / nObjects
         var theColor = Material.color(Material.DeepOrange);
-        var arrColors = updateSpitter("#212121",theColor.toString(), nObjects)//"#52484d",  nObjects);//"#7CC1CC" cyan oscuro, "#52484d" cyan,
+        var arrColors = getDegraded("#212121",theColor.toString(), nObjects)//"#52484d",  nObjects);//"#7CC1CC" cyan oscuro, "#52484d" cyan,
         for(var i=0;i<nObjects;i++) {
             var start_x = centerX+Math.round((centerX-radioCirculo*1.8)*Math.cos(degFinal*i*Math.PI/180));
             var start_y = centerY+Math.round((centerY-radioCirculo*1.8)*Math.sin(degFinal*i*Math.PI/180));
@@ -44,16 +45,10 @@ Canvas {
         }
     }
         function getWidth(item) {
-            if(item.width < item.height)
-                return item.width
-            else
-                return item.height
+            return item.width < item.height ? item.width : item.height
         }
-
-
         function processHEX(val) {         
          var hex = (val.length >6)?val.substr(1, val.length - 1):val;
-
          if (hex.length > 3) {
            var r = hex.substr(0, 2);
            var g = hex.substr(2, 2);
@@ -70,7 +65,7 @@ Canvas {
            ]
         }
 
-        function updateSpitter(val1El,val2El,steps) {
+        function getDegraded(val1El,val2El,steps) {
            var hasSpun = 0;
            var val1RGB = processHEX(val1El);
            var val2RGB = processHEX(val2El);
@@ -117,50 +112,3 @@ Canvas {
             return numerator/denominator * 100;
         }
 }
-/*
-
-  funcion que retorna la cantidad de circulos que pueden hacer el 100% de algo
-function div(porcent){
-    for (var i = 0; i <100; i++)
-        if(porcent % i === 0)
-            console.log(i)
-}
-div(180);*/
-
-
-
-
-/*
-var radioCirculo = centerX / 2;
-
-ctx.beginPath();
-ctx.arc(
-            centerX,centerY,radioCirculo,0,Math.PI*2,true);
-ctx.fillStyle = '#0F1B23';
-ctx.fill();
-ctx.lineWidth = 5;
-ctx.strokeStyle = '#7CC1CC';
-ctx.stroke();
-
-ctx.strokeStyle="#7CC1CC";
-var nObjects = 20
-var degFinal = 360 / nObjects
-for(var i=0;i<nObjects;i++) {
-
-    var start_x = centerX+Math.round((centerX-radioCirculo*1.2)*Math.cos(degFinal*i*Math.PI/180));
-
-    var start_y = centerY+Math.round((centerY-radioCirculo*1.2)*Math.sin(degFinal*i*Math.PI/180));
-
-    var end_x = centerX+Math.round((centerX-radioCirculo*1.5)*Math.cos(degFinal*i*Math.PI/180));
-
-    var end_y = centerY+Math.round((centerY-radioCirculo*1.5)*Math.sin(degFinal*i*Math.PI/180));
-
-    ctx.beginPath();
-
-    ctx.moveTo(start_x,start_y);
-
-    ctx.lineTo(end_x,end_y);
-
-    ctx.stroke();
-
-}*/

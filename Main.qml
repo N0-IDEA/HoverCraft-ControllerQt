@@ -30,7 +30,7 @@ ApplicationWindow {
             delegate: Motor {
             property string nameMotor: "Motor 1"
             property string ppmValue: modelData.value
-            property string ppmDelayed: modelData.valueDelayed
+            property int ppmDelayed: modelData.valueDelayed
             property int cols: 6
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
@@ -87,6 +87,7 @@ ApplicationWindow {
         Motor {
             property string nameMotor: "Motor 2"
             property string ppmValue: "100"
+            property int ppmDelayed: 100
             property int cols: 6
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
@@ -95,6 +96,7 @@ ApplicationWindow {
         Motor {
             property string nameMotor: "Motor 3"
             property string ppmValue: "100"
+            property int ppmDelayed: 100
             property int cols: 6
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
@@ -103,6 +105,7 @@ ApplicationWindow {
         Motor {
             property string nameMotor: "Motor 4"
             property string ppmValue: "100"
+            property int ppmDelayed: 100
             property int cols: 6
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
