@@ -21,7 +21,7 @@ void QMotor::change() {
     if(!ConfigController::getInstance()->updating) {
         bool change = false;
         if(option->isActive()) {
-            if(value() < 1800) {
+            if(value() < 1900) {
                 setValue(this->motor->potencia + 1);
                 change = true;
             }

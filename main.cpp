@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     initConfig(&engine);
 
     QQmlApplicationEngine engine1;
-    engine1.load(QUrl("qrc:/Test2.qml"));
+    engine1.load(QUrl("qrc:/Main.qml"));
 
     initTest(&engine1);
 

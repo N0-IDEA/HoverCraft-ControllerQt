@@ -1,11 +1,24 @@
 <RCC>
     <qresource prefix="/">
-        <file>Motor.qml</file>
         <file>IconGaugeStyle.qml</file>
         <file>MotorGaugeStyle.qml</file>
         <file>Test2.qml</file>
         <file>mainUI.qml</file>
         <file>configController/configUI.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>Test.qml</file>
+        <file>HoverGaugeStyle.qml</file>
+        <file>Material.qml</file>
+        <file>GridBase.qml</file>
+        <file>Motor_fq.qml</file>
+        <file>CanvasTest.qml</file>
+        <file>VelCircle.qml</file>
+        <file>GlowingLabel.qml</file>
+        <file>CustomGlow.qml</file>
+        <file>Main.qml</file>
+        <file>EngineCanvas.qml</file>
+        <file>Servo.qml</file>
+        <file>BaterryCanvas.qml</file>
+        <file>Motor.qml</file>
     </qresource>
 </RCC>
