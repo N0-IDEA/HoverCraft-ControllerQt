@@ -11,7 +11,7 @@ Canvas {
     onPaint: {
         var ctx     = getContext("2d");
         var centerX = getWidth(mycanvas)/2;
-        var centerY = getWidth(mycanvas)/2;
+        var centerY = centerX
         var rCicle = centerX*0.95;
 
         ctx.beginPath();

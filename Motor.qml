@@ -37,16 +37,13 @@ Rectangle {
 
     function getDurationVel(initialDuration, maxPPM) {
         var onePorcentPPM = maxPPM/100
-        var currentPorcent = !((ppm - 1000) / onePorcentPPM)? 1 : ((ppm - 1000) / onePorcentPPM)
+        var currentPorcent = !((ppmVel - 1000) / onePorcentPPM)? 1 : ((ppmVel - 1000) / onePorcentPPM)
         var milis = Math.floor(initialDuration/100 * (100 - currentPorcent))
         return (milis) === 1900 ? 1 : milis
     }
 
-    onPpmChanged:{
-        //animationVel1.stop();
-        //animationVel1.duration = getDurationVel(4000,900);
-       // animationVel1.start();
-        console.log("sdsadasd")
+    onPpmVelChanged:{
+        animationVel1.duration = getDurationVel(4000,900);
     }
     GridBase{
         id: grid
@@ -109,7 +106,7 @@ Rectangle {
                             id: animationVel1;
                             from: 0
                             to: 360
-                            duration: getDurationVel(4000,900)
+                            duration: 1
                             running: true; onStopped: start()
                         }
                         anchors.centerIn: parent; property string idVel: "vel11"

@@ -30,6 +30,7 @@ ApplicationWindow {
             delegate: Motor {
             property string nameMotor: "Motor 1"
             property string ppmValue: modelData.value
+            property string ppmDelayed: modelData.valueDelayed
             property int cols: 6
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
