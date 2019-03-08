@@ -43,7 +43,6 @@ Canvas {
             ctx.stroke();
         }
     }
-        RotationAnimation on rotation { from: 360; to: 0; duration: 4000; running: true; onStopped: start()}
         function getWidth(item) {
             if(item.width < item.height)
                 return item.width
