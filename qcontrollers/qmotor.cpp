@@ -19,20 +19,37 @@ QMotor::QMotor(Motor *motor, ConfigOption *option, ConfigOption *downOption) : Q
 
 void QMotor::change() {
     if(!ConfigController::getInstance()->updating) {
+        bool change = false;
         if(option->isActive()) {
-            if(value() < 1800)
+            if(value() < 1800) {
                 setValue(this->motor->potencia + 1);
+                change = true;
+            }
         }
-        if (downOption->isActive()) {
+        else if (downOption->isActive()) {
             if(value() > 1000)
                 setValue(this->motor->potencia - 1);
+        }
+        else {
+            updated = false;
         }
     }
 }
 
 void QMotor::setValue(int value) {
     if (value != this->motor->potencia) {
-        this->motor->potencia = value;
+
         emit valueChanged();
+
+        this->motor->potencia = value;
+        if(!updated) {
+            time = QDateTime::currentMSecsSinceEpoch();
+            updated = true;
+        }
+        if(updated && QDateTime::currentMSecsSinceEpoch() - time > 50) {
+            time = QDateTime::currentMSecsSinceEpoch();
+            emit valueDelayedChanged();
+        }
+
     }
 }

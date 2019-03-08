@@ -13,7 +13,7 @@ ApplicationWindow {
     property int sizenormal: 300
     property int spacing: 5
 
-    property variant motorsModel : ({value: 0});
+    property variant motorsModel : ({value: 0, valueDelayed: 0});
 
     /*maximumHeight: height
     maximumWidth: width
@@ -51,7 +51,7 @@ ApplicationWindow {
             id: buttons
             objectName: "buttonsRepeater"
             delegate: Motor {
-                ppm: modelData.value
+                ppm: modelData.valueDelayed
                 Layout.preferredHeight: sizenormal
                 Layout.preferredWidth: sizenormal
                 Layout.maximumHeight: sizemax
