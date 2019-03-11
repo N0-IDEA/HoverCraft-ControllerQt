@@ -11,7 +11,9 @@ ApplicationWindow {
     visible: true
     title: "Prueba"
 
-    property variant myModel;
+    property variant options;
+    property variant axisOptions;
+    property variant buttonOptions;
 
     Material.accent: Material.color(Material.DeepOrange);
     Material.theme: Material.Dark;
@@ -71,7 +73,7 @@ ApplicationWindow {
                 flow: GridLayout.TopToBottom
 
                 Repeater {
-                    model: myModel
+                    model: options
                     id: buttons
                     objectName: "buttonsRepeater"
                     delegate: RowLayout {
@@ -154,6 +156,8 @@ ApplicationWindow {
                     ctx.fillText(option, coord2B.x + 10, coord2B.y + fontSize / 2);
                 }
 
+                var idGamepad = 0;
+
                 var ctx = getContext("2d");
                 ctx.reset();
                 var fontSize= 15;
@@ -166,49 +170,49 @@ ApplicationWindow {
                 var buttonsPosy = canvasHalf - 60;
                 //Boton 1
                 var option;
-                if((option = findOption(0,0)) !== null)
+                if((option = findOption(idGamepad,0)) !== null)
                     drawOptionButton(ctx, buttonsPosx, buttonsPosy + 50, 125, 60, option.option);
 
                 //Boton 2
-                if((option = findOption(0,1)) !== null)
+                if((option = findOption(idGamepad,1)) !== null)
                     drawOptionButton(ctx, buttonsPosx + 50, buttonsPosy + 50, 75, 60, option.option);
 
                 //Boton 3
-                if((option = findOption(0,2)) !== null)
+                if((option = findOption(idGamepad,2)) !== null)
                     drawOptionButton(ctx, buttonsPosx + 100, buttonsPosy + 50, 25, 60, option.option);
 
                 //Boton 4
-                if((option = findOption(0,3)) !== null)
+                if((option = findOption(idGamepad,3)) !== null)
                     drawOptionButton(ctx, buttonsPosx, buttonsPosy - 50, 85, 300, option.option);
 
                 //Boton 5
-                if((option = findOption(0,4)) !== null)
+                if((option = findOption(idGamepad,4)) !== null)
                     drawOptionButton(ctx, buttonsPosx + 50, buttonsPosy - 50, 50, 300, option.option);
 
                 //Boton 6
-                if((option = findOption(0,5)) !== null)
+                if((option = findOption(idGamepad,5)) !== null)
                     drawOptionButton(ctx, buttonsPosx + 100, buttonsPosy - 50, 15, 300, option.option);
 
                 //Boton 10
-                if((option = findOption(0,9)) !== null) {
+                if((option = findOption(idGamepad,9)) !== null) {
                     var coords1B10 = drawLineAngle(ctx, canvasHalf + 15, canvasHalf + 15, 90, 55);
                     ctx.fillText(option.option, coords1B10.x - ctx.measureText(option.option).width/2, coords1B10.y + fontSize + 10);
                 }
 
                 //Boton 9
-                if((option = findOption(0,8)) !== null) {
+                if((option = findOption(idGamepad,8)) !== null) {
                     var coords1B9 = drawLineAngle(ctx, canvasHalf - 15, canvasHalf + 15, 90, 125);
                     ctx.fillText(option.option, coords1B9.x - ctx.measureText(option.option).width/2, coords1B9.y + fontSize + 10);
                 }
 
                 //Boton 11
-                if((option = findOption(0,10)) !== null) {
+                if((option = findOption(idGamepad,10)) !== null) {
                     var coords1B11 = drawLineAngle(ctx, canvasHalf, canvasHalf - 70, 80, 270);
                     ctx.fillText(option.option, coords1B11.x - ctx.measureText(option.option).width/2, coords1B11.y - fontSize )
                 }
 
                 //Boton 12
-                if((option = findOption(0,11)) !== null) {
+                if((option = findOption(idGamepad,11)) !== null) {
                     var coords1B12 = drawLineAngle(ctx, canvasHalf, canvasHalf - 25, 170, 90);
                     ctx.fillText(option.option, coords1B12.x - ctx.measureText(option.option).width/2, coords1B12.y + fontSize + 10);
                 }
@@ -218,24 +222,24 @@ ApplicationWindow {
                 var marginAxis = 25;
 
                 //Axis1
-                if((option = findOptionAxis(0,1)) !== null) {
+                if((option = findOptionAxis(idGamepad,1,1)) !== null) {
                     var coords1A1 = drawLineAngle(ctx, posxAxis, posyAxis + marginAxis, 30, 90);
                     ctx.fillText(option.option, coords1A1.x - ctx.measureText(option.option).width/2, coords1A1.y + fontSize + 10);
                 }
 
                 //Axis2
-                if((option = findOptionAxis(0,0)) !== null) {
+                if((option = findOptionAxis(idGamepad,0,1)) !== null) {
                     var coords1A2 = drawLineAngle(ctx, posxAxis + marginAxis, posyAxis, 30, 0);
                     ctx.fillText(option.option, coords1A2.x + 10, coords1A2.y + fontSize/2);
                 }
 
                 //Axis3
-                if((option = findOptionAxis(0,0)) !== null) {
+                if((option = findOptionAxis(idGamepad,0,-1)) !== null) {
                     var coords1A3 = drawLineAngle(ctx, posxAxis - marginAxis, posyAxis, 30, 180);
                     ctx.fillText(option.option, coords1A3.x - ctx.measureText(option.option).width - 10, coords1A3.y + fontSize /2);
                 }
                 //Axis4
-                if((option = findOptionAxis(0,1)) !== null) {
+                if((option = findOptionAxis(idGamepad,1,-1)) !== null) {
                     var coords1A4 = drawLineAngle(ctx, posxAxis, posyAxis - marginAxis, 30, 270);
                     ctx.fillText(option.option, coords1A4.x - ctx.measureText(option.option).width/2, coords1A4.y - fontSize + 10);
                 }
@@ -244,19 +248,19 @@ ApplicationWindow {
     }
 
     function findOption(idGamepad, idButton) {
-        for(var i = 0; i < buttons.model.length; i++) {
-            var option = buttons.model[i];
-            if(option.configMsg.endsWith('boton') && idGamepad == option.idGamepad && idButton == option.idButton)
+        for(var i = 0; i < buttonOptions.length; i++) {
+            var option = buttonOptions[i];
+            if(idGamepad == option.idGamepad && idButton == option.idButton)
                 return option;
         }
 
         return null;
     }
 
-    function findOptionAxis(idGamepad, idButton) {
-        for(var i = 0; i < buttons.model.length; i++) {
-            var option = buttons.model[i];
-            if(!option.configMsg.endsWith('boton') && idGamepad == option.idGamepad && idButton == option.idButton)
+    function findOptionAxis(idGamepad, idButton, value) {
+        for(var i = 0; i < axisOptions.length; i++) {
+            var option = axisOptions[i];
+            if(idGamepad == option.idGamepad && idButton == option.idButton && (Math.abs(option.value - value) <= 0.001))
                 return option;
         }
 
@@ -265,7 +269,7 @@ ApplicationWindow {
 
     Connections {
         target: button
-        onClicked: console.log("buttons.model")
+        onClicked: console.log(axisOptions)
     }
 
 

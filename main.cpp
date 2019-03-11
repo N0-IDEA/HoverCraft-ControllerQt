@@ -39,12 +39,26 @@ void initConfig(QQmlApplicationEngine *engine) {
     QObject *rootObject = engine->rootObjects().first();
     ConfigController *controller = ConfigController::getInstance();
 
-    QList<QObject*> objects;
+    QList<QObject*> options;
     for (int i=0;i<controller->options.size(); i++) {
-        objects.append(controller->options[i]);
+        options.append(controller->options[i]);
     }
 
-    rootObject->setProperty("myModel", QVariant::fromValue(objects));
+    rootObject->setProperty("options", QVariant::fromValue(options));
+
+    QList<AxisConfigOption*> axisOptions = controller->getAxisOptions();
+    QList<QObject*> qAxisOptions;
+    for (int i=0;i<axisOptions.size(); i++) {
+        qAxisOptions.append(axisOptions[i]);
+    }
+    rootObject->setProperty("axisOptions", QVariant::fromValue(qAxisOptions));
+
+    QList<ButtonConfigOption*> buttonOptions = controller->getButtonOptions();
+    QList<QObject*> qButtonOptions;
+    for (int i=0;i<buttonOptions.size(); i++) {
+        qButtonOptions.append(buttonOptions[i]);
+    }
+    rootObject->setProperty("buttonOptions", QVariant::fromValue(qButtonOptions));
 
     QObject::connect(rootObject, SIGNAL(configButtonSignal(int)), controller, SLOT(configButton(int)));
     QObject::connect(controller, SIGNAL(configDone()), rootObject, SIGNAL(configDone()));

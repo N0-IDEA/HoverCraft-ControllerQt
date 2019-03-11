@@ -6,16 +6,17 @@
 
 bool AxisConfigOption::isActive() {
     QJoysticks *instance = QJoysticks::getInstance();
-    if (value == 0.0)
+    if (value() == 0.0)
         return false;
-    return qFuzzyCompare(instance->getAxis(idGamepad(), idButton()), value);
+    return qFuzzyCompare(instance->getAxis(idGamepad(), idButton()), value());
 }
 
 void AxisConfigOption::axisEvent (const QJoystickAxisEvent& event) {
     if (event.value != 0.0) {
         setIdButton(event.axis);
         setIdGamepad(event.joystick->id);
-        value = event.value;
+        m_value = event.value;
+        //emit valueChanged();
         ConfigController::getInstance()->finishConfig();
     }
 }

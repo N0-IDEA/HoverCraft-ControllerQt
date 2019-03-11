@@ -14,11 +14,17 @@ public:
     void axisEvent (const QJoystickAxisEvent& event);
     void config();
 
-    qreal value;
+    qreal value() const {
+        return this->m_value;
+    }
+
+    qreal m_value;
 
     virtual QString configMsg() const {
         return "Mueva un Joystick";
     }
+signals:
+    void valueChanged();
 };
 
 #endif // AXISCONFIGOPTION_H

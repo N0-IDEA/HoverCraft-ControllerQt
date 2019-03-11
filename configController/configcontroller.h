@@ -22,6 +22,8 @@ public:
     void finishConfig();
 
     QMetaObject::Connection temp;
+    QList<AxisConfigOption *> getAxisOptions();
+    QList<ButtonConfigOption *> getButtonOptions();
 private:
 
 signals:

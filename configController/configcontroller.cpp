@@ -25,6 +25,26 @@ void ConfigController::configButton(int id) {
     options[id]->config();
 }
 
+QList<AxisConfigOption*> ConfigController::getAxisOptions() {
+    QList<AxisConfigOption*> objects;
+    for(int i=0;i<options.size();i++) {
+        if(AxisConfigOption* option = dynamic_cast<AxisConfigOption*>(options[i])) {
+              objects.append(option);
+        }
+    }
+    return objects;
+}
+
+QList<ButtonConfigOption*> ConfigController::getButtonOptions() {
+    QList<ButtonConfigOption*> objects;
+    for(int i=0;i<options.size();i++) {
+        if(ButtonConfigOption* option = dynamic_cast<ButtonConfigOption*>(options[i])) {
+              objects.append(option);
+        }
+    }
+    return objects;
+}
+
 ConfigController* ConfigController::getInstance()
 {
     static ConfigController controller;

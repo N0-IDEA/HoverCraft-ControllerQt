@@ -7,6 +7,9 @@
 
 class ButtonConfigOption : public ConfigOption
 {
+    Q_PROPERTY(QString option READ option)
+    Q_PROPERTY(int idButton READ idButton NOTIFY idButtonChanged)
+    Q_PROPERTY(int idGamepad READ idGamepad NOTIFY idGamepadChanged)
 public:
     ButtonConfigOption(QString option) : ConfigOption(option)  {
     }

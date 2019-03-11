@@ -10,6 +10,7 @@ class ConfigOption : public QObject
     Q_PROPERTY(QString option READ option)
     Q_PROPERTY(int idButton READ idButton NOTIFY idButtonChanged)
     Q_PROPERTY(int idGamepad READ idGamepad NOTIFY idGamepadChanged)
+    Q_PROPERTY(double value READ value NOTIFY valueChanged)
 public:
     ConfigOption(QString option) : ConfigOption(option, 0, 0)  {
     }
@@ -22,6 +23,10 @@ public:
 
     virtual QString configMsg() const {
         return "Pulse ####";
+    }
+
+    virtual double value() const {
+        return 0.0;
     }
 
     QString option() const {
@@ -51,6 +56,7 @@ public:
 signals:
     void idButtonChanged();
     void idGamepadChanged();
+    void valueChanged();
 public slots:
 };
 
