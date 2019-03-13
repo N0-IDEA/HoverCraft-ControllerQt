@@ -37,6 +37,33 @@ ApplicationWindow {
             Layout.columnSpan: cols
             }
         }
+        Motor {
+            property string nameMotor: "Motor 2"
+            property string ppmValue: "1000"
+            property int ppmDelayed: 1000
+            property int cols: 6
+            property int initWidth: parent.width / 12 * cols
+            property int initHeight: parent.height / externalRows
+            Layout.columnSpan: cols
+        }
+        Motor {
+            property string nameMotor: "Motor 3"
+            property string ppmValue: "1000"
+            property int ppmDelayed: 1000
+            property int cols: 6
+            property int initWidth: parent.width / 12 * cols
+            property int initHeight: parent.height / externalRows
+            Layout.columnSpan: cols
+        }
+        Motor {
+            property string nameMotor: "Motor 4"
+            property string ppmValue: "1000"
+            property int ppmDelayed: 1000
+            property int cols: 6
+            property int initWidth: parent.width / 12 * cols
+            property int initHeight: parent.height / externalRows
+            Layout.columnSpan: cols
+        }
         Servo {
             property string name: "Servo 1"
             property int cols: 6
@@ -83,36 +110,6 @@ ApplicationWindow {
             property int initHeight: parent.height / externalRows
             Layout.columnSpan: cols
         }
-
-        Motor {
-            property string nameMotor: "Motor 2"
-            property string ppmValue: "100"
-            property int ppmDelayed: 100
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-        }
-        Motor {
-            property string nameMotor: "Motor 3"
-            property string ppmValue: "100"
-            property int ppmDelayed: 100
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-        }
-        Motor {
-            property string nameMotor: "Motor 4"
-            property string ppmValue: "100"
-            property int ppmDelayed: 100
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-        }
-
-
     }
     function getTotalRows(){
         var totalCols = 0;

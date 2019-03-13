@@ -162,6 +162,8 @@ ApplicationWindow {
                 ctx.reset();
                 var fontSize= 15;
                 ctx.font = fontSize +"pt audiowide";
+                ctx.fillStyle = "#FFFFFF";
+                ctx.strokeStyle = "#FFFFFF";
                 //Canvas of 800 * 800
                 var canvasSize = 600;
 
@@ -291,61 +293,3 @@ ApplicationWindow {
         canvas.requestPaint();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*##^## Designer {
-    D{i:4;anchors_height:100;anchors_width:100}
-}
- ##^##*/
