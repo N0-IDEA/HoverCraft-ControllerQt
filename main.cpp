@@ -27,10 +27,9 @@ int main(int argc, char *argv[])
     engine.load(QUrl("qrc:/configController/configUI.qml"));
     initConfig(&engine);
 
-    QQmlApplicationEngine engine1;
+  /*  QQmlApplicationEngine engine1;
     engine1.load(QUrl("qrc:/Main.qml"));
-
-    initTest(&engine1);
+    initTest(&engine1);*/
 
     return a.exec();
 }

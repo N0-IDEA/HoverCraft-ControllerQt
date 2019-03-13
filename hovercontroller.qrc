@@ -20,5 +20,6 @@
         <file>Servo.qml</file>
         <file>BaterryCanvas.qml</file>
         <file>Motor.qml</file>
+        <file>configController/ConfigButtonsCanvas.qml</file>
     </qresource>
 </RCC>
