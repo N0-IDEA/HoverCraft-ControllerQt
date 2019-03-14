@@ -6,11 +6,8 @@ import QtQuick.Controls.Material 2.12
 
 Canvas {
     id: canvas
-    Layout.minimumHeight: 600
-    Layout.minimumWidth: 600
-    Layout.fillWidth: true
-    Layout.fillHeight: true
-
+    width: getWidth(parent)
+    height: getWidth(parent)
     onPaint: {
         function drawLineAngle(context, posx, posy, length, angle) {
             context.beginPath();
@@ -142,4 +139,5 @@ Canvas {
             ctx.fillText(option.option, coords1A4.x - ctx.measureText(option.option).width/2, coords1A4.y - fontSize + 10);
         }
     }
+    function getWidth(item) { return item.width < item.height ? item.width : item.height }
 }

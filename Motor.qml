@@ -52,8 +52,6 @@ Rectangle {
     }
     GridBase{
         id: grid
-        columnSpacing: 0
-        rowSpacing: 0
         Rectangle {
             Layout.minimumWidth:  Math.floor(parent.width / 10)*3
             Layout.minimumHeight:  parent.height

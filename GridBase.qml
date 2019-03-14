@@ -12,10 +12,9 @@ GridLayout {
     columnSpacing: 0
     rowSpacing: 0
     property string  id: idGrid
-    rows: externalRows//? externalRows : getRows ()
+    rows: externalRows
     columns: initialColumns
     height: parent.height
-
     anchors.fill: parent
     flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
  /*   function getRows () {

@@ -21,5 +21,6 @@
         <file>BaterryCanvas.qml</file>
         <file>Motor.qml</file>
         <file>configController/ConfigButtonsCanvas.qml</file>
+        <file>configController/ButtonOption.qml</file>
     </qresource>
 </RCC>

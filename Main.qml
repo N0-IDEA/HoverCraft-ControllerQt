@@ -20,8 +20,6 @@ ApplicationWindow {
 
     GridBase {
         id: gridMain
-        Layout.preferredWidth:  parent.width / 2
-        Layout.preferredHeight:  parent.height
         Repeater {
             model: motorsModel
             id: motor1

@@ -16,64 +16,90 @@ ApplicationWindow {
     property variant axisOptions;
     property variant buttonOptions;
 
-    property int externalRows: getTotalRows()
+    property int externalRows: getTotalRows(gridMain)
     readonly property string idGrid: "gridMain"
 
     Material.accent: Material.color(Material.DeepOrange);
     Material.theme: Material.Dark;
     Material.foreground: "#FFFFFF"
-    //Material.primary: "#000000"
+    //Material.primary: "#FFFFFF"
+    color: "black"
+    onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
 
 
     MainComponents.GridBase {
         id: gridMain
-        Layout.preferredWidth:  parent.width / 2
-        Layout.preferredHeight:  parent.height
-       // flow: GridLayout.TopToBottom
-        Repeater {
-            model: options
-            id: buttons
-            property string type: "repeater"
-            objectName: "buttonsRepeater"
-            delegate: Rectangle{
-                property int cols: 3
-                property int initWidth: parent.width / 12 * cols
-                property int initHeight: parent.height / externalRows
-                Layout.columnSpan: cols
-             /*   RowLayout {
-                    width: parent.width
-                    height: parent.height
-*/
-                    Label {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        text: modelData.option;
-                        verticalAlignment: Text.AlignVCenter
-                    }
-/*
-                    Label {
-                     //   Layout.fillWidth: true
-                     //   Layout.fillHeight: true
-                        text: "Mando %1: %2".arg(modelData.idGamepad).arg(modelData.idButton);
-                        verticalAlignment: Text.AlignVCenter
-                    }*/
+        anchors.top: window.top
+        anchors.left: window.left
+        anchors.right: window.right
+        anchors.bottom: window.bottom
+        anchors.topMargin: 10
+        anchors.bottomMargin: 10
+        anchors.rightMargin: 20
+        anchors.leftMargin: 20
+        Rectangle{
+            color:"transparent"
+           // border.color: "green"
+            property int cols: 4
+            Layout.minimumWidth: parent.width / 12 * cols
+            Layout.minimumHeight: parent.height
+            Layout.columnSpan: cols
+            Layout.rowSpan: 10
 
-         /*           Button {
-                        highlighted: true;
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        text: "Cambiar";
-                        onClicked: configButton(index, modelData.configMsg);
-                    }*/
+
+            MainComponents.GridBase {
+                id: gridRepeater
+                rows: getTotalRows(gridRepeater)
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+                    Label {
+                        text: "Opciones"
+                        width: parent.width
+                        font.pixelSize:  20
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                }
+                ButtonOption{
+                    id: buttons
+                    property int repeaterRows: gridRepeater.rows
+                }
+                Rectangle{
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+
+                    Label {
+                        font.pixelSize:  20
+                        text: "Atras"
+                        width: parent.width
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                    }
                 }
             }
-  //      }
-        ConfigButtonsCanvas{
-            id: canvas
-            property int cols: 9
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
+        }
+        Rectangle{
+            property int cols: 8
+            Layout.minimumWidth: parent.width / 12 * cols
+            Layout.minimumHeight: parent.height / externalRows
             Layout.columnSpan: cols
+           // border.color: "red"
+            color: "transparent"
+            ConfigButtonsCanvas{
+                id: canvas
+            }
         }
     }
     Dialog {
@@ -87,6 +113,7 @@ ApplicationWindow {
         anchors.centerIn: parent
         closePolicy: Popup.NoAutoClose;
         Text {
+            color: "white"
             text: dialogConfig.text;
             font.pixelSize: 20
             anchors.centerIn: parent
@@ -134,7 +161,7 @@ ApplicationWindow {
         dialogConfig.visible = false;
         canvas.requestPaint();
     }
-    function getTotalRows(){
+    function getTotalRows(gridMain){
         var totalCols = 0;
         for(var i = 0; i < gridMain.children.length; ++i)
             if(gridMain.children[i].type === "repeater")
