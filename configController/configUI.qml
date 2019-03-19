@@ -46,10 +46,10 @@ ApplicationWindow {
             Layout.columnSpan: cols
             Layout.rowSpan: 10
 
-
             MainComponents.GridBase {
                 id: gridRepeater
                 rows: getTotalRows(gridRepeater)
+                //rowSpacing: 20
                 Rectangle{
                     focus: true
                     color: "transparent"
@@ -61,7 +61,7 @@ ApplicationWindow {
                     Layout.columnSpan: cols
                     Label {
                         text: "Opciones"
-                        width: parent.width
+                        anchors.fill: parent
                         font.pixelSize:  20
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
@@ -70,6 +70,67 @@ ApplicationWindow {
                 ButtonOption{
                     id: buttons
                     property int repeaterRows: gridRepeater.rows
+                    property int fontsize: 20
+                }
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+                }
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+                }
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+                }
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+                }
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
+                }
+                Rectangle{
+                    focus: true
+                    color: "transparent"
+                    border.color: "white"
+                    property int cols: 12
+                    height: parent.height /externalRows
+                    Layout.preferredWidth: parent.width / 12 * cols
+                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.columnSpan: cols
                 }
                 Rectangle{
                     color: "transparent"
@@ -83,7 +144,7 @@ ApplicationWindow {
                     Label {
                         font.pixelSize:  20
                         text: "Atras"
-                        width: parent.width
+                        anchors.fill: parent
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
                     }

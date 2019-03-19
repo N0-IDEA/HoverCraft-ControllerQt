@@ -44,99 +44,99 @@ Canvas {
 
         function drawOptionButton(ctx, posx, posy, length, angle, option) {
             var coord1B =drawLineAngle(ctx, posx, posy, length, angle);
-            var coord2B = drawLineAngleCoord(ctx, coord1B, 25, 0);
+            var coord2B = drawLineAngleCoord(ctx, coord1B, canvasSize*0.041666667, 0);
 
-            ctx.fillText(option, coord2B.x + 10, coord2B.y + fontSize / 2);
+            ctx.fillText(option, coord2B.x + canvasSize*0.016666667, coord2B.y + fontSize / 2);
         }
 
         var idGamepad = 0;
-
+        var canvasSize = width;//600
         var ctx = getContext("2d");
         ctx.reset();
-        var fontSize= 15;
+        var fontSize= canvasSize*0.025;
         ctx.font = fontSize +"pt audiowide";
         ctx.fillStyle = "#FFFFFF";
         ctx.strokeStyle = "#FFFFFF";
         //Canvas of 800 * 800
-        var canvasSize = 600;
+
 
         var canvasHalf = canvasSize / 2
-        var buttonsPosx = canvasHalf + 80;
-        var buttonsPosy = canvasHalf - 60;
+        var buttonsPosx = canvasHalf + canvasSize*0.133//80;
+        var buttonsPosy = canvasHalf - canvasSize*0.1//60;
         //Boton 1
         var option;
         if((option = findOption(idGamepad,0)) !== null)
-            drawOptionButton(ctx, buttonsPosx, buttonsPosy + 50, 125, 60, option.option);
+            drawOptionButton(ctx, buttonsPosx, buttonsPosy + canvasSize*0.0833, canvasSize*0.20833, canvasSize*0.1, option.option);
 
         //Boton 2
         if((option = findOption(idGamepad,1)) !== null)
-            drawOptionButton(ctx, buttonsPosx + 50, buttonsPosy + 50, 75, 60, option.option);
+            drawOptionButton(ctx, buttonsPosx + canvasSize*0.0833, buttonsPosy + canvasSize*0.0833, canvasSize*0.125, canvasSize*0.1, option.option);
 
         //Boton 3
         if((option = findOption(idGamepad,2)) !== null)
-            drawOptionButton(ctx, buttonsPosx + 100, buttonsPosy + 50, 25, 60, option.option);
+            drawOptionButton(ctx, buttonsPosx + canvasSize*0.1666, buttonsPosy + canvasSize*0.0833, (canvasSize*0.0833)/2, canvasSize*0.1, option.option);
 
         //Boton 4
         if((option = findOption(idGamepad,3)) !== null)
-            drawOptionButton(ctx, buttonsPosx, buttonsPosy - 50, 85, 300, option.option);
+            drawOptionButton(ctx, buttonsPosx, buttonsPosy - canvasSize*0.0833, canvasSize*1.1416, canvasSize/2, option.option);
 
         //Boton 5
         if((option = findOption(idGamepad,4)) !== null)
-            drawOptionButton(ctx, buttonsPosx + 50, buttonsPosy - 50, 50, 300, option.option);
+            drawOptionButton(ctx, buttonsPosx + canvasSize*0.0833, buttonsPosy - canvasSize*0.0833, canvasSize*0.0833, canvasSize/2, option.option);
 
         //Boton 6
         if((option = findOption(idGamepad,5)) !== null)
-            drawOptionButton(ctx, buttonsPosx + 100, buttonsPosy - 50, 15, 300, option.option);
+            drawOptionButton(ctx, buttonsPosx + canvasSize*0.1666, buttonsPosy - canvasSize*0.0833, canvasSize*0.025, canvasSize/2, option.option);
 
         //Boton 10
         if((option = findOption(idGamepad,9)) !== null) {
-            var coords1B10 = drawLineAngle(ctx, canvasHalf + 15, canvasHalf + 15, 90, 55);
-            ctx.fillText(option.option, coords1B10.x - ctx.measureText(option.option).width/2, coords1B10.y + fontSize + 10);
+            var coords1B10 = drawLineAngle(ctx, canvasHalf + canvasSize*0.025, canvasHalf + canvasSize*0.025, canvasSize*0.15, canvasSize*0,091666667);
+            ctx.fillText(option.option, coords1B10.x - ctx.measureText(option.option).width/2, coords1B10.y + fontSize + canvasSize*0.016666667);
         }
 
         //Boton 9
         if((option = findOption(idGamepad,8)) !== null) {
-            var coords1B9 = drawLineAngle(ctx, canvasHalf - 15, canvasHalf + 15, 90, 125);
-            ctx.fillText(option.option, coords1B9.x - ctx.measureText(option.option).width/2, coords1B9.y + fontSize + 10);
+            var coords1B9 = drawLineAngle(ctx, canvasHalf - canvasSize*0.025, canvasHalf + canvasSize*0.025, canvasSize*0.15, canvasSize*0.20833);
+            ctx.fillText(option.option, coords1B9.x - ctx.measureText(option.option).width/2, coords1B9.y + fontSize + canvasSize*0.016666667);
         }
 
         //Boton 11
         if((option = findOption(idGamepad,10)) !== null) {
-            var coords1B11 = drawLineAngle(ctx, canvasHalf, canvasHalf - 70, 80, 270);
+            var coords1B11 = drawLineAngle(ctx, canvasHalf, canvasHalf - canvasSize*0.116666667, canvasSize*0.133333333, 270);
             ctx.fillText(option.option, coords1B11.x - ctx.measureText(option.option).width/2, coords1B11.y - fontSize )
         }
 
         //Boton 12
         if((option = findOption(idGamepad,11)) !== null) {
-            var coords1B12 = drawLineAngle(ctx, canvasHalf, canvasHalf - 25, 170, 90);
-            ctx.fillText(option.option, coords1B12.x - ctx.measureText(option.option).width/2, coords1B12.y + fontSize + 10);
+            var coords1B12 = drawLineAngle(ctx, canvasHalf, canvasHalf - canvasSize*0.041666667, canvasSize*0.283333333, 90);
+            ctx.fillText(option.option, coords1B12.x - ctx.measureText(option.option).width/2, coords1B12.y + fontSize + canvasSize*0.016666667);
         }
 
-        var posxAxis =  canvasHalf - canvasHalf /2;
-        var posyAxis =  canvasHalf - canvasHalf /8;
-        var marginAxis = 25;
+        var posxAxis =  canvasHalf - canvasHalf /canvasSize*0.003333333;
+        var posyAxis =  canvasHalf - canvasHalf /canvasSize*0.013333333;
+        var marginAxis = canvasSize*0.041666667;
 
         //Axis1
         if((option = findOptionAxis(idGamepad,1,1)) !== null) {
-            var coords1A1 = drawLineAngle(ctx, posxAxis, posyAxis + marginAxis, 30, 90);
-            ctx.fillText(option.option, coords1A1.x - ctx.measureText(option.option).width/2, coords1A1.y + fontSize + 10);
+            var coords1A1 = drawLineAngle(ctx, posxAxis, posyAxis + marginAxis, canvasSize*0.05, 90);
+            ctx.fillText(option.option, coords1A1.x - ctx.measureText(option.option).width/2, coords1A1.y + fontSize + canvasSize*0.016666667);
         }
 
         //Axis2
         if((option = findOptionAxis(idGamepad,0,1)) !== null) {
-            var coords1A2 = drawLineAngle(ctx, posxAxis + marginAxis, posyAxis, 30, 0);
-            ctx.fillText(option.option, coords1A2.x + 10, coords1A2.y + fontSize/2);
+            var coords1A2 = drawLineAngle(ctx, posxAxis + marginAxis, posyAxis, canvasSize*0.05, 0);
+            ctx.fillText(option.option, coords1A2.x + canvasSize*0.016666667, coords1A2.y + fontSize/2);
         }
 
         //Axis3
         if((option = findOptionAxis(idGamepad,0,-1)) !== null) {
-            var coords1A3 = drawLineAngle(ctx, posxAxis - marginAxis, posyAxis, 30, 180);
-            ctx.fillText(option.option, coords1A3.x - ctx.measureText(option.option).width - 10, coords1A3.y + fontSize /2);
+            var coords1A3 = drawLineAngle(ctx, posxAxis - marginAxis, posyAxis, canvasSize*0.05, 180);
+            ctx.fillText(option.option, coords1A3.x - ctx.measureText(option.option).width - canvasSize*0.016666667, coords1A3.y + fontSize /2);
         }
         //Axis4
         if((option = findOptionAxis(idGamepad,1,-1)) !== null) {
-            var coords1A4 = drawLineAngle(ctx, posxAxis, posyAxis - marginAxis, 30, 270);
-            ctx.fillText(option.option, coords1A4.x - ctx.measureText(option.option).width/2, coords1A4.y - fontSize + 10);
+            var coords1A4 = drawLineAngle(ctx, posxAxis, posyAxis - marginAxis, canvasSize*0.05, 270);
+            ctx.fillText(option.option, coords1A4.x - ctx.measureText(option.option).width/2, coords1A4.y - fontSize + canvasSize*0.016666667);
         }
     }
     function getWidth(item) { return item.width < item.height ? item.width : item.height }
