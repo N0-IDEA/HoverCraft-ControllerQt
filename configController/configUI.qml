@@ -26,14 +26,18 @@ ApplicationWindow {
     color: "black"
     onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
     TabBar {
+        anchors.horizontalCenter: parent.horizontalCenter
         TabButton {
-            text: qsTr("Home")
+            width: 300
+            text: qsTr("Controller 1")
         }
         TabButton {
-            text: qsTr("Discover")
+            width: 300
+            text: qsTr("Controller 2")
         }
         TabButton {
-            text: qsTr("Activity")
+            width: 300
+            text: qsTr("Controller 3")
         }
     }
     //MenuComponents.BaseController{}
