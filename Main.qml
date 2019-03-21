@@ -5,6 +5,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls.Material 2.12
 import QtGraphicalEffects 1.12
 import QtQuick.Controls.Styles 1.4
+import "menu/" as MenuComponents
 
 
 ApplicationWindow {
@@ -107,6 +108,20 @@ ApplicationWindow {
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
             Layout.columnSpan: cols
+        }
+        MenuComponents.LabelRectangle {
+            property string text: "Salir"
+            property int cols: 6
+            Layout.preferredWidth: parent.width / 12 * cols
+            Layout.preferredHeight: parent.height /externalRows
+            Layout.columnSpan: cols
+            MouseArea{
+                anchors.fill: parent;
+                 onClicked: {
+                     lp.source=""
+                     window.show()
+                 }
+            }
         }
     }
     function getTotalRows(){

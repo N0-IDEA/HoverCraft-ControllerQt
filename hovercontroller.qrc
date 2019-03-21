@@ -22,5 +22,10 @@
         <file>Motor.qml</file>
         <file>configController/ConfigButtonsCanvas.qml</file>
         <file>configController/ButtonOption.qml</file>
+        <file>menu/Menu.qml</file>
+        <file>menu/LabelRectangle.qml</file>
+        <file>menu/MainMenu.qml</file>
+        <file>menu/Test.qml</file>
+        <file>menu/BaseController.qml</file>
     </qresource>
 </RCC>

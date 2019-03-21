@@ -23,11 +23,15 @@ int main(int argc, char *argv[])
     QJoysticks *instance = QJoysticks::getInstance();
     instance->setVirtualJoystickEnabled(true);
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl("qrc:/configController/configUI.qml"));
-    initConfig(&engine);
+     QQmlApplicationEngine engine;
+     engine.load(QUrl("qrc:/menu/Menu.qml"));
+     initConfig(&engine);
 
-  /*  QQmlApplicationEngine engine1;
+   /* QQmlApplicationEngine engine;
+    engine.load(QUrl("qrc:/configController/configUI.qml"));
+    initConfig(&engine);*/
+
+ /*  QQmlApplicationEngine engine1;
     engine1.load(QUrl("qrc:/Main.qml"));
     initTest(&engine1);*/
 
