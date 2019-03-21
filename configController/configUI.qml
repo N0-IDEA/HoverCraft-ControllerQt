@@ -25,20 +25,31 @@ ApplicationWindow {
     Material.foreground: "#FFFFFF"
     color: "black"
     onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
-    TabBar {
-        anchors.horizontalCenter: parent.horizontalCenter
-        TabButton {
-            width: 300
-            text: qsTr("Controller 1")
+    Page {
+        TabBar {
+            id: tabBar
+            currentIndex: swipeView.currentIndex
+            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            TabButton {
+                width: 300
+                text: qsTr("Controller 1")
+            }
+            TabButton {
+                width: 300
+                text: qsTr("Controller 2")
+            }
+            TabButton {
+                width: 300
+                text: qsTr("Controller 3")
+            }
         }
-        TabButton {
-            width: 300
-            text: qsTr("Controller 2")
-        }
-        TabButton {
-            width: 300
-            text: qsTr("Controller 3")
-        }
+      /*  SwipeView {
+               id: swipeView
+               width: parent.width
+               height: parent.height - tabBar.height
+               currentIndex: tabBar.currentIndex
+           }*/
     }
     //MenuComponents.BaseController{}
 
