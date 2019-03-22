@@ -10,9 +10,9 @@ void Motor::update() {
     char tempArray[4];
 
     tempArray[0] = id;
-    tempArray[1] = ':';
+    tempArray[1] = 0x3A;
     tempArray[2] = potencia;
-    tempArray[3] = '\n';
+    tempArray[3] = 0x0A;
 
     error = !serial.send((char *) &tempArray, 4);
 

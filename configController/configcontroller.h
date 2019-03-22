@@ -18,6 +18,9 @@ public:
     ConfigOption *downOption  = new ButtonConfigOption("Abajo");
     ConfigOption *upOption  = new AxisConfigOption("Arriba");
 
+    ConfigOption *forwardtion  = new ButtonConfigOption("Alante");
+    ConfigOption *backOption  = new AxisConfigOption("Atras");
+
     bool updating;
     void finishConfig();
 

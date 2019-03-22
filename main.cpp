@@ -13,26 +13,30 @@
 #include <qcontrollers/qmotor.h>
 
 Serial serial;
-Motor timon(90);
+Motor timon(70);
 void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    QApplication::setFont(QFont("audiowide"));
-    QJoysticks *instance = QJoysticks::getInstance();
-    instance->setVirtualJoystickEnabled(true);
+    serial.connect("/dev/ttyACM0");
+    if(!serial.error) {
+        QApplication a(argc, argv);
+        QApplication::setFont(QFont("audiowide"));
+        QJoysticks *instance = QJoysticks::getInstance();
+        instance->setVirtualJoystickEnabled(true);
 
-    QQmlApplicationEngine engine;
-    engine.load(QUrl("qrc:/configController/configUI.qml"));
-    initConfig(&engine);
+        QQmlApplicationEngine engine;
+        engine.load(QUrl("qrc:/configController/configUI.qml"));
+        initConfig(&engine);
 
-    QQmlApplicationEngine engine1;
-    engine1.load(QUrl("qrc:/Main.qml"));
+        QQmlApplicationEngine engine1;
+        engine1.load(QUrl("qrc:/Main.qml"));
 
-    initTest(&engine1);
+        initTest(&engine1);
+        return a.exec();
+    }
 
-    return a.exec();
+    return 0;
 }
 
 void initConfig(QQmlApplicationEngine *engine) {
@@ -70,6 +74,7 @@ void initTest(QQmlApplicationEngine *engine) {
 
     QList<QObject*> objects;
         objects.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
+        objects.append(new QMotor(new Motor(1), controller->forwardtion, controller->backOption));
 
     rootObject->setProperty("motorsModel", QVariant::fromValue(objects[0]));
 }

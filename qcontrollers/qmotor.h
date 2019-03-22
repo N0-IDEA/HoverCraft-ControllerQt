@@ -21,7 +21,7 @@ public:
     explicit QMotor(QObject *parent = nullptr) : QObject(parent) {}
 
     int value() const {
-        return this->motor->potencia + 1000;
+        return m_value;
     }
 
     int valueDelayed() const {
@@ -31,6 +31,7 @@ public:
     void setValue(int);
 
 private:
+    int m_value = 1000;
     Motor *motor;
     ConfigOption *option;
     ConfigOption *downOption;

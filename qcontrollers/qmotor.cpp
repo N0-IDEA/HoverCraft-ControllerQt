@@ -22,13 +22,13 @@ void QMotor::change() {
         bool change = false;
         if(option->isActive()) {
             if(value() < 1900) {
-                setValue(this->motor->potencia + 1);
+                setValue(this->value() + 1);
                 change = true;
             }
         }
         else if (downOption->isActive()) {
             if(value() > 1000)
-                setValue(this->motor->potencia - 1);
+                setValue(this->value() - 1);
         }
         else {
             updated = false;
@@ -37,11 +37,18 @@ void QMotor::change() {
 }
 
 void QMotor::setValue(int value) {
-    if (value != this->motor->potencia) {
+
+    if (m_value != value) {
+
+         this->m_value = value;
+
+        int valueTemp = value - 1000;
+        valueTemp = (valueTemp * 255) /800;
 
         emit valueChanged();
 
-        this->motor->potencia = value;
+        this->motor->potencia = valueTemp;
+        motor->update();
         if(!updated) {
             time = QDateTime::currentMSecsSinceEpoch();
             updated = true;
