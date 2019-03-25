@@ -11,7 +11,6 @@ QMotor::QMotor(Motor *motor, ConfigOption *option, ConfigOption *downOption) : Q
     this->option = option;
     this->downOption = downOption;
 
-    //connect(QJoysticks::getInstance(), &QJoysticks::buttonEvent, this, &QMotor::buttonEvent);
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(change()));
     timer->start(10);
