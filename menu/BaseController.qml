@@ -185,16 +185,6 @@ MainComponents.GridBase {
         ConfigComponents.ConfigButtonsCanvas{
             id: canvas
         }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                ld.source="../Main.qml"
-            }
-        }
-        Loader{
-            id:ld;
-            anchors.fill: parent;
-        }
     }
 }
 

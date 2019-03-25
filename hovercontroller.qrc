@@ -27,5 +27,6 @@
         <file>menu/MainMenu.qml</file>
         <file>menu/Test.qml</file>
         <file>menu/BaseController.qml</file>
+        <file>configController/Test.qml</file>
     </qresource>
 </RCC>

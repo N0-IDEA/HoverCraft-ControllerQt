@@ -25,34 +25,47 @@ ApplicationWindow {
     Material.foreground: "#FFFFFF"
     color: "black"
     onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
-    Page {
-        TabBar {
-            id: tabBar
-            currentIndex: swipeView.currentIndex
-            width: parent.width
-            anchors.horizontalCenter: parent.horizontalCenter
-            TabButton {
-                width: 300
-                text: qsTr("Controller 1")
+    MainComponents.GridBase{
+        Rectangle{
+            color: "transparent"
+            property int cols: 12
+            width: parent.width / 12 * cols
+            height: parent.height / externalRows
+            Layout.columnSpan: cols
+            ComboBox {
+                width: 200
+                anchors.left:  parent.left
+                model: [ "Banana", "Apple", "Coconut" ]
             }
-            TabButton {
-                width: 300
-                text: qsTr("Controller 2")
-            }
-            TabButton {
-                width: 300
-                text: qsTr("Controller 3")
+            TabBar {
+                id: tabBar
+                currentIndex: swipeView.currentIndex
+                // width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                Repeater{
+                    model: ["Controller 1", "Controller 2","Controller 3"]
+                    TabButton {
+                        width: 300
+                        text: qsTr(modelData)
+                    }
+                }
             }
         }
-      /*  SwipeView {
-               id: swipeView
-               width: parent.width
-               height: parent.height - tabBar.height
-               currentIndex: tabBar.currentIndex
-           }*/
-    }
-    //MenuComponents.BaseController{}
+        Page {
+            id: page
 
+            SwipeView {
+                id: swipeView
+                //anchors.fill: parent
+                //      width: parent.width
+                //    height: parent.height - tabBar.height
+                currentIndex: tabBar.currentIndex
+                //Rectangle {width: configWindow.width; height: configWindow.height - tabBar.height}
+               // Rectangle {width: 100; height: 100;color: "red"}
+               // Rectangle {color: "blue"; width: 100; height: 100;}
+            }}
+        //MenuComponents.BaseController{}
+    }
     Dialog {
         id: dialogConfig
         property string text: "#####"
