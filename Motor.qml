@@ -14,6 +14,7 @@ Rectangle {
     readonly property string gridMain: idGrid
     readonly property string ppm: ppmValue
     readonly property int ppmVel: ppmDelayed
+    readonly property int max: 900
     readonly property string name: nameMotor
     id: recMayor
     property int initialWidth: initWidth
@@ -36,16 +37,18 @@ Rectangle {
     ]*/
 
     function getDurationVel(initialDuration, maxPPM,ppmVel) {
-           var milis =  Math.floor(initialDuration/100 * getPorcent(initialDuration, maxPPM,ppmVel))
+           var milis =  Math.floor(initialDuration/100 * getPorcent(maxPPM,ppmVel))
            return  (milis < 71) ? 71 : milis
        }
-    function getPorcent(initialDuration, maxPPM,ppmVel) {
+    function getPorcent(maxPPM, ppmVel) {
         var onePorcentPPM = maxPPM/100
         var currentPorcent = !((ppmVel - 1000) / onePorcentPPM)? 1 : ((ppmVel - 1000) / onePorcentPPM)
-        return 100 - currentPorcent
+        return (100 - currentPorcent)
     }
     onPpmVelChanged:{
-        animationVel1.duration = getDurationVel(4000,900, ppmVel);
+        animationVel1.duration = getDurationVel(2500,max, ppmVel);
+        velCircle1.porcent = Math.ceil(((ppm-1000)/max)*100);
+        velCircle1.requestPaint();
     }
     GridBase{
         id: grid
@@ -64,7 +67,7 @@ Rectangle {
                     width: parent.parent.width
                     // border.color: "red"
                     color: "transparent"
-                    GlowingLabel { anchors.centerIn: parent; text: name; color: "white"; font.pixelSize:  24 }
+                    GlowingLabel { anchors.centerIn: parent; text: qsTr(String(Math.ceil(((ppmVel-1000)/max)*100))) ; color: "white"; font.pixelSize:  24 }//name;
                 }
                 Rectangle{
                     height: parent.parent.height/2
@@ -103,6 +106,8 @@ Rectangle {
                     // border.color: "red"
                     color: "transparent"
                     VelCircle {
+                        id: velCircle1
+                        property int ppmPorcent:0
                         RotationAnimation on rotation {
                             id: animationVel1;
                             from: 0
@@ -118,7 +123,12 @@ Rectangle {
                     width: parent.width
                     //border.color: "red"
                     color: "transparent"
-                    VelCircle { anchors.centerIn: parent; property string idVel: "vel12" }
+                    VelCircle {
+                        id: velCircle2
+                        property int ppmPorcent:0
+                        anchors.centerIn: parent
+                        property string idVel: "vel12"
+                    }
                 }
             }
 
