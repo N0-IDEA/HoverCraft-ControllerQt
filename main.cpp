@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "main.h"
+#include "dbmanager.h"
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
@@ -31,6 +32,8 @@ int main(int argc, char *argv[])
     engine1.load(QUrl("qrc:/Main.qml"));
 
     initTest(&engine1);
+
+    DbManager manager("test.db");
 
     return a.exec();
 }

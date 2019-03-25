@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT += quick
 QT += quickwidgets
 QT += quickcontrols2
+QT += sql
 
 TARGET = HoverController
 TEMPLATE = app
@@ -39,7 +40,9 @@ SOURCES += \
     configController/configoption.cpp \
     qcontrollers/qmotor.cpp \
     configController/buttonconfigoption.cpp \
-    configController/axisconfigoption.cpp
+    configController/axisconfigoption.cpp \
+    dbmanager.cpp \
+    configController/perfil.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -52,7 +55,9 @@ HEADERS += \
     configController/configoption.h \
     qcontrollers/qmotor.h \
     configController/buttonconfigoption.h \
-    configController/axisconfigoption.h
+    configController/axisconfigoption.h \
+    dbmanager.h \
+    configController/perfil.h
 
 FORMS += \
         mainwindow.ui \

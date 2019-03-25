@@ -26,3 +26,7 @@ void AxisConfigOption::config() {
     ConfigController::getInstance()->temp = connect(instance, &QJoysticks::axisEvent, this, &AxisConfigOption::axisEvent);
 }
 
+void ConfigOption::setValue(double value) {
+    ((AxisConfigOption*) this)->m_value = value;
+}
+
