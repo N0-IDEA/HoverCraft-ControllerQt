@@ -37,7 +37,7 @@ ApplicationWindow {
             Layout.columnSpan: cols
             }
         }
-        Motor {
+        /*Motor {
             property string nameMotor: "Motor 2"
             property string ppmValue: "1000"
             property int ppmDelayed: 1000
@@ -45,7 +45,7 @@ ApplicationWindow {
             property int initWidth: parent.width / 12 * cols
             property int initHeight: parent.height / externalRows
             Layout.columnSpan: cols
-        }
+        }*/
         Motor {
             property string nameMotor: "Motor 3"
             property string ppmValue: "1000"

@@ -42,7 +42,8 @@ SOURCES += \
     configController/buttonconfigoption.cpp \
     configController/axisconfigoption.cpp \
     dbmanager.cpp \
-    configController/perfil.cpp
+    configController/perfil.cpp \
+    controller/rf.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -57,7 +58,8 @@ HEADERS += \
     configController/buttonconfigoption.h \
     configController/axisconfigoption.h \
     dbmanager.h \
-    configController/perfil.h
+    configController/perfil.h \
+    controller/rf.h
 
 FORMS += \
         mainwindow.ui \
@@ -77,5 +79,7 @@ DISTFILES += \
 
 RESOURCES += \
     hovercontroller.qrc
+
+LIBS += -lrf24
 
 include ($$PWD/../../libs/QJoysticks/QJoysticks.pri)

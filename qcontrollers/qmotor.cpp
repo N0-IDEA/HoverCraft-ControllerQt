@@ -48,6 +48,7 @@ void QMotor::setValue(int value) {
         if(updated && QDateTime::currentMSecsSinceEpoch() - time > 50) {
             time = QDateTime::currentMSecsSinceEpoch();
             emit valueDelayedChanged();
+            motor->update();
         }
 
     }

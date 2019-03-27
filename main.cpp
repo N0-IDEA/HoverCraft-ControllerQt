@@ -14,11 +14,13 @@
 #include <qcontrollers/qmotor.h>
 
 Serial serial;
+RF rf;
 Motor timon(90);
 void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
+    rf.connect();
     QApplication a(argc, argv);
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
@@ -73,8 +75,9 @@ void initTest(QQmlApplicationEngine *engine) {
 
     QList<QObject*> objects;
         objects.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
+        objects.append(new QMotor(new Motor(1), controller->forwardOption, controller->backwardOption));
 
-    rootObject->setProperty("motorsModel", QVariant::fromValue(objects[0]));
+    rootObject->setProperty("motorsModel", QVariant::fromValue(objects));
 }
 
 void refresh() {

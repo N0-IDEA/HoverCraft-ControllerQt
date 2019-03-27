@@ -16,7 +16,9 @@ public:
     static ConfigController *getInstance();
 
     ConfigOption *downOption  = new ButtonConfigOption("Abajo");
-    ConfigOption *upOption  = new AxisConfigOption("Arriba");
+    ConfigOption *upOption  = new ButtonConfigOption("Arriba");
+    ConfigOption *forwardOption = new AxisConfigOption("Adelante");
+    ConfigOption *backwardOption =  new AxisConfigOption("Atrás");
 
     bool updating;
     void finishConfig();
