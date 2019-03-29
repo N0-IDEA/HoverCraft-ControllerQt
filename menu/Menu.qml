@@ -12,10 +12,6 @@ ApplicationWindow {
     height: 600
     visible: true
 
-    property variant options;
-    property variant axisOptions;
-    property variant buttonOptions;
-
     property int externalRows: getTotalRows(gridMain)
     readonly property string idGrid: "gridMain"
 
@@ -24,6 +20,9 @@ ApplicationWindow {
     Material.foreground: "#FFFFFF"
     //Material.primary: "#FFFFFF"
     color: "black"
+
+    signal initConfig();
+    signal initMain();
 
     MainComponents.GridBase {
         id: gridMain
@@ -50,7 +49,10 @@ ApplicationWindow {
                     property string text: "Conducir"
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: gridRepeater.moveTo("../Main.qml",window,false)
+                        onClicked: {
+                            gridRepeater.moveTo("../Main.qml",window,false)
+                            window.initMain();
+                        }
                     }
                     Loader{ id:ld; anchors.fill: parent; }
                 }
@@ -58,9 +60,12 @@ ApplicationWindow {
                     property string text: "Opciones"
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: gridRepeater.moveTo("../configController/configUI.qml",window,false)
+                        onClicked: {
+                            gridRepeater.moveTo("../configController/configUI.qml",window,false)
+                            window.initConfig();
+                        }
                     }
-                    Loader{ id:lp; anchors.fill: parent; }
+                    Loader{ id:lp; anchors.fill: parent; objectName: "lp" }
                 }
                 LabelRectangle {
                     property string text: "Salir"

@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.12
 
 Canvas {
-    id: canvas
+    id: canvasOption
     width: getWidth(parent)
     height: getWidth(parent)
     onPaint: {

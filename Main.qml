@@ -10,12 +10,13 @@ import "menu/" as MenuComponents
 
 ApplicationWindow {
     id: root
+    objectName: "mainWindow"
     visible: true
     width: 1080
     height: 720
     title: "HoverUI"
+    property variant motorsModel;
     readonly property string idGrid: "gridMain"
-    property variant motorsModel : ({value: 0});
     property int externalRows: getTotalRows()
     color: "black"//"#0F1B23"
 
@@ -35,15 +36,6 @@ ApplicationWindow {
             property int initHeight: parent.height / externalRows
             Layout.columnSpan: cols
             }
-        }
-        Motor {
-            property string nameMotor: "Motor 2"
-            property string ppmValue: "1000"
-            property int ppmDelayed: 1000
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
         }
         Motor {
             property string nameMotor: "Motor 3"

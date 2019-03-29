@@ -8,6 +8,7 @@ import "../menu/" as MenuComponents
 
 ApplicationWindow {
     id: configWindow
+    objectName: "configWindow"
     width: 900
     height: 600
     visible: true
@@ -16,6 +17,7 @@ ApplicationWindow {
     property variant options;
     property variant axisOptions;
     property variant buttonOptions;
+    property int count;
 
     property int externalRows: getTotalRows(gridMain)
     readonly property string idGrid: "gridMain"
@@ -43,10 +45,10 @@ ApplicationWindow {
                 // width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 Repeater{
-                    model: ["Controller 1", "Controller 2","Controller 3"]
+                    model: configWindow.count
                     TabButton {
                         width: 300
-                        text: qsTr(modelData)
+                        text: "Mando %1:" .arg(index);
                     }
                 }
             }
@@ -55,16 +57,23 @@ ApplicationWindow {
             id: page
 
             SwipeView {
-                id: swipeView
+                //id: swipeView
+                id: controllerOptions;
                 //anchors.fill: parent
                 //      width: parent.width
                 //    height: parent.height - tabBar.height
                 currentIndex: tabBar.currentIndex
-                //Rectangle {width: configWindow.width; height: configWindow.height - tabBar.height}
-               // Rectangle {width: 100; height: 100;color: "red"}
-               // Rectangle {color: "blue"; width: 100; height: 100;}
+                Repeater{
+
+                    model: configWindow.count
+                    MenuComponents.BaseController{
+                        property string estasAqui: "Estas en el base controller"
+                        width: configWindow.width; height:configWindow.height - tabBar.height; y: tabBar.height}
+                }
+                //Rectangle {width: 100; height: 100;}//width: configWindow.width; height: configWindow.height - tabBar.height}
+                //Rectangle {width: 100; height: 100;color: "red"}
+                // Rectangle {color: "blue"; width: 100; height: 100;}
             }}
-        //MenuComponents.BaseController{}
     }
     Dialog {
         id: dialogConfig
@@ -111,20 +120,28 @@ ApplicationWindow {
     signal configButtonSignal(int id);
     signal configDone();
 
-    onConfigDone:{
-        bindDone();
-    }
+
 
     function configButton(idButton, msg) {
         dialogConfig.visible = true;
         dialogConfig.text = msg;
-        window.configButtonSignal(idButton);
+        configWindow.configButtonSignal(idButton);
+    }
+
+    onConfigDone:{
+        bindDone();
     }
 
     function bindDone() {
         dialogConfig.visible = false;
-        canvas.requestPaint();
+
+        var object = controllerOptions.children[0].children[0];
+        for(var i = 0; i < object.children.length; ++i)
+            for(var j = 0; j < object.children[i].children.length; ++j){
+                object.children[i].children[j].children[1].children[0].requestPaint();
+            }
     }
+
     function getTotalRows(gridMain){
         var totalCols = 0;
         for(var i = 0; i < gridMain.children.length; ++i)
