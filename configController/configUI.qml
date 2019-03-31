@@ -9,8 +9,10 @@ import "../menu/" as MenuComponents
 ApplicationWindow {
     id: configWindow
     objectName: "configWindow"
-    width: 900
-    height: 600
+    width: 1280
+    height: 960
+    minimumWidth: 1280
+    minimumHeight: 960
     visible: true
     title: "Configurar Mando"
 
@@ -34,15 +36,31 @@ ApplicationWindow {
             width: parent.width / 12 * cols
             height: parent.height / externalRows
             Layout.columnSpan: cols
-            ComboBox {
-                width: 200
-                anchors.left:  parent.left
-                model: [ "Banana", "Apple", "Coconut" ]
+
+            Row {
+                spacing: 10
+                ComboBox {
+                    width: 120
+                    model: [ "Perfil 1", "Perfil 2", "Perfil 3" ]
+                }
+                Button {
+                    Material.background: "transparent"
+                    icon.color: Material.color(Material.DeepOrange)
+                    icon.name: "list-add"
+                    onClicked: {
+                        addProfile.visible = true;
+                    }
+                }
+                Button {
+                    Material.background: "transparent"
+                    icon.color: "grey"
+                    icon.name: "user-trash"
+                }
             }
             TabBar {
                 id: tabBar
                 currentIndex: swipeView.currentIndex
-                // width: parent.width
+                width: 500
                 anchors.horizontalCenter: parent.horizontalCenter
                 Repeater{
                     model: configWindow.count
@@ -55,24 +73,17 @@ ApplicationWindow {
         }
         Page {
             id: page
-
             SwipeView {
-                //id: swipeView
                 id: controllerOptions;
-                //anchors.fill: parent
-                //      width: parent.width
-                //    height: parent.height - tabBar.height
                 currentIndex: tabBar.currentIndex
                 Repeater{
-
                     model: configWindow.count
-                    MenuComponents.BaseController{
-                        property string estasAqui: "Estas en el base controller"
-                        width: configWindow.width; height:configWindow.height - tabBar.height; y: tabBar.height}
+                    MenuComponents.BaseController {
+                        width: configWindow.width;
+                        height:configWindow.height - tabBar.height;
+                        y: tabBar.height
+                    }
                 }
-                //Rectangle {width: 100; height: 100;}//width: configWindow.width; height: configWindow.height - tabBar.height}
-                //Rectangle {width: 100; height: 100;color: "red"}
-                // Rectangle {color: "blue"; width: 100; height: 100;}
             }}
     }
     Dialog {
@@ -92,6 +103,8 @@ ApplicationWindow {
             anchors.centerIn: parent
         }
     }
+
+    DialogNewProf {id: addProfile}
 
     function findOption(idGamepad, idButton) {
         for(var i = 0; i < buttonOptions.length; i++) {
@@ -120,8 +133,6 @@ ApplicationWindow {
     signal configButtonSignal(int id);
     signal configDone();
 
-
-
     function configButton(idButton, msg) {
         dialogConfig.visible = true;
         dialogConfig.text = msg;
@@ -134,7 +145,6 @@ ApplicationWindow {
 
     function bindDone() {
         dialogConfig.visible = false;
-
         var object = controllerOptions.children[0].children[0];
         for(var i = 0; i < object.children.length; ++i)
             for(var j = 0; j < object.children[i].children.length; ++j){

@@ -28,5 +28,6 @@
         <file>menu/Test.qml</file>
         <file>menu/BaseController.qml</file>
         <file>configController/Test.qml</file>
+        <file>configController/DialogNewProf.qml</file>
     </qresource>
 </RCC>

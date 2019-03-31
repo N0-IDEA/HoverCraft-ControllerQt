@@ -20,7 +20,7 @@ Rectangle {
         Rectangle{
             color:"transparent"
             // border.color: "green"
-            property int cols: 4
+            property int cols: 3
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height
             Layout.columnSpan: cols
@@ -178,7 +178,7 @@ Rectangle {
         }
         Rectangle{
             objectName: "canvasOptions"
-            property int cols: 8
+            property int cols: 9
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height / externalRows
             Layout.columnSpan: cols

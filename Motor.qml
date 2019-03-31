@@ -35,7 +35,6 @@ Rectangle {
             NumberAnimation { properties: "x,y"; duration: 1000 }
         }
     ]*/
-
     function getDurationVel(initialDuration, maxPPM,ppmVel) {
            var milis =  Math.floor(initialDuration/100 * getPorcent(maxPPM,ppmVel))
            return  (milis < 71) ? 71 : milis
