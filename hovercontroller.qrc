@@ -29,5 +29,12 @@
         <file>menu/BaseController.qml</file>
         <file>configController/Test.qml</file>
         <file>configController/DialogNewProf.qml</file>
+        <file>configController/AreYouSurePopOver.qml</file>
+        <file>media/garbage.png</file>
+        <file>media/plus.png</file>
+        <file>media/add.png</file>
+        <file>media/checked.png</file>
+        <file>media/close.png</file>
+        <file>media/delete.png</file>
     </qresource>
 </RCC>

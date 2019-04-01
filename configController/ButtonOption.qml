@@ -14,7 +14,7 @@ Repeater {
         Layout.minimumWidth: parent.width / 12 * cols
         Layout.minimumHeight: parent.height / repeaterRows
         Layout.columnSpan: cols
-        border.color: "white"//Material.color(Material.DeepOrange)
+        border.color: "white"
         color: "transparent"
         ColumnLayout{
             Label {

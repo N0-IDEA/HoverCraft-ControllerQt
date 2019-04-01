@@ -39,9 +39,12 @@ ApplicationWindow {
            // border.color: "green"
             property int cols: 4
             Layout.minimumWidth: parent.width / 12 * cols
-            Layout.minimumHeight: parent.height
+            Layout.minimumHeight: parent.height*6/10
             Layout.columnSpan: cols
             Layout.rowSpan: 10
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+
             MainComponents.GridBase {
                 id: gridRepeater
                 rows: getTotalRows(gridRepeater)

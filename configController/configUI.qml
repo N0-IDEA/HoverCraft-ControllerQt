@@ -10,9 +10,11 @@ ApplicationWindow {
     id: configWindow
     objectName: "configWindow"
     width: 1280
-    height: 960
+    height: 720
     minimumWidth: 1280
-    minimumHeight: 960
+    minimumHeight: 720
+    maximumHeight:  1280
+    maximumWidth: 720
     visible: true
     title: "Configurar Mando"
 
@@ -36,31 +38,43 @@ ApplicationWindow {
             width: parent.width / 12 * cols
             height: parent.height / externalRows
             Layout.columnSpan: cols
-
             Row {
+                anchors.left: parent.left
+                anchors.leftMargin: 50
                 spacing: 10
                 ComboBox {
+                    Layout.rightMargin: 10
                     width: 120
                     model: [ "Perfil 1", "Perfil 2", "Perfil 3" ]
                 }
                 Button {
                     Material.background: "transparent"
                     icon.color: Material.color(Material.DeepOrange)
-                    icon.name: "list-add"
+                    //Icon made by [https://www.flaticon.com/authors/hanan] from www.flaticon.com
+                    icon.source:  "../media/add.png"
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 1000
+                    ToolTip.text: qsTr("Agrega un nuevo perfil")
                     onClicked: {
                         addProfile.visible = true;
                     }
                 }
                 Button {
                     Material.background: "transparent"
-                    icon.color: "grey"
-                    icon.name: "user-trash"
+                    icon.color: "white"
+                    //Icon made by [https://www.flaticon.com/authors/gregor-cresnar] from www.flaticon.com
+                    icon.source:  "../media/garbage.png"
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 1000
+                    ToolTip.text: qsTr("Eliminar el perfil actual")
+                    onClicked: {
+                        popOver.open()
+                    }
                 }
             }
             TabBar {
                 id: tabBar
                 currentIndex: swipeView.currentIndex
-                width: 500
                 anchors.horizontalCenter: parent.horizontalCenter
                 Repeater{
                     model: configWindow.count
@@ -84,7 +98,8 @@ ApplicationWindow {
                         y: tabBar.height
                     }
                 }
-            }}
+            }
+        }
     }
     Dialog {
         id: dialogConfig
@@ -105,6 +120,8 @@ ApplicationWindow {
     }
 
     DialogNewProf {id: addProfile}
+
+    AreYouSurePopOver {id: popOver}
 
     function findOption(idGamepad, idButton) {
         for(var i = 0; i < buttonOptions.length; i++) {

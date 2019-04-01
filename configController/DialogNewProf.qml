@@ -9,12 +9,12 @@ Dialog {
     property string text: "Agrega un perfil"
     width: 400
     height: 250
-    z: 1
     modal: true
-    visible: true
+    visible: false
     anchors.centerIn: parent
     closePolicy: Popup.NoAutoClose;
     Column {
+        id: column
         anchors.fill: parent
         Text {
             id: text1
@@ -28,6 +28,7 @@ Dialog {
             width: textField.width + label.width
             height: textField.height
             color: "transparent"
+            anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
 
             Label {
@@ -40,7 +41,8 @@ Dialog {
 
             TextField {
                 id: textField
-                text: qsTr("Text Field")
+                text: qsTr("")
+                placeholderText: "Perfil"
                 anchors.rightMargin: -200
                 anchors.right: parent.left
             }
@@ -49,19 +51,35 @@ Dialog {
 
     Button {
         id: button
+
+        focusPolicy: Qt.ClickFocus
+        checkable: false
+        autoRepeat: false
+        highlighted: true
+        flat: true
         anchors.rightMargin: button1.width + 10
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        spacing: 0
-        icon.name: "folder-new"
+        spacing: -3
+        //Icon made by [https://www.flaticon.com/authors/maxim-basinski] from www.flaticon.com
+        icon.source:  "../media/checked.png"
+        ToolTip.visible: hovered
+        ToolTip.delay: 1000
+        ToolTip.text: qsTr("Crear un nuevo perfil")
         onClicked: {dialog.visible = false;}
     }
 
     Button {
         id: button1
+        flat: true
+        highlighted: true
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        icon.name: "edit-delete"
+        //Icon made by [https://www.flaticon.com/authors/freepik] from www.flaticon.com
+        icon.source:  "../media/delete.png"
+        ToolTip.visible: hovered
+        ToolTip.delay: 1000
+        ToolTip.text: qsTr("Cancelar")
         onClicked: {dialog.visible = false;}
     }
 
