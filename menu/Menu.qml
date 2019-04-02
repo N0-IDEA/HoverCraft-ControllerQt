@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.12
 import "../" as MainComponents
 
+
 ApplicationWindow {
     id: window
     title: "Configurar Mando"
@@ -35,13 +36,28 @@ ApplicationWindow {
         anchors.rightMargin: 20
         anchors.leftMargin: 20
         Rectangle{
+            property int cols: 12
+            Layout.minimumWidth: parent.width / 12 * cols
+            Layout.minimumHeight: parent.height *4/10
+            Layout.columnSpan: cols
+            border.color: "red"
+            color: "transparent"
+            MainComponents.GlowingLabel {
+                property color colorGlow:  Material.color(Material.DeepOrange);
+                text: qsTr(String("THE HOVERCRAFT")) ;
+                color:"white"
+                anchors.centerIn: parent
+                font.pixelSize:  50
+            }
+        }
+        Rectangle {
             color:"transparent"
-           // border.color: "green"
+            border.color: "green"
             property int cols: 4
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height*6/10
             Layout.columnSpan: cols
-            Layout.rowSpan: 10
+            Layout.rowSpan: 6
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
 
@@ -79,14 +95,7 @@ ApplicationWindow {
                 }
             }
         }
-        Rectangle{
-            property int cols: 8
-            Layout.minimumWidth: parent.width / 12 * cols
-            Layout.minimumHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-           // border.color: "red"
-            color: "transparent"
-        }
+
     }
 
     function getTotalRows(gridMain){
