@@ -36,5 +36,9 @@
         <file>media/checked.png</file>
         <file>media/close.png</file>
         <file>media/delete.png</file>
+        <file>menu/CanvasMenu.qml</file>
+        <file>js/CanvasMenu.js</file>
+        <file>js/Utils/Utils.js</file>
+        <file>js/Grid/Grid.js</file>
     </qresource>
 </RCC>

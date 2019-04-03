@@ -24,6 +24,7 @@ ApplicationWindow {
 
     signal initConfig();
     signal initMain();
+    CanvasMenu {}
 
     MainComponents.GridBase {
         id: gridMain
