@@ -17,7 +17,7 @@ void AxisConfigOption::axisEvent (const QJoystickAxisEvent& event) {
         setIdGamepad(event.joystick->id);
         m_value = event.value;
         //emit valueChanged();
-        ConfigController::getInstance()->finishConfig();
+        ConfigController::getInstance()->finishConfig(this);
     }
 }
 

@@ -12,7 +12,8 @@ ConfigController::ConfigController(QObject *parent) : QObject(parent)
     updating = false;
 }
 
-void ConfigController::finishConfig() {
+void ConfigController::finishConfig(ConfigOption* option) {
+    dbManager.saveOption(perfil->id, this->options.indexOf(option));
     emit configDone();
     updating = false;
     disconnect(this->temp);

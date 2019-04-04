@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "main.h"
-#include "dbmanager.h"
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
@@ -16,6 +15,8 @@
 Serial serial;
 RF rf;
 Motor timon(90);
+DbManager dbManager("test.db");
+Perfil* perfil;
 void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
@@ -25,6 +26,11 @@ int main(int argc, char *argv[])
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
     instance->setVirtualJoystickEnabled(true);
+
+    perfil = dbManager.createPerfil("PRUEBA");
+
+    if(!dbManager.loadOptions(perfil->id))
+        dbManager.createOptions(perfil->id);
 
     QQmlApplicationEngine engine;
     engine.load(QUrl("qrc:/configController/configUI.qml"));

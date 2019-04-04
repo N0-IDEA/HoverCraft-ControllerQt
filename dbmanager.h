@@ -14,9 +14,11 @@ class DbManager
 public:
     DbManager(const QString &path);
     QList<Perfil> getPerfiles();
-    void loadOptions(int idPerfil);
     void createOptions(int idPerfil);
-    void saveOptions(int idPerfil);
+    bool loadOptions(int idPerfil);
+    Perfil *getPerfil(char *nombre);
+    Perfil *createPerfil(char *nombre);
+    void saveOption(int idPerfil, int option);
 private:
     QSqlDatabase m_database;
 };

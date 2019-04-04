@@ -1,5 +1,6 @@
 #ifndef CONFIGCONTROLLER_H
 #define CONFIGCONTROLLER_H
+#include "main.h"
 #include "axisconfigoption.h"
 #include "buttonconfigoption.h"
 #include "configoption.h"
@@ -21,7 +22,7 @@ public:
     ConfigOption *backwardOption =  new AxisConfigOption("Atrás");
 
     bool updating;
-    void finishConfig();
+    void finishConfig(ConfigOption *option);
 
     QMetaObject::Connection temp;
     QList<AxisConfigOption *> getAxisOptions();
