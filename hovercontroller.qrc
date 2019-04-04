@@ -40,5 +40,6 @@
         <file>js/CanvasMenu.js</file>
         <file>js/Utils/Utils.js</file>
         <file>js/Grid/Grid.js</file>
+        <file>js/Square/Square.js</file>
     </qresource>
 </RCC>
