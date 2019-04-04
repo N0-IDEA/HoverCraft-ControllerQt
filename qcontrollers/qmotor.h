@@ -21,7 +21,7 @@ public:
     explicit QMotor(QObject *parent = nullptr) : QObject(parent) {}
 
     int value() const {
-        return this->motor->potencia + 1000;
+        return this->motor->potencia;
     }
 
     int valueDelayed() const {
