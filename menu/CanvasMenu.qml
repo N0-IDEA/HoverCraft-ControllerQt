@@ -49,16 +49,16 @@ Canvas {
 
 
         var oUtils = new Utils.Utils();
-        canvasMenu.square = new Square.Square(ctx ,oUtils,
+       /* canvasMenu.square = new Square.Square(ctx ,oUtils,
                                               1200,centerX,centerX,angle, squares1);
         canvasMenu.grid = new Grid.Grid(ctx, canvasMenu.square,
                                         angle, parent.width, parent.height, hue, speed,hueChange);
-
+*/
 
         var squaresCount = 1200;
         var slice = Math.PI * 2 / squaresCount;
 
-        //FOR CLASS
+function Square1() {
         this.px = centerX;
         this.py = centerY;
         this.width = .5;
@@ -71,7 +71,7 @@ Canvas {
           px: oUtils.randomize(0, 25 + Math.cos(angle) * 2.15),
           py: oUtils.randomize(0, 25 + Math.sin(angle) * 2.15)
         };
-
+}
 
         ctx.fillStyle = 'white';
         ctx.font = "100px ubuntu";
@@ -140,7 +140,7 @@ initSquare();
                 square1.px = centerX / 2 + Math.cos(angle) * square1.offset.py;
                 square1.py = centerY / 2 + Math.cos(angle) * square1.offset.py;
 
-                this.draw(square1, this.grid.ctx);
+                this.drawSquare(square1, this.grid.ctx);
               }
             }
 
