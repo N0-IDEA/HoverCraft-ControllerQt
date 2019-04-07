@@ -4,6 +4,7 @@ import QtQuick.Dialogs.qml 1.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.12
 import "../" as MainComponents
+import QtGraphicalEffects 1.12
 
 
 ApplicationWindow {
@@ -25,6 +26,8 @@ ApplicationWindow {
     signal initConfig();
     signal initMain();
     CanvasMenu {}
+    //CanvasTest{}
+
 
     MainComponents.GridBase {
         id: gridMain
@@ -41,7 +44,7 @@ ApplicationWindow {
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height *4/10
             Layout.columnSpan: cols
-            border.color: "red"
+            //border.color: "red"
             color: "transparent"
             MainComponents.GlowingLabel {
                 property color colorGlow:  Material.color(Material.DeepOrange);
@@ -53,7 +56,7 @@ ApplicationWindow {
         }
         Rectangle {
             color:"transparent"
-            border.color: "green"
+           // border.color: "green"
             property int cols: 4
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height*6/10
@@ -65,7 +68,10 @@ ApplicationWindow {
             MainComponents.GridBase {
                 id: gridRepeater
                 rows: getTotalRows(gridRepeater)
+                rowSpacing: 30
+                //LabelTesting{}
                 LabelRectangle {
+                    id: conducir
                     property string text: "Conducir"
                     MouseArea {
                         anchors.fill: parent

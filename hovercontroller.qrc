@@ -37,9 +37,9 @@
         <file>media/close.png</file>
         <file>media/delete.png</file>
         <file>menu/CanvasMenu.qml</file>
-        <file>js/CanvasMenu.js</file>
-        <file>js/Utils/Utils.js</file>
-        <file>js/Grid/Grid.js</file>
-        <file>js/Square/Square.js</file>
+        <file>menu/CanvasTest.qml</file>
+        <file>media/fog.png</file>
+        <file>js/Clouds/Clouds.js</file>
+        <file>menu/LabelTesting.qml</file>
     </qresource>
 </RCC>
