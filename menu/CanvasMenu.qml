@@ -3,6 +3,7 @@ import QtQuick 2.0
 //import "../js/Grid/Grid.js" as Grid
 //import "../js/Square/Square.js" as Square
 import "../js/Clouds/Clouds.js" as Clouds
+import "../js/Lightning/Lightning.js" as Lightning
 import QtQuick.Controls.Material 2.12
 
 Canvas {
@@ -57,7 +58,9 @@ Canvas {
             repaintTimer.start()
             return
         }
+
         canvasMenu.fog._render()
+        var algo = new Lightning.Segment(2, 50, 100);
         repaintTimer.start()
     }
     function getWidth(item) { return item.width < item.height ? item.width : item.height }

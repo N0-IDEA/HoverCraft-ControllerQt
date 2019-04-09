@@ -41,5 +41,9 @@
         <file>media/fog.png</file>
         <file>js/Clouds/Clouds.js</file>
         <file>menu/LabelTesting.qml</file>
+        <file>js/Lightning/Segment.js</file>
+        <file>js/Lightning/Lightning.js</file>
+        <file>js/Lightning/App.js</file>
+        <file>js/Lightning/Vec2.js</file>
     </qresource>
 </RCC>

@@ -48,10 +48,11 @@ ApplicationWindow {
             color: "transparent"
             MainComponents.GlowingLabel {
                 property color colorGlow:  Material.color(Material.DeepOrange);
-                text: qsTr(String("THE HOVERCRAFT")) ;
+                text: qsTr(String("HOVERCRAFT")) ;
                 color:"white"
                 anchors.centerIn: parent
                 font.pixelSize:  50
+                font.family: "starcraft"
             }
         }
         Rectangle {
