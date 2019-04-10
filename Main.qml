@@ -124,7 +124,7 @@ ApplicationWindow {
                     totalCols += gridMain.children[i].itemAt(j).cols
             else
                 totalCols += gridMain.children[i].cols;
-        console.log("columnas totales: "+totalCols/12)
+        //console.log("columnas totales: "+totalCols/12)
         return totalCols/12
     }
 }

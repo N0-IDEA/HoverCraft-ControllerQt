@@ -1,77 +1,39 @@
 import QtQuick 2.0
-
-
+import "../js/Clouds/Clouds.js" as Clouds
+import "../js/Lightning/Lightning.js" as Lightning
+import "../js/Lightning/App.js" as App
+import QtQuick.Controls.Material 2.12
 
 Canvas {
-    id: canvasGraph;
-    width: 500
-    height: 500
-    property int paintY: 10;
-
-    onPaint:{
-        var ctx = canvasGraph.getContext('2d');
-        ctx.beginPath();
-        ctx.font = "normal 12px serif";
-        ctx.fillStyle = "#ff0000";
-        ctx.strokeRect(10, paintY, 160, 30);
-        ctx.fillRect(10, paintY, 160, 30);
-        ctx.closePath();
-        ctx.save();
-    }
-
+    id: canvasMenu
+    width: parent.width
+    height: parent.height
+    smooth: true
+    property string path: '../media/fog.png'
+    property variant app: ({})
+    property int fps: 1
     Timer {
-        interval: 16
+        id: repaintTimer
+        running: true
+        interval: 1
+
+        onTriggered: {
+            canvasMenu.requestPaint()
+        }
+    }
+   /* Timer {
+        interval: 1
         running: true
         repeat: true
-        onTriggered: {
-            canvasGraph.requestPaint();
-            canvasGraph.paintY += 10
-            if (canvasGraph.paintY > canvasGraph.height)
-                canvasGraph.paintY = 10
+        onTriggered: { repaintTimer.start()  }
+    }*/
+    onPaint: {
+        var ctx     = getContext("2d");
+        if( Object.keys(canvasMenu.app).length === 0 && canvasMenu.app.constructor === Object){
+            canvasMenu.app = new App.App(ctx, canvasMenu.width, canvasMenu.height,repaintTimer);//,fps);
+            return
         }
+        canvasMenu.app.render(repaintTimer);//,fps);
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-Canvas {id: alguno
-    width:100; height:100;
-    property int count: 0
-    property var ctx
-    onAvailableChanged: {if (available) ctx = getContext('2d');
-        count++
-    }
-    onPaint: {
-        if (!ctx) return;
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = "white"
-        ctx.fillText(alguno.count,20,20);
-        requestAnimationFrame(paint);
-    }
-}*/

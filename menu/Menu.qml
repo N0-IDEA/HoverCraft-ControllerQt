@@ -25,8 +25,8 @@ ApplicationWindow {
 
     signal initConfig();
     signal initMain();
-    CanvasMenu {}
-    //CanvasTest{}
+    //CanvasMenu {}
+    CanvasTest{}
 
 
     MainComponents.GridBase {
@@ -63,8 +63,8 @@ ApplicationWindow {
             Layout.minimumHeight: parent.height*6/10
             Layout.columnSpan: cols
             Layout.rowSpan: 6
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
+         //   anchors.bottom: parent.bottom
+           // anchors.horizontalCenter: parent.horizontalCenter
 
             MainComponents.GridBase {
                 id: gridRepeater
@@ -114,7 +114,7 @@ ApplicationWindow {
                     totalCols += gridMain.children[i].itemAt(j).cols
             else
                 totalCols += gridMain.children[i].cols;
-        console.log("columnas totales: "+totalCols/12)
+       // console.log("columnas totales: "+totalCols/12)
         return totalCols/12
     }
 }
