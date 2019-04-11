@@ -1,6 +1,4 @@
-
-var App =
-        function App(ctx, width, height,repaintTimer) {
+var App = function App(ctx, width, height,repaintTimer) {
             this.tick = 0;
             this.bolts = [];
             this.initCanvas = function(ctx, width, height) {
@@ -25,13 +23,14 @@ var App =
                     for (var i = this.bolts.length - 1; i >= 0; i--) {
                         var bolt = this.bolts[i];
                         bolt.update();
+                        var segment
                         for (var j = 0, len = bolt.segments.length; j < len; j++) {
-                            var segment = bolt.segments[j];
+                            segment = bolt.segments[j];
+
                             this.ctx.beginPath();
-                            this.ctx.strokeStyle =
-                                 "rgba(165,215,255," + bolt.alpha.toString() + ")";
+                            this.ctx.strokeStyle = "rgba(165,215,255," + bolt.alpha.toString() + ")";
                             this.ctx.lineWidth = segment.width;
-                            this.ctx.moveTo(segment.start.x, segment.start.y);
+                            this.ctx.moveTo(Math.round(segment.start.x), Math.round( segment.start.y));
                             this.ctx.lineTo(segment.end.x, segment.end.y);
                             this.ctx.stroke();
                             this.ctx.closePath();
@@ -42,29 +41,27 @@ var App =
                 this.ctx.fill();
                 this.ctx.restore();
             };
-            this.render = function(repaintTimer){//,fps) {
+            this.render = function(repaintTimer){
                 var self = this,
                 randomInt = Math.round(Math.random() * 60);
                 self.tick++;
-                //fps++;
                 console.log(self.tick)
                 if (self.tick % randomInt === 0) {
                     for (var i = 0; i < 3; i++) {
-
                         var ligthningTemp = new Lightning.Lightning(
                                     new Vector2(self.center.x, 0),
                                     new Vector2(Math.round(Math.random() * this.dimensions.x), this.dimensions.y),
                                     5
                                     )
                         console.log(ligthningTemp)
-                        self.bolts.push( ligthningTemp      );
+                        self.bolts.push( ligthningTemp );
                     }
                 }
                 self.draw();
-                repaintTimer.start();
+              //  repaintTimer.start();
             };
             this.initCanvas(ctx, width, height);
-            this.render(repaintTimer);//,fps);
+            this.render(repaintTimer);
         }
 Qt.include("./Vec2.js");
 Qt.include("./Lightning.js ");

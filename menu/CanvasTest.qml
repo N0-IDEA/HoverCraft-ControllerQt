@@ -9,31 +9,43 @@ Canvas {
     width: parent.width
     height: parent.height
     smooth: true
-    property string path: '../media/fog.png'
+    renderStrategy: Canvas.Threaded
+    renderTarget: Canvas.FramebufferObject
+    contextType: "2d"
     property variant app: ({})
     property int fps: 1
-    Timer {
-        id: repaintTimer
-        running: true
-        interval: 1
-
-        onTriggered: {
-            canvasMenu.requestPaint()
-        }
+    onPainted: {
+        console.log("ha sido pintado")
+        canvasMenu.requestPaint();
     }
-   /* Timer {
-        interval: 1
-        running: true
-        repeat: true
-        onTriggered: { repaintTimer.start()  }
-    }*/
     onPaint: {
-        var ctx     = getContext("2d");
-        if( Object.keys(canvasMenu.app).length === 0 && canvasMenu.app.constructor === Object){
-            canvasMenu.app = new App.App(ctx, canvasMenu.width, canvasMenu.height,repaintTimer);//,fps);
-            return
+        // var ctx     = getContext("2d");
+        console.timeEnd( "t" )
+        if ( context ) {
+            var repaintTimer;
+            if( Object.keys(canvasMenu.app).length === 0 && canvasMenu.app.constructor === Object){
+                canvasMenu.app = new App.App(context, canvasMenu.width, canvasMenu.height,repaintTimer);
+                return
+            }
+            //canvasMenu.requestAnimationFrame(
+                        canvasMenu.app.render(repaintTimer)//);
+           /* delay(1000, function() {
+                        console.log("And I'm printed after 1 second!")
+
+                    })*/
+
         }
-        canvasMenu.app.render(repaintTimer);//,fps);
+        console.time("t")
     }
+    Timer {
+            id: timer
+        }
+
+        function delay(delayTime, cb) {
+            timer.interval = delayTime;
+            timer.repeat = false;
+            timer.triggered.connect(cb);
+            timer.start();
+        }
 }
 

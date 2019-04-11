@@ -6,7 +6,7 @@ var Lightning =
     this.end = new Vector2(end.x, end.y);
     this.iterations = iterations || 5;
     this.life = 0;
-    this.ttl = 1;
+    this.ttl = 10;
 
       this.update = function () {
         this.alpha = (this.ttl - this.life) / this.ttl;
