@@ -47,10 +47,11 @@ Canvas {
             var radioX = 100, radioY = 60, rotacion=0, ap = 0, af = 2*Math.PI, cR = true;
             var elipWidth = titleMenu.width*1.6
             var elipHeight = titleMenu.height*2
-            context.ellipse(titleMenu.x - titleMenu.width*0.25, titleMenu.y - titleMenu.height*0.25 , elipWidth, elipHeight,
+            context.ellipse(titleMenu.x - titleMenu.width*0.25,
+                            titleMenu.y - titleMenu.height*0.25 , elipWidth, elipHeight,
                             rotacion, ap, af, cR);
-            context.stroke();
-            ctx.fillStyle = Material.color(Material.DeepOrange);
+            //context.stroke();
+            ctx.fillStyle = "rgba(255,87,34,0.2)"//Material.color(Material.DeepOrange);
             ctx.fill()
             /*          ctx.save();
             ctx.translate(circle.x, circle.y);

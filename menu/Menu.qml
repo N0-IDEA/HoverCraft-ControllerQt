@@ -10,6 +10,7 @@ import QtGraphicalEffects 1.12
 ApplicationWindow {
     id: window
     title: "Configurar Mando"
+   // visibility: window.FullScreen
     width: 900
     height: 600
     visible: true
@@ -27,7 +28,19 @@ ApplicationWindow {
     signal initMain();
    // CanvasMenu { z: 20}
     //CanvasTest{ z: 10}
-   // CanvasLight{}
+   /* CanvasLight{
+        z: 29
+        layer.enabled: true
+        layer.effect: Glow {
+            samples: 10
+            radius: 4
+            //spread: 8
+            color: Material.color(Material.DeepOrange)
+            transparentBorder: false
+        }
+    }*/
+
+    CanvasCloudsTop {}
 
     MainComponents.GridBase {
         id: gridMain
@@ -48,7 +61,7 @@ ApplicationWindow {
             Layout.columnSpan: cols
             //border.color: "red"
             color: "transparent"
-            Rectangle {
+          /*  Rectangle {
                        id: transparentBorderRect
                        x: titleMenu.x
                        y: titleMenu.y + titleMenu.height /2
@@ -64,7 +77,7 @@ ApplicationWindow {
                            color: Material.color(Material.DeepOrange)
                            transparentBorder: true
                        }
-                   }
+                   }*/
             MainComponents.GlowingLabel {
                 id: titleMenu
                 property color colorGlow:  Material.color(Material.DeepOrange);

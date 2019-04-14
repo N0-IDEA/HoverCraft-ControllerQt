@@ -1,10 +1,8 @@
 import QtQuick 2.0
 import "../js/Clouds/Clouds.js" as Clouds
-//import "../js/Lightning/Lightning.js" as Lightning
 import QtQuick.Controls.Material 2.12
 
 Canvas {
-
     id: canvasClouds
     property string path: '../media/fog.png'
     property variant utils: ({})
@@ -44,9 +42,7 @@ Canvas {
             repaintTimer.start()
             return
         }
-
         canvasClouds.fog._render()
-        //var algo = new Lightning.Segment(2, 50, 100);
         repaintTimer.start()
     }
     function getWidth(item) { return item.width < item.height ? item.width : item.height }
