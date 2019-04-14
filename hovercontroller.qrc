@@ -45,5 +45,6 @@
         <file>js/Lightning/Lightning.js</file>
         <file>js/Lightning/App.js</file>
         <file>js/Lightning/Vec2.js</file>
+        <file>menu/CanvasLight.qml</file>
     </qresource>
 </RCC>

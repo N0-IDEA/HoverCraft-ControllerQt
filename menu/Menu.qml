@@ -25,12 +25,13 @@ ApplicationWindow {
 
     signal initConfig();
     signal initMain();
-    //CanvasMenu {}
-    CanvasTest{}
-
+   // CanvasMenu { z: 20}
+    //CanvasTest{ z: 10}
+   // CanvasLight{}
 
     MainComponents.GridBase {
         id: gridMain
+        z: 30
         anchors.top: window.top
         anchors.left: window.left
         anchors.right: window.right
@@ -40,20 +41,41 @@ ApplicationWindow {
         anchors.rightMargin: 20
         anchors.leftMargin: 20
         Rectangle{
+            id: titleMenuRec
             property int cols: 12
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height *4/10
             Layout.columnSpan: cols
             //border.color: "red"
             color: "transparent"
+            Rectangle {
+                       id: transparentBorderRect
+                       x: titleMenu.x
+                       y: titleMenu.y + titleMenu.height /2
+                       width: titleMenu.width
+                       height: 1
+                       color: "black"
+                       radius: 10
+                       layer.enabled: true
+                       layer.effect: Glow {
+                           samples: 17
+                           radius: 50
+                           //spread: 8
+                           color: Material.color(Material.DeepOrange)
+                           transparentBorder: true
+                       }
+                   }
             MainComponents.GlowingLabel {
+                id: titleMenu
                 property color colorGlow:  Material.color(Material.DeepOrange);
                 text: qsTr(String("HOVERCRAFT")) ;
                 color:"white"
                 anchors.centerIn: parent
                 font.pixelSize:  50
                 font.family: "starcraft"
+
             }
+
         }
         Rectangle {
             color:"transparent"

@@ -1,7 +1,7 @@
 function FogParticle (ctx) {
     this.ctx = ctx
-    this.canvasWidth = canvasMenu.width
-    this.canvasHeight = canvasMenu.height
+    this.canvasWidth = canvasClouds.width
+    this.canvasHeight = canvasClouds.height
     this.x = 0
     this.y = 0
     this.xVelocity = 0
@@ -16,7 +16,7 @@ function FogParticle (ctx) {
     }
     this.render = function render() {
         this.ctx.drawImage(
-                 canvasMenu.path,
+                 canvasClouds.path,
                  this.x - 400 / 2,
                  this.y - 400 / 2,
                  400,
@@ -46,8 +46,8 @@ function FogParticle (ctx) {
 
 function Fog ( ctx, density , velocity, particle ){
     this.ctx = ctx
-    this.canvasWidth = canvasMenu.width
-    this.canvasHeight = canvasMenu.height
+    this.canvasWidth = canvasClouds.width
+    this.canvasHeight = canvasClouds.height
 
     this.particleCount = density
     this.maxVelocity = velocity

@@ -1,14 +1,11 @@
 import QtQuick 2.0
-//import "../js/Utils/Utils.js" as Utils
-//import "../js/Grid/Grid.js" as Grid
-//import "../js/Square/Square.js" as Square
 import "../js/Clouds/Clouds.js" as Clouds
-import "../js/Lightning/Lightning.js" as Lightning
+//import "../js/Lightning/Lightning.js" as Lightning
 import QtQuick.Controls.Material 2.12
 
 Canvas {
 
-    id: canvasMenu
+    id: canvasClouds
     property string path: '../media/fog.png'
     property variant utils: ({})
     property variant grid: ({})
@@ -17,50 +14,39 @@ Canvas {
     property real angle
     property int fps
     property int fogDensity: 50
-
-    //property var ctx
-    //onAvailableChanged: if (available) ctx = getContext('2d');
     width: parent.width
     height: parent.height
     smooth: true
     Timer {
         id: repaintTimer
         running: false
-        interval: 0
+        interval: 2
         onTriggered: {
-            context.clearRect(0, 0, canvasMenu.width, canvasMenu.height)
-            canvasMenu.requestPaint()
+            context.clearRect(0, 0, canvasClouds.width, canvasClouds.height)
+            canvasClouds.requestPaint()
         }
     }
-
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered: {   }
-    }
-
-    onImageLoaded: { canvasMenu.requestPaint() }
-    //onCanvasSizeChanged: {canvasMenu.fog = new Fog( canvasMenu.fogDensity, 1, canvasMenu.path)}
+    onImageLoaded: { canvasClouds.requestPaint() }
+    //onCanvasSizeChanged: {canvasClouds.fog = new Fog( canvasClouds.fogDensity, 1, canvasClouds.path)}
     onPaint: {
         var ctx     = getContext("2d");
-        if(!isImageLoaded(canvasMenu.path)){
-            canvasMenu.loadImage(canvasMenu.path)
+        if(!isImageLoaded(canvasClouds.path)){
+            canvasClouds.loadImage(canvasClouds.path)
             return
         }
 
-        ctx.fillStyle = Material.color(Material.DeepOrange);
+        ctx.fillStyle = Material.color(Material.DeepOrange);//#ff5722
         ctx.font = "100px ubuntu";
         ctx.strokeStyle = 'white';
 
-        if( Object.keys(canvasMenu.fog).length === 0 && canvasMenu.fog.constructor === Object){
-            canvasMenu.fog = new Clouds.Fog(ctx, canvasMenu.fogDensity, 2, canvasMenu.path)
+        if( Object.keys(canvasClouds.fog).length === 0 && canvasClouds.fog.constructor === Object){
+            canvasClouds.fog = new Clouds.Fog(ctx, canvasClouds.fogDensity, 2, canvasClouds.path)
             repaintTimer.start()
             return
         }
 
-        canvasMenu.fog._render()
-        var algo = new Lightning.Segment(2, 50, 100);
+        canvasClouds.fog._render()
+        //var algo = new Lightning.Segment(2, 50, 100);
         repaintTimer.start()
     }
     function getWidth(item) { return item.width < item.height ? item.width : item.height }

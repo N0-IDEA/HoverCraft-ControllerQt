@@ -21,6 +21,7 @@ Item {
         layer.enabled: root.glowEnabled
         layer.effect: CustomGlow {
             color: glowColor
+
         }
 
         TextMetrics {
