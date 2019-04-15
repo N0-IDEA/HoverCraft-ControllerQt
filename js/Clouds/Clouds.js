@@ -47,7 +47,7 @@ function FogParticle (ctx) {
 function Fog ( ctx, density , velocity, particle ){
     this.ctx = ctx
     this.canvasWidth = canvasClouds.width
-    this.canvasHeight = canvasClouds.height
+    this.canvasHeight = canvasClouds.height/5
 
     this.particleCount = density
     this.maxVelocity = velocity

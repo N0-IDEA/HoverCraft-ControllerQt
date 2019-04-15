@@ -10,37 +10,48 @@ import QtGraphicalEffects 1.12
 ApplicationWindow {
     id: window
     title: "Configurar Mando"
-   // visibility: window.FullScreen
+    visible: true
+    //visibility: "FullScreen"
     width: 900
     height: 600
-    visible: true
-
-    property int externalRows: getTotalRows(gridMain)
-    readonly property string idGrid: "gridMain"
-
     Material.accent: Material.color(Material.DeepOrange);
     Material.theme: Material.Dark;
     Material.foreground: "#FFFFFF"
     //Material.primary: "#FFFFFF"
     color: "black"
-
+    property int externalRows: getTotalRows(gridMain)
+    readonly property string idGrid: "gridMain"
     signal initConfig();
     signal initMain();
-   // CanvasMenu { z: 20}
-    //CanvasTest{ z: 10}
-   /* CanvasLight{
-        z: 29
-        layer.enabled: true
-        layer.effect: Glow {
-            samples: 10
-            radius: 4
-            //spread: 8
-            color: Material.color(Material.DeepOrange)
-            transparentBorder: false
+   // CanvasTest{ z: 10}
+   /* Rectangle {
+        z: 15
+        id: txt2
+        //y: window.height * 0.1
+        width: window.width
+        height: window.height /// 5
+        color: "transparent"
+        Behavior on color {
+            SequentialAnimation {
+                loops: 1
+                ColorAnimation { from: "transparent"; to: "#FFC2BF"; duration: 150 }
+                ColorAnimation { from: "#FFC2BF"; to: "transparent";  duration: 150 }
+            }
         }
     }*/
+   // CanvasMenu { z: 20}
 
-    CanvasCloudsTop {}
+     CanvasLight{ z: 28 }
+    /* layer.enabled: true
+         layer.effect: Glow {
+             samples: 10
+             radius: 4
+             //spread:  8
+             color: Material.color(Material.DeepOrange)
+             transparentBorder: false
+         }*/
+
+   // CanvasCloudsTop { z: 29 }
 
     MainComponents.GridBase {
         id: gridMain
@@ -57,11 +68,11 @@ ApplicationWindow {
             id: titleMenuRec
             property int cols: 12
             Layout.minimumWidth: parent.width / 12 * cols
-            Layout.minimumHeight: parent.height *4/10
+            Layout.minimumHeight: parent.height *5/10
             Layout.columnSpan: cols
             //border.color: "red"
             color: "transparent"
-          /*  Rectangle {
+            /*  Rectangle {
                        id: transparentBorderRect
                        x: titleMenu.x
                        y: titleMenu.y + titleMenu.height /2
@@ -86,20 +97,18 @@ ApplicationWindow {
                 anchors.centerIn: parent
                 font.pixelSize:  50
                 font.family: "starcraft"
-
             }
-
         }
         Rectangle {
             color:"transparent"
-           // border.color: "green"
+            // border.color: "green"
             property int cols: 4
             Layout.minimumWidth: parent.width / 12 * cols
-            Layout.minimumHeight: parent.height*6/10
+            Layout.minimumHeight: parent.height*5/10
             Layout.columnSpan: cols
             Layout.rowSpan: 6
-         //   anchors.bottom: parent.bottom
-           // anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
 
             MainComponents.GridBase {
                 id: gridRepeater
@@ -131,6 +140,12 @@ ApplicationWindow {
                 }
                 LabelRectangle {
                     property string text: "Salir"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            window.close();
+                        }
+                    }
                 }
                 function moveTo(elementPath,window, value){
                     lp.source=elementPath
@@ -149,7 +164,7 @@ ApplicationWindow {
                     totalCols += gridMain.children[i].itemAt(j).cols
             else
                 totalCols += gridMain.children[i].cols;
-       // console.log("columnas totales: "+totalCols/12)
+        // console.log("columnas totales: "+totalCols/12)
         return totalCols/12
     }
 }

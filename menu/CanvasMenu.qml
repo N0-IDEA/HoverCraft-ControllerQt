@@ -24,8 +24,19 @@ Canvas {
             canvasClouds.requestPaint()
         }
     }
+    /*onWidthChanged: {
+        canvasClouds.fog = new Clouds.Fog(ctx, canvasClouds.fogDensity, 2, canvasClouds.path)}
+    onHeightChanged: {
+        canvasClouds.fog = new Clouds.Fog(ctx, canvasClouds.fogDensity, 2, canvasClouds.path)}
+*/
     onImageLoaded: { canvasClouds.requestPaint() }
-    //onCanvasSizeChanged: {canvasClouds.fog = new Fog( canvasClouds.fogDensity, 1, canvasClouds.path)}
+    /*onCanvasSizeChanged: {
+        if(isImageLoaded(canvasClouds.path)){
+            if( Object.keys(canvasClouds.fog).length === 0 && canvasClouds.fog.constructor === Object){
+            canvasClouds.fog = new Clouds.Fog( canvasClouds.fogDensity, 2, canvasClouds.path)
+            }
+        }
+    }*/
     onPaint: {
         var ctx     = getContext("2d");
         if(!isImageLoaded(canvasClouds.path)){

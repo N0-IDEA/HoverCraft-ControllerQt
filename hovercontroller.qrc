@@ -43,7 +43,6 @@
         <file>menu/LabelTesting.qml</file>
         <file>js/Lightning/Segment.js</file>
         <file>js/Lightning/Lightning.js</file>
-        <file>js/Lightning/App.js</file>
         <file>js/Lightning/Vec2.js</file>
         <file>menu/CanvasLight.qml</file>
         <file>menu/CanvasCloudsTop.qml</file>

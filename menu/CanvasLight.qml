@@ -3,7 +3,6 @@ import QtQuick 2.12
 import "../js/Clouds/Clouds.js" as Clouds
 import "../js/Lightning/Lightning.js" as Lightning
 import "../js/Lightning/Vec2.js" as Vec2
-import "../js/Lightning/App.js" as App
 import QtQuick.Controls.Material 2.12
 
 Canvas {
@@ -15,62 +14,79 @@ Canvas {
     renderTarget: Canvas.FramebufferObject
     property variant app: ({})
     property int fps: 1
+    property int count: 10
+    property double flashOpacity: 0.0
     onPainted: {
         console.log("ha sido pintado");
-//        delay(20, function (){ canvasTitleLigt.context.scale(10, 10);} )
-
-        delay(20, function (){ canvasTitleLigt.requestPaint()} )
+        //        delay(20, function (){ canvasTitleLigt.context.scale(10, 10);} )
+        delay(20, function (){ canvasTitleLigt.requestPaint() } )
     }
     onPaint: {
         var ctx     = getContext("2d");
         console.timeEnd( "t" )
-        /* clear(ctx, canvasTitleLigt.width, canvasTitleLigt.height);
-        var rand = function(a,b){return ~~((Math.random()*(b-a+1))+a);}
-        var   dToR = function(degrees){
-            return degrees * (Math.PI / 180);
-        }
-        var circle = {
-            x: canvasTitleLigt.width / 2,
-            y: canvasTitleLigt.height /2,
-            radius: 10,
-            speed: 2,
-            rotation: 0,
-            hue: 220,
-            thickness: 18,
-            blur: 25
-        }
-*/
+        /*   var
+        wid = canvasTitleLigt.width,
+        hei = canvasTitleLigt.height,
+        ang = -90 * Math.PI/180,
+        spn = 80 * Math.PI/180,
+        ctr = {x: 200, y:200},
+        rad = 200,
+
+        grd = ctx.createRadialGradient(ctr.x, ctr.y, 0, ctr.x, ctr.y, rad);
+        grd.addColorStop(0, 'rgba(0,200,255,.25)');
+        grd.addColorStop(0.75, 'rgba(0,0,0,0.25)');
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grd;*/
+
+        var ellipse = ({});
+        ellipse.center = new Vec2.Vector2();
+        ellipse.center.x = canvasTitleLigt.width/2
+        ellipse.center.y = canvasTitleLigt/4
+        ellipse.radio = new Vec2.Vector2();
+        ellipse.radio.x = 400
+        ellipse.radio.y = 300
+        ellipse.rotation = Math.PI * .25
+
+
         if ( context ) {
-            ctx.clearRect(0,0, canvasTitleLigt.width, canvasTitleLigt.height);
-            context.lineWidth = 1;
-            //context.strokeStyle = "#00f";
+            /* ctx.clearRect(0,0,wid,hei);
+            ang = Math.sin(new Date()/1000) * Math.PI/2;
+            spn = (Math.abs(Math.sin(new Date()/1000/3)) * 120 + 30) * Math.PI/180;
+
+            for (var i = 2; i < 10; i+=0.1){
+                ctx.beginPath();
+                ctx.moveTo(ctr.x,ctr.y);
+                ctx.arc(ctr.x, ctr.y, rad, ang - spn/i, ang + spn/i, false);
+                ctx.closePath();
+                ctx.fill();
+            }*/
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
             var radioX = 100, radioY = 60, rotacion=0, ap = 0, af = 2*Math.PI, cR = true;
-            var elipWidth = titleMenu.width*1.6
-            var elipHeight = titleMenu.height*2
-            context.ellipse(titleMenu.x - titleMenu.width*0.25,
-                            titleMenu.y - titleMenu.height*0.25 , elipWidth, elipHeight,
-                            rotacion, ap, af, cR);
-            //context.stroke();
+                        var elipWidth = titleMenu.width*1.6
+                        var elipHeight = titleMenu.height*2
+                        context.ellipse(titleMenu.x - titleMenu.width*0.25,
+                                        titleMenu.y - titleMenu.height*0.25 , elipWidth, elipHeight,
+            rotacion, ap, af, cR);
             ctx.fillStyle = "rgba(255,87,34,0.2)"//Material.color(Material.DeepOrange);
             ctx.fill()
-            /*          ctx.save();
-            ctx.translate(circle.x, circle.y);
-            ctx.rotate(dToR(circle.rotation+185));
             ctx.beginPath();
-            ctx.arc(0, circle.radius, 30, 0, Math.PI *2, false);
-            ctx.closePath();
-            var gradient3 = ctx.createRadialGradient(0, circle.radius, 0, 0, circle.radius, 30);
-            gradient3.addColorStop(0, 'hsla(330, 50%, 50%, .35)');
-            gradient3.addColorStop(1, 'hsla(330, 50%, 50%, 0)');
-            ctx.fillStyle = gradient3;
-            ctx.fill();
-
-            ctx.restore();*/
+            ctx.arc(width/2, titleMenu.y+titleMenu.height/2,
+                    titleMenu.height/2,0, Math.PI*2,false);
+            ctx.strokeStyle = "white"
+            ctx.stroke()
+            //            ctx.save()
+            //             ctx.translate(ellipse.center.x, ellipse.center.y)
+            //             ctx.rotate((Math.PI / 180) * 15)
+            //             ctx.translate(-ellipse.center.x, -ellipse.center.y)
+            //             ctx.restore()
         };
         console.time("t")
     }
     Timer {
-        id: timer
+        id: timer2
+        interval: 20
+        running: true
     }
     /*  ScaleAnimator {
         id: scaleUp
@@ -107,11 +123,10 @@ Canvas {
         ctx.globalCompositeOperation = 'lighter';
     }
     function delay(delayTime, cb) {
-        timer.interval = delayTime;
-        timer.repeat = false;
-        timer.triggered.connect(cb);
-        timer.start();
+        timer2.interval = delayTime;
+        timer2.repeat = false;
+        timer2.triggered.connect(cb);
+        timer2.start();
     }
-
 }
 
