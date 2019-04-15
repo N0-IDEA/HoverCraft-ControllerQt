@@ -11,7 +11,7 @@ ApplicationWindow {
     id: window
     title: "Configurar Mando"
     visible: true
-    //visibility: "FullScreen"
+    visibility: "FullScreen"
     width: 900
     height: 600
     Material.accent: Material.color(Material.DeepOrange);
@@ -23,8 +23,8 @@ ApplicationWindow {
     readonly property string idGrid: "gridMain"
     signal initConfig();
     signal initMain();
-   // CanvasTest{ z: 10}
-   /* Rectangle {
+    //CanvasTest{ z: 10}
+    /*Rectangle {
         z: 15
         id: txt2
         //y: window.height * 0.1
@@ -39,10 +39,10 @@ ApplicationWindow {
             }
         }
     }*/
-   // CanvasMenu { z: 20}
+    //CanvasMenu { z: 20}
 
-     CanvasLight{ z: 28 }
-    /* layer.enabled: true
+    CanvasLight{ z: 28 }
+    /*   layer.enabled: true
          layer.effect: Glow {
              samples: 10
              radius: 4
@@ -51,7 +51,7 @@ ApplicationWindow {
              transparentBorder: false
          }*/
 
-   // CanvasCloudsTop { z: 29 }
+    //CanvasCloudsTop { z: 29 }
 
     MainComponents.GridBase {
         id: gridMain
