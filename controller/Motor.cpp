@@ -11,16 +11,18 @@ char getByte(int posByte, int value) {
 
 void Motor::update() {
 
+    if(ultimaPotencia == potencia)
+        return;
+
     char tempArray[3];
 
     tempArray[0] = id;
     tempArray[1] = getByte(1, potencia);
     tempArray[2] = getByte(0, potencia);
 
-    /*error = !serial.send((char *) &tempArray, 3);
+    this->error = !rf.write(tempArray, 3);
 
-    if(!error)
-        ultimaPotencia = potencia;*/
-    rf.write(tempArray, 3);
-
+    if(!error) {
+        ultimaPotencia = potencia;
+    }
 };

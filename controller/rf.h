@@ -8,7 +8,7 @@ class RF
 public:
     RF();
     void connect();
-    void write(void *buf, uint8_t len);
+    bool write(void *buf, uint8_t len);
 private:
     RF24 radio = RF24(4,0);
     const int radioNumber = 1;

@@ -43,7 +43,8 @@ SOURCES += \
     configController/axisconfigoption.cpp \
     dbmanager.cpp \
     configController/perfil.cpp \
-    controller/rf.cpp
+    controller/rf.cpp \
+    qcontrollers/motorcontroller.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -59,7 +60,8 @@ HEADERS += \
     configController/axisconfigoption.h \
     dbmanager.h \
     configController/perfil.h \
-    controller/rf.h
+    controller/rf.h \
+    qcontrollers/motorcontroller.h
 
 FORMS += \
         mainwindow.ui \

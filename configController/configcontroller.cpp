@@ -1,7 +1,5 @@
 #include "configcontroller.h"
 
-#include <QTimer>
-
 ConfigController::ConfigController(QObject *parent) : QObject(parent)
 {
     this->options.append(upOption);

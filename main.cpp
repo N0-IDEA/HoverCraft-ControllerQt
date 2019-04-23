@@ -10,6 +10,7 @@
 #include <QVariant>
 #include <QQmlContext>
 #include <configController/configcontroller.h>
+#include <qcontrollers/motorcontroller.h>
 #include <qcontrollers/qmotor.h>
 
 Serial serial;
@@ -77,12 +78,13 @@ void initConfig(QQmlApplicationEngine *engine) {
 
 void initTest(QQmlApplicationEngine *engine) {
     QObject *rootObject = engine->rootObjects().first();
-    ConfigController *controller = ConfigController::getInstance();
 
+    MotorController *motorController = MotorController::getInstance();
+    QList<QMotor*> motors = motorController->motors;
     QList<QObject*> objects;
-        objects.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
-        objects.append(new QMotor(new Motor(1), controller->forwardOption, controller->backwardOption));
-
+        for (int i=0;i<motors.size(); i++) {
+            objects.append(motors[i]);
+        }
     rootObject->setProperty("motorsModel", QVariant::fromValue(objects));
 }
 

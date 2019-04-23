@@ -24,7 +24,6 @@ void RF::connect()
     //radio.startListening();
 }
 
-void RF::write(void *buf, uint8_t len) {
-    bool ok = radio.write(buf, len);
-    qDebug("OK");
+bool RF::write(void *buf, uint8_t len) {
+    return radio.write(buf, len);
 }
