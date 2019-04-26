@@ -30,6 +30,7 @@ public:
 
     void setValue(int);
     Motor *motor;
+    void emitValueEvents();
 private:
     ConfigOption *option;
     ConfigOption *downOption;

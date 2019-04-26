@@ -10,6 +10,8 @@ MotorController::MotorController() : QObject(nullptr)
     motors.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
     motors.append(new QMotor(new Motor(1), controller->forwardOption, controller->backwardOption));
 
+    timon = new QServo(new Motor(2), controller->leftOption, controller->rigthOption);
+
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(500);
@@ -23,7 +25,10 @@ void updateGlobalMotors() {
 void MotorController::updateMotors() {
     for (int i=0;i<motors.size(); i++) {
         motors[i]->motor->update();
+        motors[i]->emitValueEvents();
     }
+    timon->motor->update();
+    timon->emitValueEvents();
 }
 
 void MotorController::update() {

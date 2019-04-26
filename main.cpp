@@ -1,4 +1,3 @@
-#include "mainwindow.h"
 #include "main.h"
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -15,14 +14,13 @@
 
 Serial serial;
 RF rf;
-Motor timon(90);
 DbManager dbManager("test.db");
 Perfil* perfil;
 void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
-    rf.connect();
+    //rf.connect();
     QApplication a(argc, argv);
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();

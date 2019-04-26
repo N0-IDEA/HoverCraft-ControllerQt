@@ -31,7 +31,6 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
     formmotor.cpp \
     controller/Motor.cpp \
     controller/Serial.cpp \
@@ -44,10 +43,10 @@ SOURCES += \
     dbmanager.cpp \
     configController/perfil.cpp \
     controller/rf.cpp \
-    qcontrollers/motorcontroller.cpp
+    qcontrollers/motorcontroller.cpp \
+    qcontrollers/qservo.cpp
 
 HEADERS += \
-        mainwindow.h \
     formmotor.h \
     controller/Motor.h \
     controller/Serial.h \
@@ -61,7 +60,8 @@ HEADERS += \
     dbmanager.h \
     configController/perfil.h \
     controller/rf.h \
-    qcontrollers/motorcontroller.h
+    qcontrollers/motorcontroller.h \
+    qcontrollers/qservo.h
 
 FORMS += \
         mainwindow.ui \

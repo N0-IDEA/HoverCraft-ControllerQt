@@ -6,7 +6,8 @@ ConfigController::ConfigController(QObject *parent) : QObject(parent)
     this->options.append(downOption);
     this->options.append(forwardOption);
     this->options.append(backwardOption);
-
+    this->options.append(leftOption);
+    this->options.append(rigthOption);
     updating = false;
 }
 

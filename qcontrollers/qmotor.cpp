@@ -56,3 +56,8 @@ void QMotor::setValue(int value) {
 
     }
 }
+
+void QMotor::emitValueEvents() {
+    emit valueChanged();
+    emit valueDelayedChanged();
+}

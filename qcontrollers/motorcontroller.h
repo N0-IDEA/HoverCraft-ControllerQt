@@ -2,6 +2,7 @@
 #define MOTORCONTROLLER_H
 
 #include "qmotor.h"
+#include "qservo.h"
 
 #include <QList>
 #include <QObject>
@@ -16,6 +17,8 @@ public:
     QList<QMotor*> motors;
     static MotorController *getInstance();
     void updateMotors();
+private:
+    QServo *timon;
 public slots:
     void update();
 };

@@ -7,9 +7,10 @@
 #include <controller/Serial.h>
 #include <controller/rf.h>
 
+#include <qcontrollers/qservo.h>
+
 extern RF rf;
 extern Serial serial;
-extern Motor timon;
 extern DbManager dbManager;
 extern Perfil* perfil;
 
