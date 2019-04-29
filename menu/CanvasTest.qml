@@ -38,10 +38,10 @@ Canvas {
             console.log(  fps)
             if (  fps % randomInt === 0) {
                 for (i = 0 ; i < 2; i++){
-                    var positionXTop =Math.round(dimensions.x*0.3 + Math.random() * dimensions.x*0.7);
+                    var positionXTop = Math.random() * ( dimensions.x*0.7 - dimensions.x*0.3) + dimensions.x*0.3;
                     var positionX = Math.round(Math.random() * dimensions.x);
                     var thunder = new Lightning.Lightning(
-                                new Vec2.Vector2( positionX , titleMenu.y + titleMenu.y /2),
+                                new Vec2.Vector2( positionXTop , titleMenu.y + titleMenu.height/2),
                                 new Vec2.Vector2(positionX, dimensions.y),
                                 5 )
                     console.log(thunder);

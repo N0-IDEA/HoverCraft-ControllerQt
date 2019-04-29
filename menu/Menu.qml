@@ -11,7 +11,7 @@ ApplicationWindow {
     id: window
     title: "Configurar Mando"
     visible: true
-    visibility: "FullScreen"
+    //visibility: "FullScreen"
     width: 900
     height: 600
     Material.accent: Material.color(Material.DeepOrange);
@@ -23,8 +23,8 @@ ApplicationWindow {
     readonly property string idGrid: "gridMain"
     signal initConfig();
     signal initMain();
-    //CanvasTest{ z: 10}
-    /*Rectangle {
+    CanvasTest{ z: 10}
+    Rectangle {
         z: 15
         id: txt2
         //y: window.height * 0.1
@@ -38,8 +38,8 @@ ApplicationWindow {
                 ColorAnimation { from: "#FFC2BF"; to: "transparent";  duration: 150 }
             }
         }
-    }*/
-    //CanvasMenu { z: 20}
+    }
+    CanvasMenu { z: 20}
 
     CanvasLight{ z: 28 }
     /*   layer.enabled: true
@@ -51,7 +51,7 @@ ApplicationWindow {
              transparentBorder: false
          }*/
 
-    //CanvasCloudsTop { z: 29 }
+    CanvasCloudsTop { z: 29 }
 
     MainComponents.GridBase {
         id: gridMain
@@ -68,34 +68,18 @@ ApplicationWindow {
             id: titleMenuRec
             property int cols: 12
             Layout.minimumWidth: parent.width / 12 * cols
-            Layout.minimumHeight: parent.height *5/10
+            Layout.minimumHeight: parent.height * 5/10
             Layout.columnSpan: cols
             //border.color: "red"
             color: "transparent"
-            /*  Rectangle {
-                       id: transparentBorderRect
-                       x: titleMenu.x
-                       y: titleMenu.y + titleMenu.height /2
-                       width: titleMenu.width
-                       height: 1
-                       color: "black"
-                       radius: 10
-                       layer.enabled: true
-                       layer.effect: Glow {
-                           samples: 17
-                           radius: 50
-                           //spread: 8
-                           color: Material.color(Material.DeepOrange)
-                           transparentBorder: true
-                       }
-                   }*/
-            MainComponents.GlowingLabel {
+             MainComponents.GlowingLabel {
                 id: titleMenu
-                property color colorGlow:  Material.color(Material.DeepOrange);
+                property color colorGlow:  "black";
                 text: qsTr(String("HOVERCRAFT")) ;
-                color:"white"
+                color: "white"
                 anchors.centerIn: parent
                 font.pixelSize:  50
+                font.weight: Font.Black
                 font.family: "starcraft"
             }
         }
