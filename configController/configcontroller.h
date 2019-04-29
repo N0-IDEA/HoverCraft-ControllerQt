@@ -1,5 +1,6 @@
 #ifndef CONFIGCONTROLLER_H
 #define CONFIGCONTROLLER_H
+#include "main.h"
 #include "axisconfigoption.h"
 #include "buttonconfigoption.h"
 #include "configoption.h"
@@ -16,10 +17,14 @@ public:
     static ConfigController *getInstance();
 
     ConfigOption *downOption  = new ButtonConfigOption("Abajo");
-    ConfigOption *upOption  = new AxisConfigOption("Arriba");
+    ConfigOption *upOption  = new ButtonConfigOption("Arriba");
+    ConfigOption *forwardOption = new AxisConfigOption("Adelante");
+    ConfigOption *backwardOption =  new AxisConfigOption("Atrás");
+    ConfigOption *leftOption = new AxisConfigOption("Izquierda");
+    ConfigOption *rigthOption =  new AxisConfigOption("Derecha");
 
     bool updating;
-    void finishConfig();
+    void finishConfig(ConfigOption *option);
 
     QMetaObject::Connection temp;
     QList<AxisConfigOption *> getAxisOptions();

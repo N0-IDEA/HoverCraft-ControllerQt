@@ -10,7 +10,7 @@ bool ButtonConfigOption::isActive() {
 void ButtonConfigOption::buttonEvent(const QJoystickButtonEvent& event) {
     setIdButton(event.button);
     setIdGamepad(event.joystick->id);
-    ConfigController::getInstance()->finishConfig();
+    ConfigController::getInstance()->finishConfig(this);
 }
 
 void ButtonConfigOption::config() {

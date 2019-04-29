@@ -1,16 +1,18 @@
 #include "configcontroller.h"
 
-#include <QTimer>
-
 ConfigController::ConfigController(QObject *parent) : QObject(parent)
 {
     this->options.append(upOption);
     this->options.append(downOption);
-
+    this->options.append(forwardOption);
+    this->options.append(backwardOption);
+    this->options.append(leftOption);
+    this->options.append(rigthOption);
     updating = false;
 }
 
-void ConfigController::finishConfig() {
+void ConfigController::finishConfig(ConfigOption* option) {
+    dbManager.saveOption(perfil->id, this->options.indexOf(option));
     emit configDone();
     updating = false;
     disconnect(this->temp);

@@ -42,6 +42,7 @@ public:
 
     void setIdButton(int);
     void setIdGamepad(int);
+    virtual void setValue(double);
 
     QString m_option;
     int m_idButton;

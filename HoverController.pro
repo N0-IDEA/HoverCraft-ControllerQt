@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT += quick
 QT += quickwidgets
 QT += quickcontrols2
+QT += sql
 
 TARGET = HoverController
 TEMPLATE = app
@@ -30,7 +31,6 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
     formmotor.cpp \
     controller/Motor.cpp \
     controller/Serial.cpp \
@@ -40,10 +40,14 @@ SOURCES += \
     qcontrollers/qmotor.cpp \
     configController/buttonconfigoption.cpp \
     configController/axisconfigoption.cpp \
+    dbmanager.cpp \
+    configController/perfil.cpp \
+    controller/rf.cpp \
+    qcontrollers/motorcontroller.cpp \
+    qcontrollers/qservo.cpp
     qcontrollers/windowcontroller.cpp
 
 HEADERS += \
-        mainwindow.h \
     formmotor.h \
     controller/Motor.h \
     controller/Serial.h \
@@ -54,6 +58,11 @@ HEADERS += \
     qcontrollers/qmotor.h \
     configController/buttonconfigoption.h \
     configController/axisconfigoption.h \
+    dbmanager.h \
+    configController/perfil.h \
+    controller/rf.h \
+    qcontrollers/motorcontroller.h \
+    qcontrollers/qservo.h
     qcontrollers/windowcontroller.h
 
 FORMS += \
@@ -74,5 +83,7 @@ DISTFILES += \
 
 RESOURCES += \
     hovercontroller.qrc
+
+LIBS += -lrf24
 
 include ($$PWD/../../libs/QJoysticks/QJoysticks.pri)

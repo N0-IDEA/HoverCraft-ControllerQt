@@ -17,12 +17,16 @@ void AxisConfigOption::axisEvent (const QJoystickAxisEvent& event) {
         setIdGamepad(event.joystick->id);
         m_value = event.value;
         //emit valueChanged();
-        ConfigController::getInstance()->finishConfig();
+        ConfigController::getInstance()->finishConfig(this);
     }
 }
 
 void AxisConfigOption::config() {
     QJoysticks *instance = QJoysticks::getInstance();
     ConfigController::getInstance()->temp = connect(instance, &QJoysticks::axisEvent, this, &AxisConfigOption::axisEvent);
+}
+
+void ConfigOption::setValue(double value) {
+    ((AxisConfigOption*) this)->m_value = value;
 }
 
