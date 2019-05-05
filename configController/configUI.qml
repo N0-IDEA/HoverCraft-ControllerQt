@@ -23,7 +23,7 @@ ApplicationWindow {
     property variant buttonOptions;
     property int count;
 
-    property int externalRows: getTotalRows(gridMain)
+    property int externalRows: 2// getTotalRows(gridOption)
     readonly property string idGrid: "gridMain"
 
     Material.accent: Material.color(Material.DeepOrange);
@@ -32,6 +32,7 @@ ApplicationWindow {
     color: "black"
     onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
     MainComponents.GridBase{
+        id: gridOption
         Rectangle{
             color: "transparent"
             property int cols: 12
@@ -74,7 +75,7 @@ ApplicationWindow {
             }
             TabBar {
                 id: tabBar
-                currentIndex: swipeView.currentIndex
+                currentIndex: controllerOptions.currentIndex//swipeView.currentIndex
                 anchors.horizontalCenter: parent.horizontalCenter
                 Repeater{
                     model: configWindow.count
@@ -119,9 +120,9 @@ ApplicationWindow {
         }
     }
 
-    DialogNewProf {id: addProfile}
+   // DialogNewProf {id: addProfile}
 
-    AreYouSurePopOver {id: popOver}
+   // AreYouSurePopOver {id: popOver}
 
     function findOption(idGamepad, idButton) {
         for(var i = 0; i < buttonOptions.length; i++) {

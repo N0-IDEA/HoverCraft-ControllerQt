@@ -1,10 +1,5 @@
+#include "motorcontroller.h"
 #include "windowcontroller.h"
-
-/*
-WindowController::WindowController(QQmlApplicationEngine *engine) : WindowController()
-{
-    this->engine = engine;
-}*/
 
 WindowController::WindowController(QObject *parent) : QObject(parent)
 {
@@ -51,10 +46,13 @@ void WindowController::initConfig() {
 
 void WindowController::initMain() {
     QObject *rootObject = engine->rootObjects().first()->findChild<QObject*>("mainWindow");
-    ConfigController *controller = ConfigController::getInstance();
 
+    MotorController *motorController = MotorController::getInstance();
+    QList<QMotor*> motors = motorController->motors;
     QList<QObject*> objects;
-    objects.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
+        for (int i=0;i<motors.size(); i++) {
+            objects.append(motors[i]);
+        }
 
     rootObject->setProperty("motorsModel", QVariant::fromValue(objects));
 }

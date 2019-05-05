@@ -21,7 +21,7 @@ void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
-    //rf.connect();
+    rf.connect();
     QApplication a(argc, argv);
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
@@ -33,17 +33,18 @@ int main(int argc, char *argv[])
         dbManager.createOptions(perfil->id);
     QQmlApplicationEngine engine;
 
-    engine.load(QUrl("qrc:/configController/configUI.qml"));
-    initConfig(&engine);
-     QQmlApplicationEngine engine;
+    //engine.load(QUrl("qrc:/configController/configUI.qml"));
+    //initConfig(&engine);
+    // QQmlApplicationEngine engine;
      engine.load(QUrl("qrc:/menu/Menu.qml"));
+     //initConfig(&engine);
      WindowController *controller = new WindowController(&engine);
      controller->initMenu();
 
-    QQmlApplicationEngine engine1;
+   /* QQmlApplicationEngine engine1;
     engine1.load(QUrl("qrc:/Main.qml"));
 
-    initTest(&engine1);
+    initTest(&engine1);*/
 
     DbManager manager("test.db");
 
@@ -58,7 +59,6 @@ void initConfig(QQmlApplicationEngine *engine) {
     for (int i=0;i<controller->options.size(); i++) {
         options.append(controller->options[i]);
     }
-
     rootObject->setProperty("options", QVariant::fromValue(options));
 
     QList<AxisConfigOption*> axisOptions = controller->getAxisOptions();
@@ -74,6 +74,8 @@ void initConfig(QQmlApplicationEngine *engine) {
         qButtonOptions.append(buttonOptions[i]);
     }
     rootObject->setProperty("buttonOptions", QVariant::fromValue(qButtonOptions));
+
+    rootObject->setProperty("count", QJoysticks::getInstance()->count());
 
     QObject::connect(rootObject, SIGNAL(configButtonSignal(int)), controller, SLOT(configButton(int)));
     QObject::connect(controller, SIGNAL(configDone()), rootObject, SIGNAL(configDone()));

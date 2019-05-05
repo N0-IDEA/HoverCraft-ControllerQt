@@ -44,7 +44,7 @@ SOURCES += \
     configController/perfil.cpp \
     controller/rf.cpp \
     qcontrollers/motorcontroller.cpp \
-    qcontrollers/qservo.cpp
+    qcontrollers/qservo.cpp \
     qcontrollers/windowcontroller.cpp
 
 HEADERS += \
@@ -62,7 +62,7 @@ HEADERS += \
     configController/perfil.h \
     controller/rf.h \
     qcontrollers/motorcontroller.h \
-    qcontrollers/qservo.h
+    qcontrollers/qservo.h \
     qcontrollers/windowcontroller.h
 
 FORMS += \

@@ -25,6 +25,6 @@ void RF::connect()
 }
 
 bool RF::write(void *buf, uint8_t len) {
-    //return radio.write(buf, len);
-    return false;
+    return radio.write(buf, len);
+   // return false;
 }

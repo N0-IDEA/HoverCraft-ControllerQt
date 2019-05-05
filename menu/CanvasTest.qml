@@ -14,12 +14,12 @@ Canvas {
     property variant app: ({})
     property int fps: 1
     onPainted: {
-        console.log("ha sido pintado");
+       // console.log("ha sido pintado");
         delay(20, function(){ canvasMenu.requestPaint() })
     }
     onPaint: {
         var ctx = getContext("2d");
-        console.timeEnd( "t" )
+     //   console.timeEnd( "t" )
         var bolts = [];
         var dimensions = new Vec2.Vector2();
         var center = new Vec2.Vector2();
@@ -35,7 +35,7 @@ Canvas {
             var repaintTimer;
             randomInt = Math.round(Math.random() * 60);
             fps++;
-            console.log(  fps)
+           // console.log(  fps)
             if (  fps % randomInt === 0) {
                 for (i = 0 ; i < 2; i++){
                     var positionXTop = Math.random() * ( dimensions.x*0.7 - dimensions.x*0.3) + dimensions.x*0.3;
@@ -44,7 +44,7 @@ Canvas {
                                 new Vec2.Vector2( positionXTop , titleMenu.y + titleMenu.height/2),
                                 new Vec2.Vector2(positionX, dimensions.y),
                                 5 )
-                    console.log(thunder);
+                  //  console.log(thunder);
                     bolts.push( thunder );
                 }
             }
@@ -82,7 +82,7 @@ Canvas {
                 txt2.color = "transparent";
             }
         };
-        console.time("t")
+        //console.time("t")
     }
     Timer {
         id: timer

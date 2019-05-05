@@ -17,12 +17,12 @@ Canvas {
     property int count: 10
     property double flashOpacity: 0.0
     onPainted: {
-        console.log("ha sido pintado");
+      //  console.log("ha sido pintado");
         delay(30, function (){ canvasTitleLigt.requestPaint() } )
     }
     onPaint: {
         var ctx     = getContext("2d");
-        console.timeEnd( "t" )
+        //console.timeEnd( "t" )
 
         var ellipse = ({});
         ellipse.center = new Vec2.Vector2();
@@ -69,7 +69,7 @@ Canvas {
 
             ctx.restore()
         };
-        console.time("t")
+       // console.time("t")
 
     }
     Timer {
