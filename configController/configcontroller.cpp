@@ -20,7 +20,6 @@ void ConfigController::finishConfig(ConfigOption* option) {
 
 void ConfigController::configButton(int id) {
     updating = true;
-
     //Max uno a la vez
     if(this->temp)
         disconnect(this->temp);

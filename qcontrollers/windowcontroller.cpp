@@ -13,7 +13,7 @@ void WindowController::initMenu() {
     QObject::connect(rootObject, SIGNAL(initMain()), this, SLOT(initMain()));
 }
 
-void WindowController::initConfig() {
+void WindowController::initConfig()     {
     QObject *rootObject = engine->rootObjects().first()->findChild<QObject*>("configWindow");
     ConfigController *controller = ConfigController::getInstance();
 
@@ -50,9 +50,16 @@ void WindowController::initMain() {
     MotorController *motorController = MotorController::getInstance();
     QList<QMotor*> motors = motorController->motors;
     QList<QObject*> objects;
-        for (int i=0;i<motors.size(); i++) {
-            objects.append(motors[i]);
-        }
-
+    for (int i=0;i<motors.size(); i++) {
+        objects.append(motors[i]);
+    }
     rootObject->setProperty("motorsModel", QVariant::fromValue(objects));
+
+    MotorController *servoController = MotorController::getInstance();
+    QList<QServo*> servos = servoController->servos;
+    QList<QObject*> servoObjects;
+    for (int i=0;i<servos.size(); i++) {
+        servoObjects.append(servos[i]);
+    }
+    rootObject->setProperty("servosModel", QVariant::fromValue(servoObjects));
 }

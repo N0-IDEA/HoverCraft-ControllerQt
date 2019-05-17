@@ -10,8 +10,8 @@ QServo::QServo(Motor *motor, ConfigOption *leftOption, ConfigOption *rightOption
     this->leftOption = leftOption;
     this->rightOption = rightOption;
 
-    this->motor->potencia = 45;
-    this->motor->ultimaPotencia = 45;
+    this->motor->potencia = 58;
+    this->motor->ultimaPotencia = 58;
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(change()));
@@ -20,11 +20,16 @@ QServo::QServo(Motor *motor, ConfigOption *leftOption, ConfigOption *rightOption
 
 void QServo::change() {
     if(!ConfigController::getInstance()->updating && !motor->error) {
+        bool change = false;
         if(leftOption->isActive()) {
-            setValue(25);
+            if(value() > 25) {
+                setValue(this->motor->potencia - 1);
+                change = true;
+            }
         }
         else if (rightOption->isActive()) {
-            setValue(70);
+            if(value() < 90)
+                setValue(this->motor->potencia + 1);
         }
     }
 }

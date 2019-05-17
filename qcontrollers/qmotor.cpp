@@ -11,8 +11,8 @@ QMotor::QMotor(Motor *motor, ConfigOption *option, ConfigOption *downOption) : Q
     this->option = option;
     this->downOption = downOption;
 
-    this->motor->potencia = 1100;
-    this->motor->ultimaPotencia = 1100;
+    this->motor->potencia = 1200;
+    this->motor->ultimaPotencia = 1200;
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(change()));
@@ -24,13 +24,13 @@ void QMotor::change() {
         bool change = false;
         if(option->isActive()) {
             if(value() < 1900) {
-                setValue(this->motor->potencia + 1);
+                setValue(this->motor->potencia + 2);
                 change = true;
             }
         }
         else if (downOption->isActive()) {
-            if(value() > 1000)
-                setValue(this->motor->potencia - 1);
+            if(value() > 1100)
+                setValue(this->motor->potencia - 2);
         }
         else {
             updated = false;

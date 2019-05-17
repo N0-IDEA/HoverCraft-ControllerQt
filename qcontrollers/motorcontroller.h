@@ -15,10 +15,10 @@ class MotorController : public QObject
 public:
     MotorController();
     QList<QMotor*> motors;
+    QList<QServo*> servos;//QServo *timon;
     static MotorController *getInstance();
     void updateMotors();
 private:
-    QServo *timon;
 public slots:
     void update();
 };

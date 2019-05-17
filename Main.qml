@@ -16,6 +16,7 @@ ApplicationWindow {
     height: 720
     title: "HoverUI"
     property variant motorsModel;
+    property variant servosModel;
     readonly property string idGrid: "gridMain"
     property int externalRows: getTotalRows()
     color: "black"//"#0F1B23"
@@ -37,13 +38,22 @@ ApplicationWindow {
             Layout.columnSpan: cols
             }
         }
-        Servo {
-            property string name: "Servo 1"
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
+        Repeater {
+            model: servosModel
+            id: servos1
+            property string type: "repeater"
+            objectName: "buttonsRepeater2"
+            delegate: Servo {
+                property string name: "Servo 1"
+                property int ppmValue: modelData.value
+                //property int ppmDelayed: modelData.valueDelayed
+                property int cols: 6
+                property int initWidth: parent.width / 12 * cols
+                property int initHeight: parent.height / externalRows
+                Layout.columnSpan: cols
+            }
         }
+
         BaterryCanvas {
             property string name: "Servo 2"
             property int levelBaterry: 16
