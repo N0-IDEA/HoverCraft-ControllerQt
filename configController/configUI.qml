@@ -9,19 +9,25 @@ import "../menu/" as MenuComponents
 ApplicationWindow {
     id: configWindow
     objectName: "configWindow"
-    width: 1280
-    height: 720
-    minimumWidth: 1280
-    minimumHeight: 720
-    maximumHeight:  1280
-    maximumWidth: 720
+    width: 900
+    height: 600
+    minimumWidth: 900
+    minimumHeight: 600
+    maximumHeight:  900
+    maximumWidth: 600
     visible: true
     title: "Configurar Mando"
 
     property variant options;
     property variant axisOptions;
     property variant buttonOptions;
+    property variant profiles;
+    property variant profile: value
     property int count;
+
+    signal createProfileSignal(string a);
+    signal loadProfileSignal(string a);
+    signal deleteProfileSignal();
 
     property int externalRows: 2// getTotalRows(gridOption)
     readonly property string idGrid: "gridMain"
@@ -30,7 +36,7 @@ ApplicationWindow {
     Material.theme: Material.Dark;
     Material.foreground: "#FFFFFF"
     color: "black"
-    onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
+  //  onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
     MainComponents.GridBase{
         id: gridOption
         Rectangle{
@@ -41,12 +47,21 @@ ApplicationWindow {
             Layout.columnSpan: cols
             Row {
                 anchors.left: parent.left
-                anchors.leftMargin: 50
+                anchors.leftMargin: 20
                 spacing: 10
                 ComboBox {
+                    id: profileCombo
                     Layout.rightMargin: 10
                     width: 120
-                    model: [ "Perfil 1", "Perfil 2", "Perfil 3" ]
+                    model: profiles
+                    textRole: 'name'
+                    onCurrentIndexChanged: {
+                        loadProfileSignal(profiles[currentIndex].name)
+                    }
+
+                    onModelChanged: {
+                        refreshSelectedProfile()
+                    }
                 }
                 Button {
                     Material.background: "transparent"
@@ -68,14 +83,15 @@ ApplicationWindow {
                     ToolTip.visible: hovered
                     ToolTip.delay: 1000
                     ToolTip.text: qsTr("Eliminar el perfil actual")
-                    onClicked: {
-                        popOver.open()
+                    onClicked: {              
+                        configWindow.deleteProfileSignal()
+                        refreshSelectedProfile();
                     }
                 }
             }
             TabBar {
                 id: tabBar
-                currentIndex: controllerOptions.currentIndex//swipeView.currentIndex
+                currentIndex: controllerOptions.currentIndex//swipeView.curren12tIndex
                 anchors.horizontalCenter: parent.horizontalCenter
                 Repeater{
                     model: configWindow.count
@@ -120,9 +136,17 @@ ApplicationWindow {
         }
     }
 
-   // DialogNewProf {id: addProfile}
+    DialogNewProf {id: addProfile}
 
-   // AreYouSurePopOver {id: popOver}
+    AreYouSurePopOver {id: popOver}
+
+    function refreshSelectedProfile() {
+        for(var i = 0; i < profiles.length; i++) {
+            if (profiles[i].name === profile.name)
+
+                profileCombo.currentIndex = i;
+        }
+    }
 
     function findOption(idGamepad, idButton) {
         for(var i = 0; i < buttonOptions.length; i++) {
@@ -178,7 +202,7 @@ ApplicationWindow {
                     totalCols += gridMain.children[i].itemAt(j).cols
             else
                 totalCols += gridMain.children[i].cols;
-        console.log("columnas totales: "+totalCols/12)
+      //  console.log("columnas totales: "+totalCols/12)
         return totalCols/12
     }
 }

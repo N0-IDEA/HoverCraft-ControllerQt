@@ -5,7 +5,6 @@
 
 #include <configController/configcontroller.h>
 #include <configController/configoption.h>
-#include <configController/perfil.h>
 DbManager::DbManager(const QString& path)
 {
     if(QSqlDatabase::isDriverAvailable(SQLITE)) {
@@ -24,19 +23,19 @@ DbManager::DbManager(const QString& path)
     }
 }
 
-QList<Perfil> DbManager::getPerfiles() {
-    QList<Perfil> perfiles;
+QList<QPerfil *> DbManager::getPerfiles() {
+    QList<QPerfil *> perfiles;
     QSqlQuery query("SELECT * FROM PERFILES");
     query.exec();
     while (query.next()) {
         int id = query.value(0).toInt();
         QString nombre = query.value(1).toString();
-        perfiles.append(Perfil(nombre, id));
+        perfiles.append(new QPerfil(nombre, id));
     }
     return perfiles;
 }
 
-Perfil* DbManager::getPerfil(char* nombre) {
+QPerfil* DbManager::getPerfil(char* nombre) {
     QSqlQuery query;
     query.prepare("SELECT * FROM PERFILES WHERE nombre = :nombre");
     query.bindValue(":nombre", nombre);
@@ -44,14 +43,14 @@ Perfil* DbManager::getPerfil(char* nombre) {
     if (query.next()) {
         int id = query.value(0).toInt();
         QString nombre = query.value(1).toString();
-        return new Perfil(nombre, id);
+        return new QPerfil(nombre, id);
     }
     return nullptr;
 }
 
 
-Perfil* DbManager::createPerfil(char* nombre) {
-        Perfil* perfil = getPerfil(nombre);
+QPerfil* DbManager::createPerfil(char* nombre) {
+        QPerfil* perfil = getPerfil(nombre);
         if (perfil == nullptr) {
             QSqlQuery query;
             query.prepare("INSERT INTO PERFILES (nombre) "
@@ -61,6 +60,14 @@ Perfil* DbManager::createPerfil(char* nombre) {
             perfil = getPerfil(nombre);
         }
         return perfil;
+}
+
+bool DbManager::deleProfile(char* nombre) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM PERFILES WHERE nombre = :nombre");
+    query.bindValue(":nombre", nombre);
+
+    return query.exec();
 }
 
 bool DbManager::loadOptions(int idPerfil) {

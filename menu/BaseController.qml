@@ -180,13 +180,11 @@ Rectangle {
             objectName: "canvasOptions"
             property int cols: 9
             Layout.minimumWidth: parent.width / 12 * cols
-            Layout.minimumHeight: parent.height / externalRows
+            Layout.minimumHeight: parent.height
             Layout.columnSpan: cols
             // border.color: "red"
             color: "transparent"
-            ConfigComponents.ConfigButtonsCanvas{
-
-            }
+            ConfigComponents.ConfigButtonsCanvas{ }
         }
     }
 }

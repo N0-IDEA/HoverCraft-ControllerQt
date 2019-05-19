@@ -38,6 +38,4 @@ Repeater {
             onClicked: configButton(index, modelData.configMsg);
         }
     }
-
-
 }

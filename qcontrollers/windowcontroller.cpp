@@ -1,6 +1,8 @@
 #include "motorcontroller.h"
 #include "windowcontroller.h"
 
+#include <QComboBox>
+
 WindowController::WindowController(QObject *parent) : QObject(parent)
 {
 
@@ -38,10 +40,30 @@ void WindowController::initConfig()     {
     }
     rootObject->setProperty("buttonOptions", QVariant::fromValue(qButtonOptions));
 
+    updateProfiles();
+
     rootObject->setProperty("count", QJoysticks::getInstance()->count());
 
     QObject::connect(rootObject, SIGNAL(configButtonSignal(int)), controller, SLOT(configButton(int)));
     QObject::connect(controller, SIGNAL(configDone()), rootObject, SIGNAL(configDone()));
+
+    QObject::connect(rootObject, SIGNAL(createProfileSignal(QString)), controller, SLOT(createProfile(QString)));
+    QObject::connect(rootObject, SIGNAL(loadProfileSignal(QString)), controller, SLOT(loadPerfil(QString)));
+    QObject::connect(rootObject, SIGNAL(deleteProfileSignal()), controller, SLOT(deleteProfile()));
+}
+
+void WindowController::updateProfiles(){
+    QObject *rootObject = engine->rootObjects().first()->findChild<QObject*>("configWindow");
+
+    QList<QPerfil*> perfiles = dbManager.getPerfiles();
+    QList< QObject*> perfilesQ;
+
+    for (int i=0;i<perfiles.size(); i++) {
+        perfilesQ.append(perfiles[i]);//->name());
+    }
+
+    rootObject->setProperty("profile", QVariant::fromValue((QObject *)perfil));
+    rootObject->setProperty("profiles", QVariant::fromValue(perfilesQ));
 }
 
 void WindowController::initMain() {
@@ -62,4 +84,10 @@ void WindowController::initMain() {
         servoObjects.append(servos[i]);
     }
     rootObject->setProperty("servosModel", QVariant::fromValue(servoObjects));
+}
+
+WindowController* WindowController::getInstance()
+{
+    static WindowController controller;
+    return &controller;
 }

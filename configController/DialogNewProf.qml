@@ -66,7 +66,11 @@ Dialog {
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Crear un nuevo perfil")
-        onClicked: {dialog.visible = false;}
+        onClicked: {
+            dialog.visible = false;
+            configWindow.createProfileSignal(textField.text);
+            refreshSelectedProfile();
+        }
     }
 
     Button {
@@ -80,7 +84,9 @@ Dialog {
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Cancelar")
-        onClicked: {dialog.visible = false;}
+        onClicked: {
+            dialog.visible = false;
+        }
     }
 
 

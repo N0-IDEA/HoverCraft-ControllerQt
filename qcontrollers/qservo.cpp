@@ -23,13 +23,13 @@ void QServo::change() {
         bool change = false;
         if(leftOption->isActive()) {
             if(value() > 25) {
-                setValue(this->motor->potencia - 1);
+                setValue(25);//this->motor->potencia - 1);
                 change = true;
             }
         }
         else if (rightOption->isActive()) {
             if(value() < 90)
-                setValue(this->motor->potencia + 1);
+                setValue(90);//this->motor->potencia + 1);
         }
     }
 }

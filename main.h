@@ -12,6 +12,6 @@
 extern RF rf;
 extern Serial serial;
 extern DbManager dbManager;
-extern Perfil* perfil;
+extern QPerfil* perfil;
 
 #endif // MAIN_H

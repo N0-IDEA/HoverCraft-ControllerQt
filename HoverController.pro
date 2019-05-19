@@ -30,6 +30,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    configController/qperfil.cpp \
         main.cpp \
     formmotor.cpp \
     controller/Motor.cpp \
@@ -41,13 +42,13 @@ SOURCES += \
     configController/buttonconfigoption.cpp \
     configController/axisconfigoption.cpp \
     dbmanager.cpp \
-    configController/perfil.cpp \
     controller/rf.cpp \
     qcontrollers/motorcontroller.cpp \
     qcontrollers/qservo.cpp \
     qcontrollers/windowcontroller.cpp
 
 HEADERS += \
+    configController/qperfil.h \
     formmotor.h \
     controller/Motor.h \
     controller/Serial.h \
@@ -59,7 +60,6 @@ HEADERS += \
     configController/buttonconfigoption.h \
     configController/axisconfigoption.h \
     dbmanager.h \
-    configController/perfil.h \
     controller/rf.h \
     qcontrollers/motorcontroller.h \
     qcontrollers/qservo.h \

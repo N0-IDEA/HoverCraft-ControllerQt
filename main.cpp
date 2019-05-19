@@ -16,7 +16,7 @@
 Serial serial;
 RF rf;
 DbManager dbManager("test.db");
-Perfil* perfil;
+QPerfil* perfil;
 void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
@@ -26,15 +26,12 @@ int main(int argc, char *argv[])
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
     instance->setVirtualJoystickEnabled(true);
-
-    perfil = dbManager.createPerfil("PRUEBA");
-    if(!dbManager.loadOptions(perfil->id))
-        dbManager.createOptions(perfil->id);
-
+    ConfigController::getInstance()->loadPerfil(dbManager.getPerfiles()[0]->name());
     QQmlApplicationEngine engine;
     engine.load(QUrl("qrc:/menu/Menu.qml"));
 
-    WindowController *controller = new WindowController(&engine);
+    WindowController *controller = WindowController::getInstance();
+    controller->setEngine(&engine);
     controller->initMenu();
 
     DbManager manager("test.db");

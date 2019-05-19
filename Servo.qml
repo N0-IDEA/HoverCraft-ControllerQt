@@ -56,7 +56,7 @@ Rectangle{
                     color: Material.color(Material.DeepOrange)
                     border.color: setGlowBorder(control)
                     layer.effect: CustomGlow { color: Material.color(Material.DeepOrange)}
-                    onXChanged: {console.log(handleSlider.x)}
+                    //onXChanged: {console.log(handleSlider.x)}
                     function setGlowBorder(control){ layer.enabled = control.pressed; return control.pressed ? "#f0f0f0" :Material.color(Material.DeepOrange) }
                 }
             }

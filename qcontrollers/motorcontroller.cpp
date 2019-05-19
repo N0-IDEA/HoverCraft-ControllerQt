@@ -31,8 +31,6 @@ void MotorController::updateMotors() {
         servos[i]->motor->update();
         servos[i]->emitValueEvents();
     }
-    //timon->motor->update();
-    //timon->emitValueEvents();
 }
 
 void MotorController::update() {

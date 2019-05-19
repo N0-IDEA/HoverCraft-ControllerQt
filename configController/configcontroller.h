@@ -35,6 +35,9 @@ signals:
     void configDone();
 public slots:
     void configButton(int);
+    void loadPerfil(QString perfil);
+    void createProfile(QString perfil);
+    bool deleteProfile();
 };
 
 #endif // CONFIGCONTROLLER_H

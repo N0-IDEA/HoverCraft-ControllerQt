@@ -12,14 +12,14 @@ ApplicationWindow {
     id: root
     objectName: "mainWindow"
     visible: true
-    width: 1080
-    height: 720
+    width: 900
+    height: 600
     title: "HoverUI"
     property variant motorsModel;
     property variant servosModel;
     readonly property string idGrid: "gridMain"
     property int externalRows: getTotalRows()
-    color: "black"//"#0F1B23"
+    color: "black"
 
     GridBase {
         id: gridMain
@@ -62,30 +62,6 @@ ApplicationWindow {
             property int initHeight: parent.height / externalRows
             Layout.columnSpan: cols
         }
-        BaterryCanvas {
-            property string name: "Servo 2"
-            property int levelBaterry: 52
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-        }
-        BaterryCanvas {
-            property string name: "Servo 2"
-            property int levelBaterry: 2
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-        }
-        BaterryCanvas {
-            property string name: "Servo 2"
-            property int levelBaterry: 100
-            property int cols: 6
-            property int initWidth: parent.width / 12 * cols
-            property int initHeight: parent.height / externalRows
-            Layout.columnSpan: cols
-        }
         MenuComponents.LabelRectangle {
             property string text: "Salir"
             property int cols: 6
@@ -113,3 +89,29 @@ ApplicationWindow {
         return totalCols/12
     }
 }
+
+
+/* BaterryCanvas {
+     property string name: "Servo 2"
+     property int levelBaterry: 52
+     property int cols: 6
+     property int initWidth: parent.width / 12 * cols
+     property int initHeight: parent.height / externalRows
+     Layout.columnSpan: cols
+ }
+ BaterryCanvas {
+     property string name: "Servo 2"
+     property int levelBaterry: 2
+     property int cols: 6
+     property int initWidth: parent.width / 12 * cols
+     property int initHeight: parent.height / externalRows
+     Layout.columnSpan: cols
+ }
+ BaterryCanvas {
+     property string name: "Servo 2"
+     property int levelBaterry: 100
+     property int cols: 6
+     property int initWidth: parent.width / 12 * cols
+     property int initHeight: parent.height / externalRows
+     Layout.columnSpan: cols
+ }*/

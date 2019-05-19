@@ -5,7 +5,7 @@
 #include <qstring.h>
 
 #include <configController/configoption.h>
-#include <configController/perfil.h>
+#include <configController/qperfil.h>
 #define SQLITE "QSQLITE"
 
 
@@ -13,12 +13,13 @@ class DbManager
 {
 public:
     DbManager(const QString &path);
-    QList<Perfil> getPerfiles();
+    QList<QPerfil *> getPerfiles();
     void createOptions(int idPerfil);
     bool loadOptions(int idPerfil);
-    Perfil *getPerfil(char *nombre);
-    Perfil *createPerfil(char *nombre);
+    QPerfil *getPerfil(char *nombre);
+    QPerfil *createPerfil(char *nombre);
     void saveOption(int idPerfil, int option);
+    bool deleProfile(char *nombre);
 private:
     QSqlDatabase m_database;
 };

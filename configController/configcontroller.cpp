@@ -1,5 +1,7 @@
 #include "configcontroller.h"
 
+#include <qcontrollers/windowcontroller.h>
+
 ConfigController::ConfigController(QObject *parent) : QObject(parent)
 {
     this->options.append(upOption);
@@ -50,4 +52,25 @@ ConfigController* ConfigController::getInstance()
 {
     static ConfigController controller;
     return &controller;
+}
+
+void ConfigController::createProfile(QString perfil) {
+    this->loadPerfil(perfil);
+    WindowController::getInstance()->updateProfiles();
+}
+
+bool ConfigController::deleteProfile() {
+    if (dbManager.getPerfiles().size() > 1) {
+        dbManager.deleProfile((char *)qPrintable(perfil->name()));
+        WindowController::getInstance()->updateProfiles();
+        this->loadPerfil(dbManager.getPerfiles()[0]->name());
+        return true;
+    }
+    return false;
+}
+
+void ConfigController::loadPerfil(QString perfilStr) {
+    perfil = dbManager.createPerfil((char *)qPrintable(perfilStr));
+    if(!dbManager.loadOptions(perfil->id))
+        dbManager.createOptions(perfil->id);
 }

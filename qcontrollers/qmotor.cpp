@@ -44,6 +44,7 @@ void QMotor::setValue(int value) {
 
         emit valueChanged();
         emit valueDelayedChanged();
+
         if(!updated) {
             time = QDateTime::currentMSecsSinceEpoch();
             updated = true;
