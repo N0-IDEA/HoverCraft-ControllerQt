@@ -12,7 +12,7 @@ class QServo : public QObject
     Q_OBJECT
     Q_PROPERTY(int value READ value NOTIFY valueChanged)
 public:
-    QServo(Motor *motor, ConfigOption *leftOption, ConfigOption *rightOption);
+    QServo(Motor *motor, ConfigOption *leftOption, ConfigOption *rightOption, ConfigOption *lockOption);
     explicit QServo(QObject *parent = nullptr) : QObject(parent) {}
 
     int value() const {
@@ -25,6 +25,7 @@ public:
 private:
     ConfigOption *leftOption;
     ConfigOption *rightOption;
+    ConfigOption *lockOption;
 signals:
     void valueChanged();
 public slots:

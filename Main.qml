@@ -5,6 +5,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls.Material 2.12
 import QtGraphicalEffects 1.12
 import QtQuick.Controls.Styles 1.4
+import HoverCameraPK 1.0
 import "menu/" as MenuComponents
 
 
@@ -12,8 +13,8 @@ ApplicationWindow {
     id: root
     objectName: "mainWindow"
     visible: true
-    width: 900
-    height: 600
+    width: 1400
+    height: 900
     title: "HoverUI"
     property variant motorsModel;
     property variant servosModel;
@@ -21,8 +22,11 @@ ApplicationWindow {
     property int externalRows: getTotalRows()
     color: "black"
 
+
+
     GridBase {
         id: gridMain
+
         Repeater {
             model: motorsModel
             id: motor1
@@ -37,6 +41,12 @@ ApplicationWindow {
             property int initHeight: parent.height / externalRows
             Layout.columnSpan: cols
             }
+        }
+        HoverCamera {
+            mirrorVertically: true;
+            width: 720;
+            height: 480;
+            //anchors.fill: parent
         }
         Repeater {
             model: servosModel

@@ -22,6 +22,7 @@ public:
     ConfigOption *backwardOption =  new AxisConfigOption("Atrás");
     ConfigOption *leftOption = new AxisConfigOption("Izquierda");
     ConfigOption *rigthOption =  new AxisConfigOption("Derecha");
+    ConfigOption *lockOption =  new ButtonConfigOption("Bloquear Timón");
 
     bool updating;
     void finishConfig(ConfigOption *option);

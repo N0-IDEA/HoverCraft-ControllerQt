@@ -10,6 +10,7 @@ ConfigController::ConfigController(QObject *parent) : QObject(parent)
     this->options.append(backwardOption);
     this->options.append(leftOption);
     this->options.append(rigthOption);
+    this->options.append(lockOption);
     updating = false;
 }
 

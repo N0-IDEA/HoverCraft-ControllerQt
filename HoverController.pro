@@ -45,7 +45,9 @@ SOURCES += \
     controller/rf.cpp \
     qcontrollers/motorcontroller.cpp \
     qcontrollers/qservo.cpp \
-    qcontrollers/windowcontroller.cpp
+    qcontrollers/windowcontroller.cpp \
+    camera/hovercamera.cpp \
+    camera/hovercamerarenderer.cpp
 
 HEADERS += \
     configController/qperfil.h \
@@ -63,7 +65,9 @@ HEADERS += \
     controller/rf.h \
     qcontrollers/motorcontroller.h \
     qcontrollers/qservo.h \
-    qcontrollers/windowcontroller.h
+    qcontrollers/windowcontroller.h \
+    camera/hovercamera.h \
+    camera/hovercamerarenderer.h
 
 FORMS += \
         mainwindow.ui \

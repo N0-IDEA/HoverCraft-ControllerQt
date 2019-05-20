@@ -4,11 +4,12 @@
 
 #include <configController/configcontroller.h>
 
-QServo::QServo(Motor *motor, ConfigOption *leftOption, ConfigOption *rightOption) : QServo()
+QServo::QServo(Motor *motor, ConfigOption *leftOption, ConfigOption *rightOption, ConfigOption *lockOption) : QServo()
 {
     this->motor = motor;
     this->leftOption = leftOption;
     this->rightOption = rightOption;
+    this->lockOption = lockOption;
 
     this->motor->potencia = 58;
     this->motor->ultimaPotencia = 58;
@@ -23,13 +24,17 @@ void QServo::change() {
         bool change = false;
         if(leftOption->isActive()) {
             if(value() > 25) {
-                setValue(25);//this->motor->potencia - 1);
+                setValue(value()-1);//this->motor->potencia - 1);
                 change = true;
             }
         }
         else if (rightOption->isActive()) {
             if(value() < 90)
-                setValue(90);//this->motor->potencia + 1);
+                setValue(value()+1);//this->motor->potencia + 1);
+        }
+        else {
+            if(value() != 50 && !lockOption->isActive())
+                setValue(50);
         }
     }
 }

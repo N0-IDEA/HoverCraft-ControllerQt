@@ -10,7 +10,7 @@ MotorController::MotorController() : QObject(nullptr)
     motors.append(new QMotor(new Motor(0), controller->upOption, controller->downOption));
     motors.append(new QMotor(new Motor(1), controller->forwardOption, controller->backwardOption));
 
-    servos.append(new QServo(new Motor(2), controller->leftOption, controller->rigthOption));
+    servos.append(new QServo(new Motor(2), controller->leftOption, controller->rigthOption, controller->lockOption));
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));

@@ -12,6 +12,7 @@
 #include <qcontrollers/motorcontroller.h>
 #include <qcontrollers/qmotor.h>
 #include <qcontrollers/windowcontroller.h>
+#include <camera/hovercamera.h>
 
 Serial serial;
 RF rf;
@@ -21,12 +22,15 @@ void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
-    rf.connect();
+    //rf.connect();
     QApplication a(argc, argv);
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
     instance->setVirtualJoystickEnabled(true);
     ConfigController::getInstance()->loadPerfil(dbManager.getPerfiles()[0]->name());
+
+    qmlRegisterType<HoverCameraFB>("HoverCameraPK",1,0,"HoverCamera");
+
     QQmlApplicationEngine engine;
     engine.load(QUrl("qrc:/menu/Menu.qml"));
 
