@@ -85,9 +85,8 @@ ApplicationWindow {
                     ToolTip.visible: hovered
                     ToolTip.delay: 1000
                     ToolTip.text: qsTr("Eliminar el perfil actual")
-                    onClicked: {              
-                        configWindow.deleteProfileSignal()
-                        refreshSelectedProfile();
+                    onClicked: {
+                        popOver.open()
                     }
                 }
             }

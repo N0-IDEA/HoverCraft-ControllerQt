@@ -67,9 +67,12 @@ Dialog {
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Crear un nuevo perfil")
         onClicked: {
-            dialog.visible = false;
+            if(textField.text !== "") {
             configWindow.createProfileSignal(textField.text);
             refreshSelectedProfile();
+            textField.text = "";
+            }
+            dialog.visible = false;
         }
     }
 
@@ -85,6 +88,7 @@ Dialog {
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Cancelar")
         onClicked: {
+            textField.text = "";
             dialog.visible = false;
         }
     }

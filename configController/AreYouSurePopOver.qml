@@ -38,7 +38,8 @@ Popup {
             ToolTip.delay: 1000
             ToolTip.text: qsTr("Aceptar")
             onClicked: {
-                //do any
+                configWindow.deleteProfileSignal()
+                refreshSelectedProfile();
                 popup.close()
             }
         }
