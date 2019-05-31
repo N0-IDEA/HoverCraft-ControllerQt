@@ -75,10 +75,10 @@ Canvas {
         if((option = findOption(idGamepad,9)) !== null) {
            drawOptionButton(ctx, buttonsPosx + canvasSize*0.0833/2, buttonsPosy + canvasSize*0.0833, canvasSize*0.3*0.8, canvasSize*0.1, option.option);
         }
-        //Boton 0
+      /*  //Boton 0
         if((option = findOption(idGamepad,0)) !== null)
             drawOptionButton(ctx, buttonsPosx + canvasSize*0.0833, buttonsPosy + canvasSize*0.0833, canvasSize*0.3*0.6, canvasSize*0.1, option.option);
-
+*/
 
         //Boton 1
         if((option = findOption(idGamepad,1)) !== null)
@@ -136,7 +136,7 @@ Canvas {
         //Axis4
         if((option = findOptionAxis(idGamepad,1,-1)) !== null) {
             var coords1A4 = drawLineAngle(ctx, posxAxis, posyAxis - marginAxis, canvasSize*0.05, 270);
-            ctx.fillText(option.option, coords1A4.x - ctx.measureText(option.option).width/2, coords1A4.y - fontSize + canvasSize*0.016666667);
+            ctx.fillText(option.option, coords1A4.x - ctx.measureText(option.option).width/2, coords1A4.y - fontSize - canvasSize*0.016666667);
         }
     }
     function getWidth(item) { return item.width < item.height ? item.width : item.height }

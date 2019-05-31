@@ -39,7 +39,6 @@ ApplicationWindow {
   //  onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
     MainComponents.GridBase{
         id: gridOption
-        objectName: "THE_GRIDBASE"
         Rectangle{
             color: "transparent"
             property int cols: 12
@@ -103,8 +102,8 @@ ApplicationWindow {
                         width: {
                             var newWidth = (window.width - tabBar.x) / configWindow.count
                             if(newWidth > rowProfiles.width)
-                                return rowProfiles.width
-                            return newWidth
+                                return (configWindow.count < 2 ) ? rowProfiles.width : rowProfiles.width/2
+                            return rowProfiles
                         }
                         onClicked: {
                             page.children[0].children[0].children[0].contentItem.children[0].children[0].children[1].children[0].gamepad = index;
