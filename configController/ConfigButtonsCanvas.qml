@@ -7,6 +7,7 @@ import QtQuick.Controls.Material 2.12
 Canvas {
     id: canvasOption
     anchors.fill: parent
+    property int gamepad: 0;
     onPaint: {
         function drawLineAngle(context, posx, posy, length, angle) {
             context.beginPath();
@@ -48,7 +49,7 @@ Canvas {
             ctx.fillText(option, coord2B.x + canvasSize*0.016666667, coord2B.y + fontSize / 2);
         }
 
-        var idGamepad = 0;
+        var idGamepad = canvasOption.gamepad;
         var canvasSize = width;
         var ctx = getContext("2d");
         ctx.reset();

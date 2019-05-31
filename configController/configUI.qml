@@ -22,7 +22,7 @@ ApplicationWindow {
     property variant axisOptions;
     property variant buttonOptions;
     property variant profiles;
-    property variant profile: value
+    property variant profile: value;
     property int count;
 
     signal createProfileSignal(string a);
@@ -39,6 +39,7 @@ ApplicationWindow {
   //  onActiveFocusItemChanged: print("activeFocusItem", activeFocusItem)
     MainComponents.GridBase{
         id: gridOption
+        objectName: "THE_GRIDBASE"
         Rectangle{
             color: "transparent"
             property int cols: 12
@@ -46,6 +47,7 @@ ApplicationWindow {
             height: parent.height / externalRows
             Layout.columnSpan: cols
             Row {
+                id: rowProfiles
                 anchors.left: parent.left
                 anchors.leftMargin: 20
                 spacing: 10
@@ -76,6 +78,7 @@ ApplicationWindow {
                     }
                 }
                 Button {
+                    id: trash
                     Material.background: "transparent"
                     icon.color: "white"
                     //Icon made by [https://www.flaticon.com/authors/gregor-cresnar] from www.flaticon.com
@@ -92,14 +95,26 @@ ApplicationWindow {
             TabBar {
                 id: tabBar
                 currentIndex: controllerOptions.currentIndex//swipeView.curren12tIndex
-                anchors.horizontalCenter: parent.horizontalCenter
+                x: getPositionTab();
+
                 Repeater{
                     model: configWindow.count
                     TabButton {
-                        width: 300
+                        width: {
+                            var newWidth = (window.width - tabBar.x) / configWindow.count
+                            if(newWidth > rowProfiles.width)
+                                return rowProfiles.width
+                            return newWidth
+                        }
+                        onClicked: {
+                            page.children[0].children[0].children[0].contentItem.children[0].children[0].children[1].children[0].gamepad = index;
+                            page.children[0].children[0].children[0].contentItem.children[0].children[0].children[1].children[0].requestPaint()
+                        }
+
                         text: "Mando %1:" .arg(index);
                     }
                 }
+                function getPositionTab () {return rowProfiles.x + rowProfiles.width}
             }
         }
         Page {
@@ -110,6 +125,8 @@ ApplicationWindow {
                 Repeater{
                     model: configWindow.count
                     MenuComponents.BaseController {
+                        id: baseController1
+                        objectName: "pageController"
                         width: configWindow.width;
                         height:configWindow.height - tabBar.height;
                         y: tabBar.height

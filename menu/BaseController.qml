@@ -184,7 +184,9 @@ Rectangle {
             Layout.columnSpan: cols
             // border.color: "red"
             color: "transparent"
-            ConfigComponents.ConfigButtonsCanvas{ }
+            ConfigComponents.ConfigButtonsCanvas{
+               id: canvasOptionRender
+            }
         }
     }
 }
