@@ -86,10 +86,18 @@ Rectangle {
             Layout.minimumWidth: parent.width / 12 * cols
             Layout.minimumHeight: parent.height
             Layout.columnSpan: cols
-            // border.color: "red"
+            //border.color: "red"
             color: "transparent"
             ConfigComponents.ConfigButtonsCanvas{
                id: canvasOptionRender
+               z: 1
+            }
+            Image {
+                width: parent.width
+                height: parent.height
+                fillMode: Image.PreserveAspectFit
+                source: "/configController/mando.png"
+                z: 0
             }
         }
     }

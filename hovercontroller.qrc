@@ -47,5 +47,6 @@
         <file>menu/CanvasLight.qml</file>
         <file>menu/CanvasCloudsTop.qml</file>
         <file>media/Dust.png</file>
+        <file>configController/mando.png</file>
     </qresource>
 </RCC>

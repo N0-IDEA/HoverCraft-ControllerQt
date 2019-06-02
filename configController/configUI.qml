@@ -93,20 +93,25 @@ ApplicationWindow {
             TabBar {
                 id: tabBar
                 currentIndex: controllerOptions.currentIndex//swipeView.curren12tIndex
-                x: getPositionTab();
-
+                x:  {
+                 var x = (configWindow.width / 2 ) - (tabBar.width / 2);
+                 return x < getPositionTab() ? getPositionTab() : x;
+                }
                 Repeater{
                     model: configWindow.count
                     TabButton {
                         width: {
+                            /*return rowProfiles.width / configWindow.count
+
                             var newWidth = (window.width - tabBar.x) / configWindow.count
                             if(newWidth > rowProfiles.width)
-                                return (configWindow.count < 2 ) ? rowProfiles.width : rowProfiles.width/2
-                            return rowProfiles
+                                return rowProfiles.width
+                            return newWidth*/
+                            return (configWindow.count < 2 ) ? rowProfiles.width : rowProfiles.width/2
                         }
                         onClicked: {
-                            page.children[0].children[0].children[0].contentItem.children[0].children[0].children[1].children[0].gamepad = index;
-                            page.children[0].children[0].children[0].contentItem.children[0].children[0].children[1].children[0].requestPaint()
+                            page.children[0].children[0].children[0].contentItem.children[index].children[0].children[1].children[0].gamepad = index;
+                            page.children[0].children[0].children[0].contentItem.children[index].children[0].children[1].children[0].requestPaint()
                         }
 
                         text: "Mando %1:" .arg(index);
