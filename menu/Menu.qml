@@ -101,7 +101,8 @@ ApplicationWindow {
                 //LabelTesting{}
                 LabelRectangle {
                     id: conducir
-                    property string text: "Conducir"
+                    property string text: "Conducir"                    
+                    property string colorLabel: "white"
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
@@ -113,6 +114,7 @@ ApplicationWindow {
                 }
                 LabelRectangle {
                     property string text: "Opciones"
+                    property string colorLabel: "white"
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
@@ -124,6 +126,7 @@ ApplicationWindow {
                 }
                 LabelRectangle {
                     property string text: "Salir"
+                    property string colorLabel: "white"
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {

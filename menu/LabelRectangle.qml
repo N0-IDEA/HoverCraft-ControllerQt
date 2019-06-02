@@ -9,6 +9,7 @@ import QtGraphicalEffects 1.12
 
 Rectangle{
     property string labelText: text
+    property string labelColor: colorLabel
     color: "transparent"
     //border.color: Material.color(Material.DeepOrange)
     border.color: "white"
@@ -20,6 +21,7 @@ Rectangle{
 
     Label {
         font.pixelSize:  20
+        color: labelColor
         text: labelText
         anchors.fill: parent
         verticalAlignment: Text.AlignVCenter

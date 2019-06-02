@@ -29,7 +29,7 @@ Rectangle {
         anchors.fill: parent
         // onClicked: function () { console.log(alguno.width)} //parent.state = "PRESSED"; parent.visible = false;}
     }
-    states: [ State { name: "moved"; when: mouseArea.pressed; PropertyChanges { target: recMayor; x: 50; y: 50 } } ]
+    //states: [ State { name: "moved"; when: mouseArea.pressed; PropertyChanges { target: recMayor; x: 50; y: 50 } } ]
     /* transitions: [
         Transition {
             NumberAnimation { properties: "x,y"; duration: 1000 }
@@ -64,7 +64,7 @@ Rectangle {
                     width: parent.parent.width
                     // border.color: "red"
                     color: "transparent"
-                    GlowingLabel { anchors.centerIn: parent; text: qsTr(String(Math.ceil(((ppmVel-1000)/max)*100))) ; color: "white"; font.pixelSize:  24 }//name;
+                    GlowingLabel { anchors.centerIn: parent; text: name/*qsTr(String(Math.ceil(((ppmVel-1000)/max)*100)))*/ ; color: "white"; font.pixelSize:  24 }//name;
                 }
                 Rectangle{
                     height: parent.parent.height/2

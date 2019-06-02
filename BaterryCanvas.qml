@@ -11,7 +11,7 @@ Rectangle{
     property int initialHeight: initHeight
     property int batteryLevel: levelBaterry
     property color colorGlow: Material.color(Material.DeepOrange)
-    readonly property string servoName: name
+    readonly property string labelName: name
     Layout.preferredHeight: initialHeight
     Layout.preferredWidth:  initialWidth
     color:"transparent"
@@ -21,7 +21,7 @@ Rectangle{
         anchors.fill: parent
         spacing: (initialWidth - servoName.width) *0.01
         leftPadding: (initialWidth - servoName.width) *0.05
-        GlowingLabel { id: servoName; text: "servoName"; anchors.verticalCenter: parent.verticalCenter; color: "white"; font.pixelSize:  24 }
+        GlowingLabel { id: servoName; text: labelName; anchors.verticalCenter: parent.verticalCenter; color: "white"; font.pixelSize:  24 }
         Column {
             id: column
             width: (initialWidth - servoName.width)
@@ -36,8 +36,8 @@ Rectangle{
                     var ctx     = getContext("2d")
                     var onePor = 55/100
                     var widthBar = mycanvas.width*0.75 / 55
-                    var heightBar = parent.height/3
-                    var initXY = [0, heightBar]
+                    var heightBar = parent.height /2
+                    var initXY = [0, heightBar/2]
                     var xC = initXY[0]
                     var level = batteryLevel * onePor
 

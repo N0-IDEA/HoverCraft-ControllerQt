@@ -11,7 +11,7 @@ Rectangle{
     property int initialHeight: initHeight
     property color colorGlow: Material.color(Material.DeepOrange)
     property int angleServo: ppmValue
-    readonly property string servoName: name
+    property string labelName: name
     Layout.preferredHeight: initialHeight
     Layout.preferredWidth:  initialWidth
     color:"transparent"
@@ -23,7 +23,7 @@ Rectangle{
         anchors.verticalCenter: parent.verticalCenter;
         spacing: (initialWidth - servoName.width) *0.05
         leftPadding: (initialWidth - servoName.width) *0.05
-        GlowingLabel { id: servoName; text: "servoName"; anchors.verticalCenter: parent.verticalCenter; color: "white"; font.pixelSize:  24 }
+        GlowingLabel { id: servoName; text: name; anchors.verticalCenter: parent.verticalCenter; color: "white"; font.pixelSize:  24 }
         Column {
             id: column
             anchors.verticalCenter: parent.verticalCenter;
@@ -56,7 +56,7 @@ Rectangle{
                     color: Material.color(Material.DeepOrange)
                     border.color: setGlowBorder(control)
                     layer.effect: CustomGlow { color: Material.color(Material.DeepOrange)}
-                    //onXChanged: {console.log(handleSlider.x)}
+                    onXChanged: {handleSlider.border.color = Material.color(Material.DeepOrange)}
                     function setGlowBorder(control){ layer.enabled = control.pressed; return control.pressed ? "#f0f0f0" :Material.color(Material.DeepOrange) }
                 }
             }

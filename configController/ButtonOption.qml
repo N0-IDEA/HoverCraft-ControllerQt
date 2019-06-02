@@ -12,7 +12,7 @@ Repeater {
     delegate: Rectangle {
         property int cols: 12
         Layout.minimumWidth: parent.width / 12 * cols
-        Layout.minimumHeight: (parent.height / repeaterRows) + (theOption.height/3.5)
+        Layout.minimumHeight: (parent.height / repeaterRows) ///+ (theOption.height/3.5)
         Layout.columnSpan: cols
         border.color: "white"
         color: "transparent"

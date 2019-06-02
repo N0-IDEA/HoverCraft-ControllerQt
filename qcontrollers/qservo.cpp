@@ -34,7 +34,7 @@ void QServo::change() {
         }
         else {
             if(value() != 50 && !lockOption->isActive())
-                setValue(50);
+                setValue(58);
         }
     }
 }
