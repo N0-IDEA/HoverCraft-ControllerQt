@@ -48,16 +48,24 @@ Rectangle{
                 }
                 handle: Rectangle {
                     id: handleSlider
-                    x: ((control.availableWidth + width) - control.leftPadding)  * (angleServo - 25)/100*100/65
+                    x: ((control.availableWidth + width) )  * (angleServo - 25)/65
                     y: control.topPadding + control.availableHeight / 2 - height / 2
                     implicitWidth: (initialWidth - servoName.width)*0.025
                     implicitHeight: (initialWidth - servoName.width)*0.06
                     radius: 6
                     color: Material.color(Material.DeepOrange)
-                    border.color: setGlowBorder(control)
+                    border.color: Material.color(Material.DeepOrange)//setGlowBorder(control)
                     layer.effect: CustomGlow { color: Material.color(Material.DeepOrange)}
-                    onXChanged: {handleSlider.border.color = Material.color(Material.DeepOrange)}
-                    function setGlowBorder(control){ layer.enabled = control.pressed; return control.pressed ? "#f0f0f0" :Material.color(Material.DeepOrange) }
+                    onXChanged: {
+                        if(handleSlider.x> (control.availableWidth + width)*0.44 && handleSlider.x< (control.availableWidth + width)*0.56)
+                            handleSlider.border.color =Material.color(Material.DeepOrange)
+                        else
+                            handleSlider.border.color = "#f0f0f0"
+                    //handleSlider.state == 'borderChange' ? handleSlider.state = "" : handleSlider.state = 'borderChange';
+
+                    }
+
+                    //function setGlowBorder(control){ layer.enabled = control.pressed; return control.pressed ? "#f0f0f0" :Material.color(Material.DeepOrange) }
                 }
             }
             Rectangle {
