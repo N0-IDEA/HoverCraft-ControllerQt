@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 {
     //rf.connect();
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(":/configController/icon.png"));
     QApplication::setFont(QFont("audiowide"));
     QJoysticks *instance = QJoysticks::getInstance();
     instance->setVirtualJoystickEnabled(true);

@@ -9,7 +9,7 @@ import QtGraphicalEffects 1.12
 
 ApplicationWindow {
     id: window
-    title: "Configurar Mando"
+    title: "Menu"
     visible: true
     //visibility: "FullScreen"
     width: 900
