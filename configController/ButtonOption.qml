@@ -7,34 +7,26 @@ import QtQuick.Controls.Material 2.12
 Repeater {
     model: options
     property string type: "repeater"
-    property int interFontSize: fontsize
     objectName: "buttonsRepeater"
     delegate: Rectangle {
+        id: recOptions1
         property int cols: 12
         Layout.minimumWidth: parent.width / 12 * cols
-        Layout.minimumHeight: (parent.height / repeaterRows) ///+ (theOption.height/3.5)
+        Layout.minimumHeight: parent.height / repeaterRows
         Layout.columnSpan: cols
         border.color: "white"
         color: "transparent"
         ColumnLayout{
             Label {
                 id: theOption
-                font.pixelSize:  interFontSize
+                font.pixelSize:  parent.height*0.6
                 color: Material.color(Material.DeepOrange)
-                Layout.minimumHeight: parent.parent.height/2
-                Layout.minimumWidth: parent.parent.width
+                Layout.minimumHeight: recOptions1.height
+                Layout.minimumWidth: recOptions1.width
                 text: modelData.option
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-            }
-            Label {
-                font.pixelSize:  interFontSize
-                Layout.minimumHeight: parent.parent.height/2
-                Layout.minimumWidth: parent.parent.width
-                text: /*"Mando %1:*/"Botón %2" /*.arg(modelData.idGamepad)*/.arg(modelData.idButton);
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
+            }            
         }
         MouseArea{
             anchors.fill: parent

@@ -35,14 +35,17 @@ Rectangle {
                     color: "transparent"
                     border.color: "white"
                     property int cols: 12
-                    height: parent.height /externalRows
+                    height: parent.height / gridRepeater.rows
                     Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
+                    Layout.preferredHeight: {
+                        console.log( gridRepeater.rows)
+                    return    parent.height / gridRepeater.rows
+                    }
                     Layout.columnSpan: cols
                     Label {
                         text: "Opciones"
                         anchors.fill: parent
-                        font.pixelSize:  20
+                        font.pixelSize:  parent.height *0.6
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
                     }
@@ -50,117 +53,18 @@ Rectangle {
                 ConfigComponents.ButtonOption{
                     id: buttons
                     property int repeaterRows: gridRepeater.rows
-                    property int fontsize: 20
                 }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
-                Rectangle{
-                    visible: false
-                    focus: true
-                    color: "transparent"
-                    border.color: "white"
-                    property int cols: 12
-                    height: parent.height /externalRows
-                    Layout.preferredWidth: parent.width / 12 * cols
-                    Layout.preferredHeight: parent.height / gridRepeater.rows
-                    Layout.columnSpan: cols
-                }
+
                 Rectangle{
                     color: "transparent"
                     border.color: "white"
                     property int cols: 12
-                    height: parent.height /externalRows
+                    height: parent.height /gridRepeater.rows
                     Layout.preferredWidth: parent.width / 12 * cols
                     Layout.preferredHeight: parent.height / gridRepeater.rows
                     Layout.columnSpan: cols
                     Label {
-                        font.pixelSize:  20
+                        font.pixelSize:  parent.height *0.6
                         text: "Atras"
                         anchors.fill: parent
                         verticalAlignment: Text.AlignVCenter
