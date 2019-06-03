@@ -9,6 +9,7 @@ public:
     RF();
     void connect();
     bool write(void *buf, uint8_t len);
+    int read(void *buf, uint8_t len);
 private:
     RF24 radio = RF24(4,0);
     const int radioNumber = 1;

@@ -3,6 +3,8 @@
 
 #include <QComboBox>
 
+#include <controller/battery.h>
+
 WindowController::WindowController(QObject *parent) : QObject(parent)
 {
 
@@ -84,6 +86,9 @@ void WindowController::initMain() {
         servoObjects.append(servos[i]);
     }
     rootObject->setProperty("servosModel", QVariant::fromValue(servoObjects));
+    Battery battery;
+    battery.getInfo();
+
 }
 
 WindowController* WindowController::getInstance()

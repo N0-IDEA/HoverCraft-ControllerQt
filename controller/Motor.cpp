@@ -5,22 +5,25 @@
 #include "Motor.h"
 #include "main.h"
 
+#include <qdebug.h>
+
 char getByte(int posByte, int value) {
     return (value >>  (8 * posByte)) & 0xff;
 }
 
 void Motor::update() {
 
-    if(ultimaPotencia == potencia)
+    if(ultimaPotencia == potencia && !error)
         return;
 
-    char tempArray[3];
+    char tempArray[4];
 
-    tempArray[0] = id;
-    tempArray[1] = getByte(1, potencia);
-    tempArray[2] = getByte(0, potencia);
+    tempArray[0] = 0;
+    tempArray[1] = id;
+    tempArray[2] = getByte(1, potencia);
+    tempArray[3] = getByte(0, potencia);
 
-    this->error = !rf.write(tempArray, 3);
+    this->error = !rf.write(tempArray, 4);
 
     if(!error) {
         ultimaPotencia = potencia;
