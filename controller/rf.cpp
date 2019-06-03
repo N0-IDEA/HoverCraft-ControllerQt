@@ -32,7 +32,7 @@ int RF::read(void *buf, uint8_t len) {
     while(true) {
         if(radio.write(buf, len)) {
             if(radio.available()) {
-                int temp[2];
+                char temp[2];
                 radio.read(&temp, 2);
                 if (temp[0] == temp[1])
                     return temp[0];

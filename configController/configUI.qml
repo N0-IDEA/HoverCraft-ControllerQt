@@ -114,7 +114,7 @@ ApplicationWindow {
                             page.children[0].children[0].children[0].contentItem.children[index].children[0].children[1].children[0].requestPaint()
                         }
 
-                        text: "Mando %1:" .arg(index);
+                        text: "Mando %1" .arg(index);
                     }
                 }
                 function getPositionTab () {return rowProfiles.x + rowProfiles.width}

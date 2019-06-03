@@ -22,7 +22,7 @@ void initConfig(QQmlApplicationEngine *engine);
 void initTest(QQmlApplicationEngine *engine);
 int main(int argc, char *argv[])
 {
-    //rf.connect();
+    rf.connect();
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":/configController/icon.png"));
     QApplication::setFont(QFont("audiowide"));

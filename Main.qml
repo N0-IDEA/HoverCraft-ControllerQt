@@ -90,6 +90,13 @@ ApplicationWindow {
                 // console.log("Rows: "+theRows )
                 return theRows
             }
+            MouseArea{
+                anchors.fill: parent;
+                onClicked: {
+                    lp.source=""
+                    window.show()
+                }
+            }
             GridBase {
                 id: gridBattery
                 Repeater {
@@ -105,7 +112,7 @@ ApplicationWindow {
                         property int cols: 12
                         property int rows: 0
                         property int initWidth: parent.width / 12 * cols
-                        property int initHeight: parent.height / recGridBaterry.batteryRows
+                        property int initHeight: parent.height / 6
                         Layout.columnSpan: cols
                         //border.color: "red"
                     }
@@ -129,61 +136,40 @@ ApplicationWindow {
                     }
                 }
                 BaterryCanvas {
+                    objectName: "cell1"
                     property string name: ""
                     property int levelBaterry: 16
                     property int cols: 12
                     property int rows: 0
                     property int initWidth: parent.width/ 12 * cols
-                    property int initHeight: parent.height / recGridBaterry.batteryRows
+                    property int initHeight: parent.height / 6
                     Layout.columnSpan: cols
                 }
                 BaterryCanvas {
-                    property string name: ""
-                    property int levelBaterry: 16
-                    property int cols: 12
-                    property int rows: 0
-                    property int initWidth: parent.width/ 12 * cols
-                    property int initHeight: parent.height / recGridBaterry.batteryRows
-                    Layout.columnSpan: cols
-                }
-                BaterryCanvas {
+                    objectName: "cell2"
                     property string name: ""
                     property int levelBaterry: 52
                     property int cols: 12
                     property int rows: 0
                     property int initWidth: parent.width / 12 * cols
-                    property int initHeight: parent.height / recGridBaterry.batteryRows
+                    property int initHeight: parent.height / 6
                     Layout.columnSpan: cols
                 }
                 BaterryCanvas {
+                    objectName: "cell3"
                     property string name: ""
                     property int levelBaterry: 2
                     property int cols: 12
                     property int rows: 0
                     property int initWidth: parent.width / 12 * cols
-                    property int initHeight: parent.height / recGridBaterry.batteryRows
-                    Layout.columnSpan: cols
-                }
-                BaterryCanvas {
-                    property string name: ""
-                    property int levelBaterry: 100
-                    property int cols: 12
-                    property int rows: 0
-                    property int initWidth: parent.width / 12 * cols
-                    property int initHeight: parent.height / recGridBaterry.batteryRows
+                    property int initHeight: parent.height / 6
                     Layout.columnSpan: cols
                 }
             }
         }
 
     }
-    MouseArea{
-        anchors.fill: parent;
-        onClicked: {
-            lp.source=""
-            window.show()
-        }
-    }
+
     function getTotalRows(gridMain){
         var totalCols = 0;
         for(var i = 0; i < gridMain.children.length; ++i)

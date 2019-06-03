@@ -5,6 +5,8 @@
 
 #include <controller/battery.h>
 
+#include <QDebug>
+
 WindowController::WindowController(QObject *parent) : QObject(parent)
 {
 
@@ -86,9 +88,13 @@ void WindowController::initMain() {
         servoObjects.append(servos[i]);
     }
     rootObject->setProperty("servosModel", QVariant::fromValue(servoObjects));
+/*
     Battery battery;
     battery.getInfo();
-
+    rootObject->findChild<QObject*>("cell1")->setProperty("levelBaterry", battery.cells[0]);
+    rootObject->findChild<QObject*>("cell2")->setProperty("levelBaterry", battery.cells[1]);
+    rootObject->findChild<QObject*>("cell3")->setProperty("levelBaterry", battery.cells[2]);
+*/
 }
 
 WindowController* WindowController::getInstance()
